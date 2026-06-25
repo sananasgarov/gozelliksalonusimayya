@@ -1,6 +1,8 @@
 @import "tailwindcss";
 
-html {
+html,
+body {
+  background-color: #F4F2EE;
   scroll-behavior: smooth;
 }
 
@@ -10,7 +12,7 @@ html {
 }
 
 .animate-marquee {
-  animation: marquee 22s linear infinite;
+  animation: marquee 12s linear infinite;
 }
 
 .animate-marquee:hover {

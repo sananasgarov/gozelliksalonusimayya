@@ -19,7 +19,7 @@ function FaqItem({ q, a, isOpen, onToggle }: { q: string; a: string; isOpen: boo
         className="w-full flex items-center justify-between gap-6 py-6 px-2 text-left group"
       >
         <span
-          className="text-[#615a6a] text-[24px] font-medium leading-8 tracking-[-0.48px] transition-colors duration-300 group-hover:text-[#433459]"
+          className="text-[#615a6a] text-base md:text-[24px] font-medium leading-7 md:leading-8 tracking-[-0.48px] transition-colors duration-300 group-hover:text-[#433459]"
         >
           {q}
         </span>

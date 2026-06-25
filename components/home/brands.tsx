@@ -9,7 +9,7 @@ const brandLogos = [
 
 export default function Brands() {
   return (
-    <div className="w-full overflow-hidden py-16 md:py-35 bg-[#f4f2ee]">
+    <div className="w-full overflow-hidden py-16 md:py-35">
       <div className="flex gap-28 items-center animate-marquee whitespace-nowrap">
         {[...brandLogos, ...brandLogos].map((b, i) => (
           <img

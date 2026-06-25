@@ -27,12 +27,11 @@ export default function About() {
         About Us
       </h2>
 
-      {/* Mobile: stacked, Desktop: side by side */}
-      <div className="flex flex-col md:flex-row gap-8 md:gap-10 items-start md:items-center w-full">
+      <div className="flex flex-col lg:flex-row gap-8 lg:gap-10 items-start lg:items-center w-full">
 
-        {/* Photos — mobile: only main photo, desktop: accordion */}
+        {/* Desktop accordion (lg+) */}
         <div
-          className="hidden md:flex gap-3 h-150 shrink-0"
+          className="hidden lg:flex gap-3 h-150 shrink-0"
           style={{ width: "652px", minWidth: "652px" }}
         >
           {photos.map((src, i) => (
@@ -50,8 +49,8 @@ export default function About() {
           ))}
         </div>
 
-        {/* Mobile only: single main photo */}
-        <div className="md:hidden w-full h-72 rounded-[20px] overflow-hidden relative">
+        {/* Mobile/tablet: single photo */}
+        <div className="lg:hidden w-full h-72 sm:h-96 rounded-[20px] overflow-hidden relative">
           <Image src={photos[0]} alt="About" fill className="object-cover" />
         </div>
 
@@ -80,12 +79,12 @@ export default function About() {
             {stats.map((s) => (
               <div key={s.label} className="flex flex-col gap-1 md:gap-2 items-center text-center">
                 <p
-                  className="text-[#433459] text-[36px] md:text-[56px] leading-none tracking-[-1.12px]"
+                  className="text-[#433459] text-[32px] md:text-[56px] leading-none tracking-[-1.12px]"
                   style={{ fontFamily: "var(--font-antonio)" }}
                 >
                   {s.value}
                 </p>
-                <p className="text-[#5e5667] text-sm md:text-base leading-5 md:leading-6 tracking-[-0.32px]">
+                <p className="text-[#5e5667] text-xs md:text-base leading-5 md:leading-6 tracking-[-0.32px]">
                   {s.label}
                 </p>
               </div>

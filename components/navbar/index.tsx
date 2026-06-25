@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { X, Menu } from "lucide-react";
 
 const logoHeart = "/logoicon.png";
@@ -10,20 +10,41 @@ const navLinks = [
   { label: "Home", href: "/" },
   { label: "About", href: "/#about" },
   { label: "Services", href: "/services" },
-  { label: "Gallery", href: "/gallery" },
+  { label: "Gallery", href: "/#gallery" },
   { label: "Reviews", href: "/#reviews" },
   { label: "Contact", href: "/#contact" },
 ];
 
-export default function Navbar() {
+export default function Navbar({ forceScrolled = false, darkIcons = false }: { forceScrolled?: boolean; darkIcons?: boolean }) {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
+  const [_scrolled, setScrolled] = useState(false);
+  const [hidden, setHidden] = useState(false);
+  const lastScrollY = useRef(0);
+
+  const scrolled = forceScrolled || _scrolled;
+  const dark = scrolled || darkIcons;
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 60);
+    if (forceScrolled) return;
+
+    const onScroll = () => {
+      const y = window.scrollY;
+      setScrolled(y > 60);
+
+      if (y < 60) {
+        setHidden(false);
+      } else if (y > lastScrollY.current + 8) {
+        setHidden(true);
+      } else if (y < lastScrollY.current - 4) {
+        setHidden(false);
+      }
+
+      lastScrollY.current = y;
+    };
+
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  }, [forceScrolled]);
 
   useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : "";
@@ -33,8 +54,11 @@ export default function Navbar() {
   return (
     <>
       <header
-        className="fixed top-0 left-0 right-0 z-50 transition-colors duration-300"
-        style={{ backgroundColor: scrolled ? "#ffffff" : "transparent" }}
+        className="fixed top-0 left-0 right-0 z-50 transition-[transform,background-color] duration-400 ease-in-out"
+        style={{
+          backgroundColor: scrolled ? "#ffffff" : "transparent",
+          transform: hidden && !menuOpen ? "translateY(-100%)" : "translateY(0)",
+        }}
       >
         <div className="flex items-center justify-between px-4 md:px-15 py-4 md:py-5">
           <Link href="/" className="flex items-start shrink-0">
@@ -42,46 +66,46 @@ export default function Navbar() {
               className="text-[40px] leading-12 -mr-1.5 whitespace-nowrap transition-colors duration-300"
               style={{
                 fontFamily: "var(--font-great-vibes)",
-                color: scrolled ? "#1a1a1a" : "#ffffff",
+                color: dark ? "#1a1a1a" : "#ffffff",
               }}
             >
               Samiyya
             </span>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src={scrolled ? "/logoblack.png" : logoHeart}
+              src={dark ? "/logoblack.png" : logoHeart}
               alt=""
               className="size-9 object-cover shrink-0 mt-0.5"
             />
           </Link>
 
           <div className="flex items-center gap-6">
-            <Link
-              href="/booking"
+            <a
+              href="https://wa.me/13476127994"
+              target="_blank"
+              rel="noopener noreferrer"
               className="hidden sm:block bg-[#9b6dff] hover:bg-[#8a5dee] text-white font-medium text-base px-6 py-3 rounded-full transition-colors whitespace-nowrap"
             >
               Book Now
-            </Link>
+            </a>
 
             <button
               onClick={() => setMenuOpen((v) => !v)}
               className="p-1 shrink-0"
               aria-label="Toggle menu"
             >
-              <Menu
-                size={24}
-                color={scrolled ? "#433459" : "#ffffff"}
-              />
+              <Menu size={24} color={dark ? "#433459" : "#ffffff"} />
             </button>
           </div>
         </div>
       </header>
 
       <div
-        className="fixed left-0 right-0 top-0 z-999 transition-transform duration-400 ease-in-out"
+        className="fixed left-0 right-0 z-999 transition-[top] duration-400 ease-in-out"
         style={{
           backgroundColor: "#d9caea",
           height: "370px",
-          transform: menuOpen ? "translateY(0)" : "translateY(-100%)",
+          top: menuOpen ? "0" : "-370px",
           pointerEvents: menuOpen ? "auto" : "none",
         }}
       >

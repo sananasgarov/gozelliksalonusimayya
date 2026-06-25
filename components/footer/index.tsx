@@ -8,7 +8,7 @@ const logoHeart =
 const quickLinks = [
   { label: "Home", href: "/" },
   { label: "Services", href: "/services" },
-  { label: "Gallery", href: "/gallery" },
+  { label: "Gallery", href: "/#gallery" },
   { label: "Contact Us", href: "/#contact" },
 ];
 
@@ -19,13 +19,9 @@ const legalLinks = [
 ];
 
 const contactLinks = [
-  { label: "Instagram", href: "https://instagram.com", external: true },
-  { label: "Tik Tok", href: "https://tiktok.com", external: true },
-  {
-    label: "samiyya@gmail.com",
-    href: "mailto:samiyya@gmail.com",
-    external: false,
-  },
+  { label: "Instagram", href: "https://www.instagram.com/samiyya.studio", external: true },
+  { label: "Tik Tok", href: "https://www.tiktok.com/@samiyya.studio", external: true },
+  { label: "samiyya@gmail.com", href: "mailto:samiyya@gmail.com", external: false },
 ];
 
 function scrollToTop() {
@@ -78,7 +74,7 @@ export default function Footer() {
           </div>
 
           {/* Link columns */}
-          <div className="flex flex-wrap sm:flex-nowrap items-start justify-between gap-8 flex-1">
+          <div className="flex flex-wrap items-start justify-between gap-8 flex-1">
             {/* Quick Links */}
             <div className="flex flex-col gap-4">
               <p className="text-[#433459] text-[28px] font-medium leading-9 tracking-[-0.56px]">
@@ -148,7 +144,7 @@ export default function Footer() {
               <span className="text-200px text-black ml-1">↑</span>
             </button>
           </div>
-          <div className="bg-[#433459] h-px rounded-full w-full" />
+          <div className="bg-[#433459] h-[0.5px] rounded-full w-full" />
           <p className="text-[#615a6a] text-sm leading-5 tracking-[-0.28px]">
             © 2026 Samiyya Studio. All Rights Reserved.
           </p>

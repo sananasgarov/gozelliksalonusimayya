@@ -33,9 +33,9 @@ export default function Contact() {
               <p className="text-[#615a6a] text-xl md:text-[28px] font-medium leading-8 tracking-[-0.56px]">
                 Phones
               </p>
-              <p className="text-[#615a6a] text-base md:text-xl leading-7 tracking-[-0.4px]">
+              <a href="tel:+13476127994" className="text-[#615a6a] text-base md:text-xl leading-7 tracking-[-0.4px] hover:text-[#433459] transition-colors">
                 347-612-7994
-              </p>
+              </a>
             </div>
             <div className="flex flex-col gap-2 flex-1">
               <p className="text-[#615a6a] text-xl md:text-[28px] font-medium leading-8 tracking-[-0.56px]">
@@ -58,9 +58,14 @@ export default function Contact() {
             <p className="text-[#615a6a] text-xl md:text-[28px] font-medium leading-8 tracking-[-0.56px]">
               Address
             </p>
-            <p className="text-[#615a6a] text-base md:text-xl leading-7 tracking-[-0.4px]">
+            <a
+              href="https://maps.google.com/?q=4624+Chatsworth+Ave+Pittsburgh+PA+15207"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#615a6a] text-base md:text-xl leading-7 tracking-[-0.4px] hover:text-[#433459] transition-colors"
+            >
               4624 Chatsworth Ave zip 15207<br />Pelsilvaniya, Pittsburgh
-            </p>
+            </a>
           </div>
 
           {/* Work Schedule */}

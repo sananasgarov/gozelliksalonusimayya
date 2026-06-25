@@ -63,19 +63,19 @@ export default function ServicesHighlight() {
         onSwiper={(swiper) => { swiperRef.current = swiper; }}
         onSlideChange={(swiper) => setActive(swiper.realIndex)}
         className="w-full h-full"
-        style={{ minHeight: 700 }}
+        style={{ minHeight: 580 }}
       >
         {slides.map((s, i) => (
           <SwiperSlide key={i}>
-            <div className="flex flex-col md:flex-row items-stretch w-full" style={{ minHeight: 700 }}>
-              <div className="flex flex-col gap-6 px-15 py-16 z-10 md:w-1/2 justify-center">
+            <div className="flex flex-col md:flex-row items-stretch w-full" style={{ minHeight: 580 }}>
+              <div className="flex flex-col gap-4 md:gap-6 px-4 md:px-15 pt-10 md:pt-50 pb-10 md:pb-16 z-10 w-full md:w-3/5 justify-start">
                 <h2
-                  className="text-[#433459] text-[96px] leading-none tracking-[-3.84px]"
+                  className="text-[#433459] text-[56px] md:text-[96px] leading-none tracking-[-2px] md:tracking-[-3.84px]"
                   style={{ fontFamily: "var(--font-antonio)" }}
                 >
                   {s.title}
                 </h2>
-                <p className="text-[#5e5667] text-3xl leading-10 tracking-[-0.64px] font-light max-w-sm">
+                <p className="text-[#5e5667] text-lg md:text-3xl leading-7 md:leading-10 tracking-[-0.64px] font-light max-w-2lg">
                   {s.desc}
                 </p>
                 <Link
@@ -87,11 +87,12 @@ export default function ServicesHighlight() {
                 </Link>
               </div>
 
-              <div className="md:w-1/2 self-stretch relative overflow-hidden" style={{ minHeight: 700 }}>
+              <div className="md:w-2/5 self-stretch relative overflow-hidden" style={{ minHeight: 800 }}>
                 <img
                   src={s.image}
                   alt={s.title}
-                  className="absolute inset-0 w-full h-full object-cover object-center"
+                  className="absolute left-0 right-0 bottom-0 w-full object-cover object-top"
+                  style={{ top: "48px" }}
                 />
               </div>
             </div>

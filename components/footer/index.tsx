@@ -50,14 +50,14 @@ function scrollToTop() {
 export default function Footer() {
   return (
     <footer
-      className="w-full px-15 pt-13 pb-8"
+      className="w-full px-4 md:px-15 pt-10 md:pt-13 pb-8"
       style={{ backgroundColor: "#d9caea" }}
     >
       <div className="  mx-auto flex flex-col gap-13">
         {/* Top row */}
-        <div className="flex gap-5 items-start">
+        <div className="flex flex-col md:flex-row gap-10 md:gap-5 items-start">
           {/* Logo + tagline */}
-          <div className="flex flex-col gap-4 w-106.75 shrink-0">
+          <div className="flex flex-col gap-4 w-full md:w-106.75 md:shrink-0">
             <div className="flex items-start">
               <span
                 className="text-black text-[48px] leading-none -mr-1.5 whitespace-nowrap"
@@ -78,7 +78,7 @@ export default function Footer() {
           </div>
 
           {/* Link columns */}
-          <div className="flex items-start justify-between flex-1">
+          <div className="flex flex-wrap sm:flex-nowrap items-start justify-between gap-8 flex-1">
             {/* Quick Links */}
             <div className="flex flex-col gap-4">
               <p className="text-[#433459] text-[28px] font-medium leading-9 tracking-[-0.56px]">

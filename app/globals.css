@@ -16,3 +16,16 @@ html {
 .animate-marquee:hover {
   animation-play-state: paused;
 }
+
+@keyframes gallery-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-gallery-scroll {
+  animation: gallery-scroll 28s linear infinite;
+}
+
+.animate-gallery-scroll:hover {
+  animation-play-state: paused;
+}

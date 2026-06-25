@@ -19,16 +19,22 @@ export default function About() {
   const [active, setActive] = useState(0);
 
   return (
-    <section id="about" className="pt-20 px-15 w-full">
+    <section id="about" className="pt-10 md:pt-20 px-4 md:px-15 w-full">
       <h2
-        className="text-[#433459] text-[40px] leading-12 tracking-[-0.8px] mb-10"
+        className="text-[#433459] text-[32px] md:text-[40px] leading-10 md:leading-12 tracking-[-0.8px] mb-8 md:mb-10"
         style={{ fontFamily: "var(--font-antonio)" }}
       >
         About Us
       </h2>
 
-      <div className="flex gap-10 items-center w-full">
-        <div className="flex gap-3 h-150" style={{ width: "652px", minWidth: "652px" }}>
+      {/* Mobile: stacked, Desktop: side by side */}
+      <div className="flex flex-col md:flex-row gap-8 md:gap-10 items-start md:items-center w-full">
+
+        {/* Photos — mobile: only main photo, desktop: accordion */}
+        <div
+          className="hidden md:flex gap-3 h-150 shrink-0"
+          style={{ width: "652px", minWidth: "652px" }}
+        >
           {photos.map((src, i) => (
             <div
               key={i}
@@ -39,18 +45,19 @@ export default function About() {
               }}
               onMouseEnter={() => setActive(i)}
             >
-              <Image
-                src={src}
-                alt={`About photo ${i + 1}`}
-                fill
-                className="object-cover"
-              />
+              <Image src={src} alt={`About photo ${i + 1}`} fill className="object-cover" />
             </div>
           ))}
         </div>
 
-        <div className="flex flex-col gap-10 flex-1">
-          <div className="flex flex-col gap-5 text-[#615a6a] text-xl leading-7 tracking-[-0.4px]">
+        {/* Mobile only: single main photo */}
+        <div className="md:hidden w-full h-72 rounded-[20px] overflow-hidden relative">
+          <Image src={photos[0]} alt="About" fill className="object-cover" />
+        </div>
+
+        {/* Text + stats */}
+        <div className="flex flex-col gap-8 md:gap-10 flex-1">
+          <div className="flex flex-col gap-4 md:gap-5 text-[#615a6a] text-base md:text-xl leading-7 tracking-[-0.4px]">
             <p>
               I am Samiyya, a licensed makeup artist and Certified Makeup Master
               Class Graduate, passionate about enhancing natural beauty through
@@ -71,14 +78,14 @@ export default function About() {
 
           <div className="flex justify-between w-full">
             {stats.map((s) => (
-              <div key={s.label} className="flex flex-col gap-2 items-center text-center">
+              <div key={s.label} className="flex flex-col gap-1 md:gap-2 items-center text-center">
                 <p
-                  className="text-[#433459] text-[56px] leading-none tracking-[-1.12px]"
+                  className="text-[#433459] text-[36px] md:text-[56px] leading-none tracking-[-1.12px]"
                   style={{ fontFamily: "var(--font-antonio)" }}
                 >
                   {s.value}
                 </p>
-                <p className="text-[#5e5667] text-base leading-6 tracking-[-0.32px]">
+                <p className="text-[#5e5667] text-sm md:text-base leading-5 md:leading-6 tracking-[-0.32px]">
                   {s.label}
                 </p>
               </div>

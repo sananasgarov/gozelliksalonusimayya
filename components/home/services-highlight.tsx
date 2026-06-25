@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import SlideText from "@/components/slide-text";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, EffectFade } from "swiper/modules";
 import type { Swiper as SwiperType } from "swiper";
@@ -72,18 +73,25 @@ export default function ServicesHighlight() {
                 <h2
                   className="text-[#433459] text-[56px] md:text-[96px] leading-none tracking-[-2px] md:tracking-[-3.84px]"
                   style={{ fontFamily: "var(--font-antonio)" }}
+                  data-aos="fade-up"
                 >
                   {s.title}
                 </h2>
-                <p className="text-[#5e5667] text-lg md:text-3xl leading-7 md:leading-10 tracking-[-0.64px] font-light max-w-2lg">
+                <p
+                  className="text-[#5e5667] text-lg md:text-3xl leading-7 md:leading-10 tracking-[-0.64px] font-light max-w-2lg"
+                  data-aos="fade-up"
+                  data-aos-delay="100"
+                >
                   {s.desc}
                 </p>
                 <Link
                   href="/services"
-                  className="self-start text-white font-semibold text-base px-6 py-3.5 rounded-full transition-colors hover:opacity-85"
+                  className="self-start text-white font-semibold text-base px-6 py-3.5 rounded-full transition-colors hover:opacity-85 group"
                   style={{ backgroundColor: s.btnColor }}
+                  data-aos="fade-up"
+                  data-aos-delay="200"
                 >
-                  Look Closely
+                  <SlideText>Look Closely</SlideText>
                 </Link>
               </div>
 

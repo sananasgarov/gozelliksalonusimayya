@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import SlideText from "@/components/slide-text";
 
 const logoHeart =
   "/logoblack.png";
@@ -85,9 +86,9 @@ export default function Footer() {
                   <Link
                     key={l.href}
                     href={l.href}
-                    className="text-[#615a6a] text-xl leading-7 tracking-[-0.4px] hover:text-[#433459] transition-colors"
+                    className="text-[#615a6a] text-xl leading-7 tracking-[-0.4px] hover:text-[#433459] transition-colors group"
                   >
-                    {l.label}
+                    <SlideText>{l.label}</SlideText>
                   </Link>
                 ))}
               </div>
@@ -96,16 +97,16 @@ export default function Footer() {
             {/* Legal */}
             <div className="flex flex-col gap-4">
               <p className="text-[#433459] text-[28px] font-medium leading-9 tracking-[-0.56px]">
-                Legal İnformation
+                Legal Information
               </p>
               <div className="flex flex-col gap-3">
                 {legalLinks.map((l) => (
                   <Link
                     key={l.href}
                     href={l.href}
-                    className="text-[#615a6a] text-xl leading-7 tracking-[-0.4px] hover:text-[#433459] transition-colors"
+                    className="text-[#615a6a] text-xl leading-7 tracking-[-0.4px] hover:text-[#433459] transition-colors group"
                   >
-                    {l.label}
+                    <SlideText>{l.label}</SlideText>
                   </Link>
                 ))}
               </div>
@@ -123,9 +124,9 @@ export default function Footer() {
                     href={l.href}
                     target={l.external ? "_blank" : undefined}
                     rel={l.external ? "noopener noreferrer" : undefined}
-                    className="text-[#615a6a] text-xl leading-7 tracking-[-0.4px] hover:text-[#433459] transition-colors"
+                    className="text-[#615a6a] text-xl leading-7 tracking-[-0.4px] hover:text-[#433459] transition-colors group"
                   >
-                    {l.label}
+                    <SlideText>{l.label}</SlideText>
                   </a>
                 ))}
               </div>
@@ -138,10 +139,9 @@ export default function Footer() {
           <div className="flex justify-end">
             <button
               onClick={scrollToTop}
-              className="flex items-center gap-1 text-[#615a6a] text-xl leading-7 tracking-[-0.4px] hover:text-[#433459] transition-colors"
+              className="flex items-center gap-1 text-[#615a6a] text-xl leading-7 tracking-[-0.4px] hover:text-[#433459] transition-colors group"
             >
-              Back to top
-              <span className="text-200px text-black ml-1">↑</span>
+              <SlideText>Back to top ↑</SlideText>
             </button>
           </div>
           <div className="bg-[#433459] h-[0.5px] rounded-full w-full" />

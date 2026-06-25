@@ -1,9 +1,9 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
+import SlideText from "@/components/slide-text";
 
 type TabKey = "privacy" | "terms" | "booking";
 
@@ -52,7 +52,7 @@ function BulletList({ items }: { items: string[] }) {
 }
 
 export default function PrivacyPolicyPage() {
-  const [activeTab] = useState<TabKey>("privacy");
+  const activeTab: TabKey = "privacy";
 
   return (
     <div className="bg-[#f4f2ee] min-h-screen">
@@ -161,9 +161,9 @@ export default function PrivacyPolicyPage() {
             </Section>
 
             <Section title="Contact Information">
-              <BodyText>4624 Chatsworth Ave, Pittsburgh, PA 15207, USA</BodyText>
-              <BodyText>Phone: 347-612-7994</BodyText>
-              <BodyText>Email: samiyya@gmail.com</BodyText>
+              <BodyText><a href="https://maps.google.com/?q=4624+Chatsworth+Ave+Pittsburgh+PA+15207" target="_blank" rel="noopener noreferrer" className="hover:text-[#433459] transition-colors group"><SlideText>4624 Chatsworth Ave, Pittsburgh, PA 15207, USA</SlideText></a></BodyText>
+              <BodyText>Phone: <a href="tel:+13476127994" className="hover:text-[#433459] transition-colors group"><SlideText>347-612-7994</SlideText></a></BodyText>
+              <BodyText>Email: <a href="mailto:samiyya@gmail.com" className="hover:text-[#433459] transition-colors group"><SlideText>samiyya@gmail.com</SlideText></a></BodyText>
             </Section>
 
           </div>

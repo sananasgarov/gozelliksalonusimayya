@@ -1,3 +1,5 @@
+import SlideText from "@/components/slide-text";
+
 export default function Hero() {
   return (
     <section className="sticky top-0 h-screen w-full flex items-center justify-center text-center overflow-hidden">
@@ -32,9 +34,9 @@ export default function Hero() {
           href="sms:+13476127994"
           target="_blank"
           rel="noopener noreferrer"
-          className="bg-[#9b6dff] hover:bg-[#8a5dee] text-white font-medium text-base px-6 py-3 rounded-full transition-colors"
+          className="bg-[#9b6dff] hover:bg-[#8a5dee] text-white font-medium text-base px-6 py-3 rounded-full transition-colors group"
         >
-          Book Now
+          <SlideText>Book Now</SlideText>
         </a>
       </div>
     </section>

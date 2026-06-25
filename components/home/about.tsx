@@ -23,11 +23,12 @@ export default function About() {
       <h2
         className="text-[#433459] text-[32px] md:text-[40px] leading-10 md:leading-12 tracking-[-0.8px] mb-8 md:mb-10"
         style={{ fontFamily: "var(--font-antonio)" }}
+        data-aos="fade-up"
       >
         About Us
       </h2>
 
-      <div className="flex flex-col lg:flex-row gap-8 lg:gap-10 items-start lg:items-center w-full">
+      <div className="flex flex-col lg:flex-row gap-8 lg:gap-10 items-start lg:items-center w-full" data-aos="fade-up" data-aos-delay="100">
 
         {/* Desktop accordion (lg+) */}
         <div

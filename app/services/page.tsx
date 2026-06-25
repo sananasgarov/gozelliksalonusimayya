@@ -1,6 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import AOS from "aos";
+import SlideText from "@/components/slide-text";
+import "aos/dist/aos.css";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import GalleryPreview from "@/components/home/gallery-preview";
@@ -180,6 +183,10 @@ export default function ServicesPage() {
   const services = servicesData[activeTab];
   const image = categoryImages[activeTab];
 
+  useEffect(() => {
+    AOS.refresh();
+  }, [activeTab]);
+
   return (
     <div className="bg-[#f4f2ee] min-h-screen">
       <Navbar darkIcons />
@@ -193,16 +200,15 @@ export default function ServicesPage() {
         </h1>
       </div>
 
-      {/* Tabs */}
       <div className="px-4 md:px-15 flex gap-6 mb-8 md:mb-10">
         {tabs.map((t) => (
           <button
             key={t.key}
             onClick={() => setActiveTab(t.key)}
-            className="text-xl md:text-2xl font-medium leading-8 tracking-[-0.48px] transition-colors duration-200"
+            className="text-xl md:text-2xl font-medium leading-8 tracking-[-0.48px] transition-colors duration-200 cursor-pointer group"
             style={{ color: activeTab === t.key ? "#9b6dff" : "#433459" }}
           >
-            {t.label}
+            <SlideText>{t.label}</SlideText>
           </button>
         ))}
       </div>
@@ -213,6 +219,8 @@ export default function ServicesPage() {
           <div
             key={`${activeTab}-${i}`}
             className="relative rounded-[20px] overflow-hidden cursor-pointer group h-56 sm:h-72 lg:h-118.25"
+            data-aos="fade-up"
+            data-aos-delay={Math.min(i * 60, 420)}
           >
             {/* Image */}
             {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -234,7 +242,7 @@ export default function ServicesPage() {
               <p className="text-[#faf9f7] text-sm sm:text-xl md:text-2xl font-medium leading-5 sm:leading-7.5 tracking-[-0.48px]">
                 {s.title}
               </p>
-              <p className="text-[#e7e4df] text-[10px] sm:text-xs md:text-sm leading-4 sm:leading-5 tracking-[-0.28px]">
+              <p className="text-[#e7e4df] text-[10px] sm:text-xs md:text-sm leading-4 sm:leading-5 tracking-[-0.28px] line-clamp-2">
                 {s.desc}
               </p>
             </div>

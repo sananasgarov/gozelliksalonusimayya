@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Antonio, Great_Vibes } from "next/font/google";
 import "./globals.css";
+import AOSInit from "@/components/aos-init";
 
 const geist = Geist({
   variable: "--font-geist",
@@ -35,6 +36,7 @@ export default function RootLayout({
       className={`${geist.variable} ${antonio.variable} ${greatVibes.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-white">
+        <AOSInit />
         {children}
       </body>
     </html>

@@ -15,7 +15,6 @@ export default function GalleryPreview() {
           <div
             key={i}
             className="shrink-0 w-44 sm:w-56 md:w-78.75 h-60 sm:h-80 md:h-118.25 rounded-[20px] overflow-hidden relative group cursor-pointer"
-            style={{ animationPlayState: "inherit" }}
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img

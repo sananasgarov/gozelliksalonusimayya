@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
+import SlideText from "@/components/slide-text";
 
 const tabs = [
   { label: "Privacy Policy", href: "/privacy-policy" },
@@ -166,8 +167,8 @@ export default function BookingPolicyPage() {
             </Section>
 
             <Section title="Contact Information">
-              <BodyText>Phone: 347-612-7994</BodyText>
-              <BodyText>Email: samiyya@gmail.com</BodyText>
+              <BodyText>Phone: <a href="tel:+13476127994" className="hover:text-[#433459] transition-colors group"><SlideText>347-612-7994</SlideText></a></BodyText>
+              <BodyText>Email: <a href="mailto:samiyya@gmail.com" className="hover:text-[#433459] transition-colors group"><SlideText>samiyya@gmail.com</SlideText></a></BodyText>
             </Section>
 
           </div>

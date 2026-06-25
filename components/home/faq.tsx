@@ -60,18 +60,20 @@ export default function Faq() {
       <h2
         className="text-[#433459] text-[28px] md:text-[40px] leading-9 md:leading-12 tracking-[-0.8px] mb-6 md:mb-8"
         style={{ fontFamily: "var(--font-antonio)" }}
+        data-aos="fade-up"
       >
         Frequently Asked Questions
       </h2>
       <div className="flex flex-col w-full md:max-w-246.25 md:ml-auto">
         {faqs.map((item, i) => (
-          <FaqItem
-            key={i}
-            q={item.q}
-            a={item.a}
-            isOpen={openIndex === i}
-            onToggle={() => setOpenIndex(openIndex === i ? null : i)}
-          />
+          <div key={i} data-aos="fade-up" data-aos-delay={i * 80}>
+            <FaqItem
+              q={item.q}
+              a={item.a}
+              isOpen={openIndex === i}
+              onToggle={() => setOpenIndex(openIndex === i ? null : i)}
+            />
+          </div>
         ))}
       </div>
     </section>

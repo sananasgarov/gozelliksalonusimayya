@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import SlideText from "@/components/slide-text";
 import { useState, useEffect, useRef } from "react";
 import { X, Menu } from "lucide-react";
 
@@ -84,9 +85,9 @@ export default function Navbar({ forceScrolled = false, darkIcons = false }: { f
               href="sms:+13476127994"
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden sm:block bg-[#9b6dff] hover:bg-[#8a5dee] text-white font-medium text-base px-6 py-3 rounded-full transition-colors whitespace-nowrap"
+              className="hidden sm:block bg-[#9b6dff] hover:bg-[#8a5dee] text-white font-medium text-base px-6 py-3 rounded-full transition-colors whitespace-nowrap group"
             >
-              Book Now
+              <SlideText>Book Now</SlideText>
             </a>
 
             <button
@@ -99,6 +100,13 @@ export default function Navbar({ forceScrolled = false, darkIcons = false }: { f
           </div>
         </div>
       </header>
+
+      {menuOpen && (
+        <div
+          className="fixed inset-0 z-998"
+          onClick={() => setMenuOpen(false)}
+        />
+      )}
 
       <div
         className="fixed left-0 right-0 z-999 transition-[top] duration-400 ease-in-out"
@@ -123,9 +131,9 @@ export default function Navbar({ forceScrolled = false, darkIcons = false }: { f
               key={l.href}
               href={l.href}
               onClick={() => setMenuOpen(false)}
-              className="text-[#433459] text-xl font-medium hover:opacity-60 transition-opacity"
+              className="text-[#433459] text-xl font-medium transition-opacity group"
             >
-              {l.label}
+              <SlideText>{l.label}</SlideText>
             </Link>
           ))}
         </nav>

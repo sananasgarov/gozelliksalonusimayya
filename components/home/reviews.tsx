@@ -36,6 +36,7 @@ export default function Reviews() {
       <h2
         className="text-[#433459] text-[28px] md:text-[40px] leading-9 md:leading-12 tracking-[-0.8px] mb-6 md:mb-8 px-4 md:px-15"
         style={{ fontFamily: "var(--font-antonio)" }}
+        data-aos="fade-up"
       >
         Customer Reviews
       </h2>
@@ -48,11 +49,15 @@ export default function Reviews() {
         grabCursor
         slidesOffsetBefore={16}
         slidesOffsetAfter={16}
-        className="w-full overflow-visible! px-12!"
+        className="w-full overflow-visible! lg:px-12! px-4"
       >
         {reviews.map((r, i) => (
           <SwiperSlide key={i} className="w-70! sm:w-90! md:w-106.75!">
-            <div className="border border-[#3f3450]/50 rounded-[20px] p-4 sm:p-6 flex flex-col gap-2 sm:gap-3 hover:bg-[#f0ecf8] transition-colors h-full">
+            <div
+              className="border border-[#3f3450]/50 rounded-[20px] p-4 sm:p-6 flex flex-col gap-2 sm:gap-3 hover:bg-[#f0ecf8] transition-colors h-full"
+              data-aos="fade-up"
+              data-aos-delay={i * 100}
+            >
               <div className="flex gap-3 sm:gap-4 items-center">
                 <div className="size-14 sm:size-20 rounded-full overflow-hidden shrink-0">
                   {/* eslint-disable-next-line @next/next/no-img-element */}

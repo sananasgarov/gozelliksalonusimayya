@@ -19,7 +19,7 @@ export default function About() {
   const [active, setActive] = useState(0);
 
   return (
-    <section id="about" className="pt-10 md:pt-20 px-4 md:px-15 w-full">
+    <section id="about" className="pt-25 pb-25 px-4 md:px-15 w-full">
       <h2
         className="text-[#433459] text-[32px] md:text-[40px] leading-10 md:leading-12 tracking-[-0.8px] mb-8 md:mb-10"
         style={{ fontFamily: "var(--font-antonio)" }}
@@ -55,8 +55,8 @@ export default function About() {
         </div>
 
         {/* Text + stats */}
-        <div className="flex flex-col gap-8 md:gap-10 flex-1">
-          <div className="flex flex-col gap-4 md:gap-5 text-[#615a6a] text-base md:text-xl leading-7 tracking-[-0.4px]">
+        <div className="flex flex-col gap-8 md:gap-20 flex-1">
+          <div className="flex flex-col gap-4 md:gap-10 text-[#615a6a] text-base md:text-xl leading-7 tracking-[-0.4px]">
             <p>
               I am Samiyya, a licensed makeup artist and Certified Makeup Master
               Class Graduate, passionate about enhancing natural beauty through

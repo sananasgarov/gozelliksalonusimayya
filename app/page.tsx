@@ -26,17 +26,29 @@ export default function Home() {
           zIndex: 2,
           marginTop: "-100vh",
           background: "#f4f2ee",
-          borderRadius: "24px 24px 0 0",
-          overflow: "hidden",
-          boxShadow: "0 -12px 48px rgba(0,0,0,0.18)",
         }}
       >
         <About />
       </div>
 
-      <Brands />
-      <ServicesHighlight />
-      <GalleryPreview />
+      {/* Brands pinned — ServicesHighlight slides over it */}
+      <div style={{ position: "relative", zIndex: 3, height: "calc(100vh + 200px)" }}>
+        <div style={{ position: "sticky", top: 0, width: "100%", background: "#f4f2ee" }}>
+          <Brands />
+        </div>
+      </div>
+
+      {/* ServicesHighlight: slides over Brands AND pins for GalleryPreview */}
+      <div style={{ position: "relative", zIndex: 4, marginTop: "-100vh", height: "calc(100vh + 800px)" }}>
+        <div style={{ position: "sticky", top: 0 }}>
+          <ServicesHighlight />
+        </div>
+      </div>
+
+      {/* GalleryPreview slides over ServicesHighlight */}
+      <div style={{ position: "relative", zIndex: 5, marginTop: "-100vh", background: "#f4f2ee" }}>
+        <GalleryPreview />
+      </div>
       <Reviews />
       <Faq />
       <Contact />

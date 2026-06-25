@@ -60,7 +60,7 @@ export default function Navbar({ forceScrolled = false, darkIcons = false }: { f
           transform: hidden && !menuOpen ? "translateY(-100%)" : "translateY(0)",
         }}
       >
-        <div className="flex items-center justify-between px-4 md:px-15 py-4 md:py-5">
+        <div className="flex items-center justify-between" style={{ padding: "20px 60px" }}>
           <Link href="/" className="flex items-start shrink-0">
             <span
               className="text-[40px] leading-12 -mr-1.5 whitespace-nowrap transition-colors duration-300"
@@ -81,7 +81,7 @@ export default function Navbar({ forceScrolled = false, darkIcons = false }: { f
 
           <div className="flex items-center gap-6">
             <a
-              href="https://wa.me/13476127994"
+              href="sms:+13476127994"
               target="_blank"
               rel="noopener noreferrer"
               className="hidden sm:block bg-[#9b6dff] hover:bg-[#8a5dee] text-white font-medium text-base px-6 py-3 rounded-full transition-colors whitespace-nowrap"

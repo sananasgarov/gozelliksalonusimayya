@@ -56,7 +56,7 @@ export default function Faq() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section className="py-12 md:py-20 px-4 md:px-15 w-full">
+    <section className="pt-25 pb-25 px-4 md:px-15 w-full">
       <h2
         className="text-[#433459] text-[28px] md:text-[40px] leading-9 md:leading-12 tracking-[-0.8px] mb-6 md:mb-8"
         style={{ fontFamily: "var(--font-antonio)" }}

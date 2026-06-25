@@ -11,7 +11,7 @@ const workSchedule = [
 
 export default function Contact() {
   return (
-    <section id="contact" className="py-12 md:py-20 px-4 md:px-15 w-full">
+    <section id="contact" className="pt-25 pb-25 px-4 md:px-15 w-full">
       <h2
         className="text-[#433459] text-[32px] md:text-[40px] leading-10 md:leading-12 tracking-[-0.8px] mb-8 md:mb-10"
         style={{ fontFamily: "var(--font-antonio)" }}
@@ -49,6 +49,10 @@ export default function Contact() {
                 <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer"
                   className="text-[#615a6a] text-base md:text-xl leading-7 tracking-[-0.4px] hover:text-[#433459] transition-colors">
                   Tik Tok
+                </a>
+                <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer"
+                  className="text-[#615a6a] text-base md:text-xl leading-7 tracking-[-0.4px] hover:text-[#433459] transition-colors">
+                  Facebook
                 </a>
               </div>
             </div>

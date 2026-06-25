@@ -2,7 +2,7 @@ const images = Array(6).fill("/gallery-1.png");
 
 export default function GalleryPreview() {
   return (
-    <section id="gallery" className="py-12 md:py-20 w-full overflow-hidden">
+    <section id="gallery" className="pt-25 pb-25 w-full overflow-hidden">
       <h2
         className="text-[#433459] text-[28px] md:text-[40px] leading-9 md:leading-12 tracking-[-0.8px] mb-6 md:mb-8 px-4 md:px-15"
         style={{ fontFamily: "var(--font-antonio)" }}

@@ -29,7 +29,7 @@ export default function Hero() {
           </p>
         </div>
         <a
-          href="https://wa.me/13476127994"
+          href="sms:+13476127994"
           target="_blank"
           rel="noopener noreferrer"
           className="bg-[#9b6dff] hover:bg-[#8a5dee] text-white font-medium text-base px-6 py-3 rounded-full transition-colors"

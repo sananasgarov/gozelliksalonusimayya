@@ -87,12 +87,11 @@ export default function ServicesHighlight() {
                 </Link>
               </div>
 
-              <div className="md:w-2/5 self-stretch relative overflow-hidden" style={{ minHeight: 800 }}>
+              <div className="relative overflow-hidden shrink-0" style={{ width: 538, height: 767 }}>
                 <img
                   src={s.image}
                   alt={s.title}
-                  className="absolute left-0 right-0 bottom-0 w-full object-cover object-top"
-                  style={{ top: "48px" }}
+                  className="absolute inset-0 w-full h-full object-cover object-top"
                 />
               </div>
             </div>

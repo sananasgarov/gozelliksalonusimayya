@@ -13,7 +13,7 @@ const faqs = [
 
 function FaqItem({ q, a, isOpen, onToggle }: { q: string; a: string; isOpen: boolean; onToggle: () => void }) {
   return (
-    <div className="border-t border-[#433459]/40 last:border-b">
+    <div className="border-t border-[#433459]/40">
       <button
         onClick={onToggle}
         className="w-full flex items-center justify-between gap-6 py-6 px-2 text-left group"
@@ -37,7 +37,6 @@ function FaqItem({ q, a, isOpen, onToggle }: { q: string; a: string; isOpen: boo
         </span>
       </button>
 
-      {/* Grid trick for smooth auto-height animation */}
       <div
         className="grid transition-all duration-500 ease-in-out"
         style={{ gridTemplateRows: isOpen ? "1fr" : "0fr" }}
@@ -64,7 +63,7 @@ export default function Faq() {
       >
         Frequently Asked Questions
       </h2>
-      <div className="flex flex-col w-full md:max-w-246.25 md:ml-auto">
+      <div className="flex flex-col w-full md:max-w-246.25 md:ml-auto border-b border-[#433459]/40">
         {faqs.map((item, i) => (
           <div key={i} data-aos="fade-up" data-aos-delay={i * 80}>
             <FaqItem

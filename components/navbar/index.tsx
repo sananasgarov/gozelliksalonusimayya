@@ -55,9 +55,9 @@ export default function Navbar({ forceScrolled = false, darkIcons = false }: { f
   return (
     <>
       <header
-        className="fixed top-0 left-0 right-0 z-50 transition-[transform,background-color] duration-400 ease-in-out"
+        className={`fixed top-0 left-0 right-0 z-50 transition-[transform,background-color] duration-400 ease-in-out border-b-[0.5px] ${scrolled ? "border-[#2B2139]" : "border-transparent"}`}
         style={{
-          backgroundColor: scrolled ? "#ffffff" : "transparent",
+          backgroundColor: scrolled ? "#F4F2EE" : "transparent",
           transform: hidden && !menuOpen ? "translateY(-100%)" : "translateY(0)",
         }}
       >
@@ -85,7 +85,8 @@ export default function Navbar({ forceScrolled = false, darkIcons = false }: { f
               href="sms:+13476127994"
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden sm:block bg-[#9b6dff] hover:bg-[#8a5dee] text-white font-medium text-base px-6 py-3 rounded-full transition-colors whitespace-nowrap group"
+              className="hidden sm:flex items-center justify-center bg-[#9b6dff] hover:bg-[#8a5dee] text-white font-medium text-base rounded-full transition-colors whitespace-nowrap group"
+              style={{ padding: "12px 24px", borderRadius: 9999 }}
             >
               <SlideText>Book Now</SlideText>
             </a>

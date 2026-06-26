@@ -9,6 +9,7 @@ export default function Hero() {
         muted
         loop
         playsInline
+        poster="/about-main.png"
         className="absolute inset-0 w-full h-full object-cover"
       />
       <div

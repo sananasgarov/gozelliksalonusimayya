@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import AOS from "aos";
 import SlideText from "@/components/slide-text";
 import "aos/dist/aos.css";
@@ -222,12 +223,12 @@ export default function ServicesPage() {
             data-aos="fade-up"
             data-aos-delay={Math.min(i * 60, 420)}
           >
-            {/* Image */}
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
+            <Image
               src={image}
               alt={s.title}
-              className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+              fill
+              sizes="(max-width: 640px) 50vw, (max-width: 1024px) 50vw, 25vw"
+              className="object-cover transition-transform duration-500 group-hover:scale-110"
             />
             {/* Gradient overlay */}
             <div

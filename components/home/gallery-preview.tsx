@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 const images = Array(6).fill("/gallery-1.png");
 
 export default function GalleryPreview() {
@@ -16,11 +18,12 @@ export default function GalleryPreview() {
             key={i}
             className="shrink-0 w-44 sm:w-56 md:w-78.75 h-60 sm:h-80 md:h-118.25 rounded-[20px] overflow-hidden relative group cursor-pointer"
           >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
+            <Image
               src={src}
-              alt={`Gallery ${(i % images.length) + 1}`}
-              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+              alt={`Gallery photo ${(i % images.length) + 1}`}
+              fill
+              sizes="(max-width: 640px) 176px, (max-width: 768px) 224px, 315px"
+              className="object-cover transition-transform duration-500 group-hover:scale-110"
             />
           </div>
         ))}

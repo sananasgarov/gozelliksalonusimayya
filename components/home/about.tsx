@@ -95,7 +95,7 @@ export default function About({ data }: { data?: AboutData | null }) {
 
           <div className="flex justify-between w-full">
             {stats.map((s) => (
-              <div key={s.label} className="flex flex-col gap-2 md:gap-4 items-center text-center">
+              <div key={s.label} className="flex flex-col gap-2 md:gap-6 items-center text-center">
                 <p
                   className="text-[#433459] text-[40px] font-normal leading-12 tracking-[-0.8px]"
                   style={{ fontFamily: "var(--font-antonio)" }}

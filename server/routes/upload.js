@@ -35,12 +35,17 @@ router.post("/", requireSecret, upload.single("file"), async (req, res) => {
 
   const key = `uploads/${randomUUID()}${ext}`;
 
-  await r2.send(new PutObjectCommand({
-    Bucket: R2_BUCKET,
-    Key: key,
-    Body: req.file.buffer,
-    ContentType: req.file.mimetype,
-  }));
+  try {
+    await r2.send(new PutObjectCommand({
+      Bucket: R2_BUCKET,
+      Key: key,
+      Body: req.file.buffer,
+      ContentType: req.file.mimetype,
+    }));
+  } catch (err) {
+    console.error("[R2 Upload Error]", err);
+    return res.status(500).json({ error: err.message ?? "R2 upload failed" });
+  }
 
   res.json({ url: `${R2_PUBLIC_URL}/${key}` });
 });

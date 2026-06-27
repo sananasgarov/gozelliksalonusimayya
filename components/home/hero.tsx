@@ -1,10 +1,28 @@
 import SlideText from "@/components/slide-text";
 
-export default function Hero() {
+type HeroData = {
+  title: string;
+  subtitle: string;
+  buttonText: string;
+  buttonUrl: string;
+  videoUrl: string;
+};
+
+const DEFAULTS: HeroData = {
+  title: "Where Beauty Meets Elegance",
+  subtitle: "Experience refined beauty services crafted for confidence, elegance, and individuality.",
+  buttonText: "Book Now",
+  buttonUrl: "sms:+13476127994",
+  videoUrl: "/home1.mp4",
+};
+
+export default function Hero({ data }: { data?: HeroData | null }) {
+  const d = { ...DEFAULTS, ...data };
+
   return (
     <section className="sticky top-0 h-screen w-full flex items-center justify-center text-center overflow-hidden">
       <video
-        src="/home1.mp4"
+        src={d.videoUrl}
         autoPlay
         muted
         loop
@@ -25,20 +43,20 @@ export default function Hero() {
             className="text-[#faf9f7] text-4xl sm:text-5xl md:text-[56px] leading-tight md:leading-[1.14] tracking-[-1.5px] md:tracking-[-2.24px]"
             style={{ fontFamily: "var(--font-antonio)" }}
           >
-            Where Beauty Meets Elegance
+            {d.title}
           </h1>
           <p className="text-[#e7e4df] text-base md:text-2xl leading-7 md:leading-8 tracking-[-0.48px] font-medium">
-            Experience refined beauty services crafted for confidence, elegance, and individuality.
+            {d.subtitle}
           </p>
         </div>
         <a
-          href="sms:+13476127994"
+          href={d.buttonUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="bg-[#9b6dff] hover:bg-[#8a5dee] text-white font-medium text-base rounded-full transition-colors group flex items-center justify-center"
-          style={{ width: 153, height: 48, padding: "12px 28px" }}
+          className="bg-[#9b6dff] hover:bg-[#8a5dee] text-white font-medium text-[20px] leading-6 rounded-full transition-colors group flex items-center justify-center"
+          style={{ width: 153, height: 48 }}
         >
-          <SlideText>Book Now</SlideText>
+          <SlideText>{d.buttonText}</SlideText>
         </a>
       </div>
     </section>

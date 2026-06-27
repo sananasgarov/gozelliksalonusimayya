@@ -1,59 +1,39 @@
 import { NextRequest, NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
-import { timingSafeEqual } from "crypto";
-import { createSession } from "@/lib/session";
-import { LoginSchema } from "@/lib/schemas";
-import { checkRateLimit, resetRateLimit } from "@/lib/rate-limit";
+import { SignJWT } from "jose";
 
-function safeStringEqual(a: string, b: string): boolean {
-  const bufA = Buffer.from(a.padEnd(64));
-  const bufB = Buffer.from(b.padEnd(64));
-  return timingSafeEqual(bufA, bufB) && a.length === b.length;
-}
+const JWT_SECRET = new TextEncoder().encode(process.env.JWT_SECRET ?? "");
 
-export async function POST(request: NextRequest) {
-  const ip = request.headers.get("x-forwarded-for")?.split(",")[0].trim()
-    ?? request.headers.get("x-real-ip")
-    ?? "unknown";
+export async function POST(req: NextRequest) {
+  const { username, password } = await req.json().catch(() => ({}));
 
-  const rate = checkRateLimit(`login:${ip}`);
-  if (!rate.allowed) {
-    return NextResponse.json(
-      { error: `Too many attempts. Try again in ${Math.ceil((rate.retryAfter ?? 900) / 60)} minutes.` },
-      { status: 429, headers: { "Retry-After": String(rate.retryAfter) } }
-    );
+  if (!username || !password) {
+    return NextResponse.json({ error: "Username and password required." }, { status: 400 });
   }
 
-  // Limit body size (reject payloads over 2KB)
-  const contentLength = Number(request.headers.get("content-length") ?? 0);
-  if (contentLength > 2048) {
-    return NextResponse.json({ error: "Request too large." }, { status: 413 });
-  }
-
-  const body = await request.json().catch(() => null);
-
-  const parsed = LoginSchema.safeParse(body);
-  if (!parsed.success) {
-    const message = parsed.error.issues[0]?.message ?? "Invalid input.";
-    return NextResponse.json({ error: message }, { status: 400 });
-  }
-
-  const { username, password } = parsed.data;
-
-  const expectedUsername = process.env.ADMIN_USERNAME ?? "";
+  const expectedUser = process.env.ADMIN_USERNAME ?? "";
   const hash = process.env.ADMIN_PASSWORD_HASH ?? "";
 
-  // Always run bcrypt regardless of username match to prevent timing attacks
-  const [validUsername, validPassword] = await Promise.all([
-    Promise.resolve(safeStringEqual(username, expectedUsername)),
-    hash ? bcrypt.compare(password, hash) : Promise.resolve(false),
-  ]);
+  const validUser = username === expectedUser;
+  const validPass = hash ? await bcrypt.compare(String(password), hash) : false;
 
-  if (!validUsername || !validPassword) {
+  if (!validUser || !validPass) {
     return NextResponse.json({ error: "Invalid username or password." }, { status: 401 });
   }
 
-  resetRateLimit(`login:${ip}`);
-  await createSession();
-  return NextResponse.json({ ok: true });
+  const token = await new SignJWT({ role: "admin" })
+    .setProtectedHeader({ alg: "HS256" })
+    .setExpirationTime("7d")
+    .sign(JWT_SECRET);
+
+  const response = NextResponse.json({ ok: true });
+  response.cookies.set("admin_jwt", token, {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "lax",
+    maxAge: 60 * 60 * 24 * 7,
+    path: "/",
+  });
+
+  return response;
 }

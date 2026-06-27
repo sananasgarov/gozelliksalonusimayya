@@ -85,8 +85,8 @@ export default function Navbar({ forceScrolled = false, darkIcons = false }: { f
               href="sms:+13476127994"
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden sm:flex items-center justify-center bg-[#9b6dff] hover:bg-[#8a5dee] text-white font-medium text-base rounded-full transition-colors whitespace-nowrap group"
-              style={{ padding: "12px 24px", borderRadius: 9999 }}
+              className="hidden sm:flex items-center justify-center bg-[#9b6dff] hover:bg-[#8a5dee] text-white font-medium text-base leading-6 rounded-full transition-colors whitespace-nowrap group"
+              style={{ width: 126, height: 48, borderRadius: 9999 }}
             >
               <SlideText>Book Now</SlideText>
             </a>

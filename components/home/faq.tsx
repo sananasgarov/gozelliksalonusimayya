@@ -2,16 +2,18 @@
 
 import { useState } from "react";
 
-const faqs = [
-  { q: "How can I book an appointment?", a: "You can book an appointment through our booking page, Instagram DMs, or by calling us directly. We'll confirm your slot within 24 hours." },
-  { q: "Do you offer bridal makeup services?", a: "Yes! We specialize in bridal makeup and offer packages for weddings, engagement shoots, and pre-wedding events." },
-  { q: "Are your tools sanitized after each client?", a: "Absolutely. All brushes, sponges, and tools are thoroughly sanitized between each appointment to ensure hygiene and safety." },
-  { q: "What payment methods do you accept?", a: "We accept cash, credit/debit cards, and major mobile payment apps. Payment is collected at the end of the session." },
-  { q: "Can I cancel or reschedule my appointment?", a: "Yes, cancellations or reschedules are accepted up to 24 hours before your appointment with no extra charge." },
-  { q: "What beauty brands do you use?", a: "We use professional-grade brands including MAC, Estée Lauder, L'Oréal, Maybelline, NYX, and more." },
+type FaqItem = { question: string; answer: string };
+
+const FALLBACK: FaqItem[] = [
+  { question: "How can I book an appointment?", answer: "You can book an appointment through our booking page, Instagram DMs, or by calling us directly. We'll confirm your slot within 24 hours." },
+  { question: "Do you offer bridal makeup services?", answer: "Yes! We specialize in bridal makeup and offer packages for weddings, engagement shoots, and pre-wedding events." },
+  { question: "Are your tools sanitized after each client?", answer: "Absolutely. All brushes, sponges, and tools are thoroughly sanitized between each appointment to ensure hygiene and safety." },
+  { question: "What payment methods do you accept?", answer: "We accept cash, credit/debit cards, and major mobile payment apps. Payment is collected at the end of the session." },
+  { question: "Can I cancel or reschedule my appointment?", answer: "Yes, cancellations or reschedules are accepted up to 24 hours before your appointment with no extra charge." },
+  { question: "What beauty brands do you use?", answer: "We use professional-grade brands including MAC, Estée Lauder, L'Oréal, Maybelline, NYX, and more." },
 ];
 
-function FaqItem({ q, a, isOpen, onToggle }: { q: string; a: string; isOpen: boolean; onToggle: () => void }) {
+function FaqItemEl({ q, a, isOpen, onToggle }: { q: string; a: string; isOpen: boolean; onToggle: () => void }) {
   return (
     <div className="border-t border-[#433459]/40">
       <button
@@ -19,7 +21,8 @@ function FaqItem({ q, a, isOpen, onToggle }: { q: string; a: string; isOpen: boo
         className="w-full flex items-center justify-between gap-6 py-6 px-2 text-left group"
       >
         <span
-          className="text-[#615a6a] text-base md:text-[24px] font-medium leading-7 md:leading-8 tracking-[-0.48px] transition-colors duration-300 group-hover:text-[#433459]"
+          className="text-base md:text-[24px] font-medium leading-7 md:leading-8 tracking-[-0.48px] transition-colors duration-300 group-hover:text-[#433459]"
+          style={{ color: isOpen ? "#9b6dff" : "#615a6a" }}
         >
           {q}
         </span>
@@ -51,8 +54,9 @@ function FaqItem({ q, a, isOpen, onToggle }: { q: string; a: string; isOpen: boo
   );
 }
 
-export default function Faq() {
+export default function Faq({ faqs }: { faqs?: FaqItem[] | null }) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const items = faqs && faqs.length > 0 ? faqs : FALLBACK;
 
   return (
     <section className="pt-25 pb-25 px-4 md:px-15 w-full">
@@ -64,11 +68,11 @@ export default function Faq() {
         Frequently Asked Questions
       </h2>
       <div className="flex flex-col w-full md:max-w-246.25 md:ml-auto border-b border-[#433459]/40">
-        {faqs.map((item, i) => (
+        {items.map((item, i) => (
           <div key={i} data-aos="fade-up" data-aos-delay={i * 80}>
-            <FaqItem
-              q={item.q}
-              a={item.a}
+            <FaqItemEl
+              q={item.question}
+              a={item.answer}
               isOpen={openIndex === i}
               onToggle={() => setOpenIndex(openIndex === i ? null : i)}
             />

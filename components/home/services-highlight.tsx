@@ -92,8 +92,8 @@ export default function ServicesHighlight() {
                 </p>
                 <Link
                   href="/services"
-                  className="self-start text-white font-semibold text-base px-6 py-3.5 rounded-full hover:opacity-85 group"
-                  style={{ backgroundColor: s.btnColor }}
+                  className="self-start flex items-center justify-center text-white font-semibold text-[20px] leading-6 rounded-full hover:opacity-85 group"
+                  style={{ backgroundColor: s.btnColor, width: 188, height: 56 }}
                   data-aos="fade-up"
                   data-aos-delay="200"
                 >

@@ -1,18 +1,27 @@
 import type { NextConfig } from "next";
 
+const R2_PUBLIC_HOST = "pub-8c4fbff32a8d44daab0e4ee00b5f6aa0.r2.dev";
+
 const securityHeaders = [
-  // Prevent clickjacking
   { key: "X-Frame-Options", value: "DENY" },
-  // Prevent MIME-type sniffing
   { key: "X-Content-Type-Options", value: "nosniff" },
-  // Referrer info limited to same origin
   { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
-  // Disable browser features not needed
   { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=(), payment=()" },
-  // Force HTTPS for 1 year in production
-  { key: "Strict-Transport-Security", value: "max-age=31536000; includeSubDomains" },
-  // XSS filter for legacy browsers
+  { key: "Strict-Transport-Security", value: "max-age=31536000; includeSubDomains; preload" },
   { key: "X-XSS-Protection", value: "1; mode=block" },
+  {
+    key: "Content-Security-Policy",
+    value: [
+      "default-src 'self'",
+      `img-src 'self' data: blob: https://${R2_PUBLIC_HOST} https://images.unsplash.com https://i.pravatar.cc`,
+      `media-src 'self' blob: https://${R2_PUBLIC_HOST}`,
+      "script-src 'self' 'unsafe-inline' 'unsafe-eval'",
+      "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+      "font-src 'self' https://fonts.gstatic.com",
+      "connect-src 'self'",
+      "frame-ancestors 'none'",
+    ].join("; "),
+  },
 ];
 
 const nextConfig: NextConfig = {
@@ -21,6 +30,7 @@ const nextConfig: NextConfig = {
       { protocol: "https", hostname: "images.unsplash.com" },
       { protocol: "https", hostname: "i.pravatar.cc" },
       { protocol: "https", hostname: "www.figma.com" },
+      { protocol: "https", hostname: R2_PUBLIC_HOST },
     ],
   },
   async headers() {

@@ -3,11 +3,6 @@
 import Image from "next/image";
 import { useState } from "react";
 
-const photos = [
-  "/about-main.png",
-  "/about-top.png",
-  "/about-bottom.png",
-];
 
 type AboutData = {
   description: string;
@@ -17,6 +12,9 @@ type AboutData = {
   stat2Label: string;
   stat3Value: string;
   stat3Label: string;
+  photo1Url?: string;
+  photo2Url?: string;
+  photo3Url?: string;
 };
 
 const DEFAULTS: AboutData = {
@@ -37,6 +35,12 @@ export default function About({ data }: { data?: AboutData | null }) {
   const paragraphs = d.description
     ? d.description.split(/\n\n+/).filter(Boolean)
     : DEFAULTS.description.split(/\n\n+/);
+
+  const photos = [
+    d.photo1Url || "/about-main.png",
+    d.photo2Url || "/about-top.png",
+    d.photo3Url || "/about-bottom.png",
+  ];
 
   const stats = [
     { value: d.stat1Value, label: d.stat1Label },
@@ -91,14 +95,14 @@ export default function About({ data }: { data?: AboutData | null }) {
 
           <div className="flex justify-between w-full">
             {stats.map((s) => (
-              <div key={s.label} className="flex flex-col gap-1 md:gap-2 items-center text-center">
+              <div key={s.label} className="flex flex-col gap-2 md:gap-4 items-center text-center">
                 <p
-                  className="text-[#433459] text-[32px] md:text-[56px] leading-none tracking-[-1.12px]"
+                  className="text-[#433459] text-[40px] font-normal leading-12 tracking-[-0.8px]"
                   style={{ fontFamily: "var(--font-antonio)" }}
                 >
                   {s.value}
                 </p>
-                <p className="text-[#5e5667] text-xs md:text-base leading-5 md:leading-6 tracking-[-0.32px]">
+                <p className="text-[#5e5667] text-[20px] font-normal leading-7 tracking-[-0.4px]">
                   {s.label}
                 </p>
               </div>

@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import AdminPageShell from "@/components/admin/page-shell";
-import ImageUpload from "@/components/admin/image-upload";
 import { Card, Field, Input, Textarea, PrimaryBtn, SavedBadge, SectionHeading } from "@/components/admin/admin-ui";
 
 type Hero = { title: string; subtitle: string; buttonText: string; buttonUrl: string; videoUrl: string };
@@ -86,21 +85,7 @@ export default function HeroAdmin({ initial }: { initial: Hero | null }) {
               </Field>
             </div>
 
-            <div>
-              <p className="text-xs font-medium tracking-wide uppercase mb-1.5" style={{ color: "#6b5f80" }}>Background Video</p>
-              <div className="rounded-xl p-4 flex flex-col gap-3" style={{ background: "rgba(155,109,255,0.04)", border: "1px dashed rgba(155,109,255,0.2)" }}>
-                <p className="text-xs" style={{ color: "#6b5f80" }}>
-                  Current: <span className="font-medium" style={{ color: "#7c4dcc" }}>{form.videoUrl}</span>
-                </p>
-                <ImageUpload
-                  onUploaded={(url) => setForm({ ...form, videoUrl: url })}
-                  currentUrl={undefined}
-                  label="Upload New Video"
-                />
-              </div>
-            </div>
-
-            <div className="flex items-center gap-4 pt-2">
+<div className="flex items-center gap-4 pt-2">
               <PrimaryBtn onClick={save} disabled={saving}>
                 {saving ? (
                   <>

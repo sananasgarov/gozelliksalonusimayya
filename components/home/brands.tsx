@@ -11,17 +11,19 @@ const FALLBACK: BrandItem[] = [
 
 export default function Brands({ brands }: { brands?: BrandItem[] | null }) {
   const items = brands && brands.length > 0 ? brands : FALLBACK;
+  const track = [...items, ...items, ...items];
 
   return (
     <div className="w-full overflow-hidden py-10">
-      <div className="flex gap-28 items-center animate-marquee whitespace-nowrap">
-        {[...items, ...items].map((b, i) => (
+      <div className="flex items-center animate-marquee" style={{ width: "max-content" }}>
+        {track.map((b, i) => (
+          // eslint-disable-next-line @next/next/no-img-element
           <img
             key={i}
             src={b.logoUrl || "/brand1.png"}
             alt={b.name}
             className="shrink-0 h-7.5 object-contain grayscale opacity-50 hover:opacity-100 hover:grayscale-0 transition-all duration-300"
-            style={{ width: 250 }}
+            style={{ width: 200, marginRight: "7rem" }}
           />
         ))}
       </div>

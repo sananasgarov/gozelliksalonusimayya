@@ -21,21 +21,16 @@ function FaqItemEl({ q, a, isOpen, onToggle }: { q: string; a: string; isOpen: b
         className="w-full flex items-center justify-between gap-6 py-6 px-2 text-left group"
       >
         <span
-          className="text-base md:text-[24px] font-medium leading-7 md:leading-8 tracking-[-0.48px] transition-colors duration-300 group-hover:text-[#433459]"
-          style={{ color: isOpen ? "#9b6dff" : "#615a6a" }}
+          className={`text-base md:text-[24px] font-medium leading-7 md:leading-8 tracking-[-0.48px] transition-colors duration-300 ${isOpen ? "text-[#9B6DFF]" : "text-[#615a6a] group-hover:text-[#433459]"}`}
         >
           {q}
         </span>
-        <span
-          className="shrink-0 size-8 rounded-full border border-[#433459]/40 flex items-center justify-center transition-all duration-300"
-          style={{
-            backgroundColor: isOpen ? "#433459" : "transparent",
-            transform: isOpen ? "rotate(45deg)" : "rotate(0deg)",
-          }}
-        >
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-            <line x1="7" y1="1" x2="7" y2="13" stroke={isOpen ? "#fff" : "#433459"} strokeWidth="1.5" strokeLinecap="round" />
-            <line x1="1" y1="7" x2="13" y2="7" stroke={isOpen ? "#fff" : "#433459"} strokeWidth="1.5" strokeLinecap="round" />
+        <span className="shrink-0 flex items-center justify-center transition-all duration-300">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            {!isOpen && (
+              <line x1="10" y1="2" x2="10" y2="18" stroke="#433459" strokeWidth="1.5" strokeLinecap="round" />
+            )}
+            <line x1="2" y1="10" x2="18" y2="10" stroke="#433459" strokeWidth="1.5" strokeLinecap="round" />
           </svg>
         </span>
       </button>

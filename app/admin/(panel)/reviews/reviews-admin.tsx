@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import AdminPageShell from "@/components/admin/page-shell";
+import ImageUpload from "@/components/admin/image-upload";
 import {
   Card, Field, Input, Textarea, Select, PrimaryBtn, SecondaryBtn, DangerBtn, EditBtn, EmptyState, SectionHeading,
 } from "@/components/admin/admin-ui";
@@ -72,6 +73,19 @@ export default function ReviewsAdmin({ initial }: { initial: Review[] }) {
         <Field label="Review Text">
           <Textarea value={form.text} onChange={(e) => setForm({ ...form, text: e.target.value })} placeholder="What the customer said…" />
         </Field>
+        <Field label="Avatar Photo">
+          <div className="flex items-center gap-4 mt-1">
+            {form.avatarUrl && (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img src={form.avatarUrl} alt="avatar" className="w-14 h-14 rounded-full object-cover shrink-0 border border-[#d9caea]" />
+            )}
+            <ImageUpload
+              onUploaded={(url) => setForm({ ...form, avatarUrl: url })}
+              currentUrl={form.avatarUrl || undefined}
+              label="Upload Photo"
+            />
+          </div>
+        </Field>
         <div className="flex items-center gap-3 mt-5">
           <PrimaryBtn onClick={save} disabled={saving || !form.name || !form.text}>
             {saving ? "Saving…" : editId ? "Update Review" : "Add Review"}
@@ -93,12 +107,16 @@ export default function ReviewsAdmin({ initial }: { initial: Review[] }) {
               style={{ backgroundColor: "#ffffff", border: "1px solid rgba(155,109,255,0.1)", boxShadow: "0 1px 4px rgba(30,16,48,0.06)" }}
             >
               <div className="flex items-start justify-between gap-4">
-                <div className="flex-1 min-w-0">
+                <div className="flex items-start gap-3 flex-1 min-w-0">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={item.avatarUrl || "/avatar.png"} alt={item.name} className="w-10 h-10 rounded-full object-cover shrink-0 border border-[#d9caea]" />
+                  <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 mb-1">
                     <span className="text-sm font-semibold" style={{ color: "#1e1030" }}>{item.name}</span>
                     <span className="text-xs" style={{ color: "#f59e0b" }}>{"★".repeat(item.stars)}{"☆".repeat(5 - item.stars)}</span>
                   </div>
                   <p className="text-sm leading-relaxed" style={{ color: "#6b5f80" }}>{item.text}</p>
+                  </div>
                 </div>
                 <div className="flex gap-2 shrink-0">
                   <EditBtn onClick={() => startEdit(item)}>

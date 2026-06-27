@@ -3,8 +3,7 @@
 import Link from "next/link";
 import SlideText from "@/components/slide-text";
 
-const logoHeart =
-  "/logoblack.png";
+const logoHeart = "/logoblack.png";
 
 const quickLinks = [
   { label: "Home", href: "/" },
@@ -19,11 +18,7 @@ const legalLinks = [
   { label: "Booking Policy", href: "/booking-policy" },
 ];
 
-const contactLinks = [
-  { label: "Instagram", href: "https://www.instagram.com/samiyya.studio", external: true },
-  { label: "Tik Tok", href: "https://www.tiktok.com/@samiyya.studio", external: true },
-  { label: "samiyya@gmail.com", href: "mailto:samiyya@gmail.com", external: false },
-];
+type ContactData = { email?: string; instagram?: string; tiktok?: string } | null;
 
 function scrollToTop() {
   const start = window.scrollY;
@@ -44,7 +39,17 @@ function scrollToTop() {
   requestAnimationFrame(step);
 }
 
-export default function Footer() {
+export default function Footer({ contact }: { contact?: ContactData }) {
+  const instagram = contact?.instagram ?? "https://www.instagram.com/samiyya.studio";
+  const tiktok    = contact?.tiktok    ?? "https://www.tiktok.com/@samiyya.studio";
+  const email     = contact?.email     ?? "samiyya@gmail.com";
+
+  const contactLinks = [
+    { label: "Instagram",  href: instagram,          external: true  },
+    { label: "Tik Tok",    href: tiktok,             external: true  },
+    { label: email,        href: `mailto:${email}`,  external: false },
+  ];
+
   return (
     <footer
       className="w-full px-4 md:px-15 mt-25 pt-10 md:pt-13 pb-8"
@@ -146,7 +151,7 @@ export default function Footer() {
           </div>
           <div className="bg-[#433459] h-[0.5px] rounded-full w-full" />
           <p className="text-[#615a6a] text-sm leading-5 tracking-[-0.28px]">
-            © 2026 Samiyya Studio. All Rights Reserved.
+            © {new Date().getFullYear()} Samiyya Studio. All Rights Reserved.
           </p>
         </div>
       </div>

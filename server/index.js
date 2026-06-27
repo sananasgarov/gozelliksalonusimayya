@@ -13,8 +13,9 @@ import heroRouter     from "./routes/hero.js";
 import aboutRouter    from "./routes/about.js";
 import faqRouter      from "./routes/faq.js";
 import contactRouter  from "./routes/contact.js";
-import uploadRouter   from "./routes/upload.js";
-import legalRouter    from "./routes/legal.js";
+import uploadRouter     from "./routes/upload.js";
+import legalRouter      from "./routes/legal.js";
+import homeSlidesRouter from "./routes/homeSlides.js";
 
 const app = express();
 
@@ -34,8 +35,9 @@ app.use("/api/hero",     heroRouter);
 app.use("/api/about",    aboutRouter);
 app.use("/api/faq",      faqRouter);
 app.use("/api/contact",  contactRouter);
-app.use("/api/upload",   uploadRouter);
-app.use("/api/legal",    legalRouter);
+app.use("/api/upload",       uploadRouter);
+app.use("/api/legal",        legalRouter);
+app.use("/api/home-slides",  homeSlidesRouter);
 
 app.get("/health", (_, res) => res.json({ ok: true }));
 

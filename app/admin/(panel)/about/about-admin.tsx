@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import AdminPageShell from "@/components/admin/page-shell";
+import ImageUpload from "@/components/admin/image-upload";
 import { Card, Field, Input, Textarea, PrimaryBtn, SavedBadge, SectionHeading } from "@/components/admin/admin-ui";
 
 type About = {
@@ -9,6 +10,9 @@ type About = {
   stat1Value: string; stat1Label: string;
   stat2Value: string; stat2Label: string;
   stat3Value: string; stat3Label: string;
+  photo1Url: string;
+  photo2Url: string;
+  photo3Url: string;
 };
 
 const defaults: About = {
@@ -16,6 +20,7 @@ const defaults: About = {
   stat1Value: "5+", stat1Label: "Years of Experience",
   stat2Value: "95%", stat2Label: "Client Satisfaction",
   stat3Value: "250+", stat3Label: "Appointments",
+  photo1Url: "", photo2Url: "", photo3Url: "",
 };
 
 const statDefs: [keyof About, keyof About, string][] = [
@@ -72,6 +77,36 @@ export default function AboutAdmin({ initial }: { initial: About | null }) {
                 <Field label="Label">
                   <Input value={form[labelKey]} onChange={(e) => set(labelKey, e.target.value)} placeholder="e.g. Years" />
                 </Field>
+              </div>
+            ))}
+          </div>
+        </Card>
+
+        <Card>
+          <SectionHeading>Gallery Photos (Sol · Orta · Sağ)</SectionHeading>
+          <p className="text-sm mb-5" style={{ color: "#6b5f80" }}>
+            About bölməsindəki 3 şəkil — sol dar, orta dar, sağ geniş görünür. Hər birini ayrıca yükləyin.
+          </p>
+          <div className="grid grid-cols-3 gap-6">
+            {([
+              ["photo1Url", "Sol şəkil", "Sol — dar panel"],
+              ["photo2Url", "Orta şəkil", "Orta — dar panel"],
+              ["photo3Url", "Sağ şəkil", "Sağ — geniş panel (hover-da açılan)"],
+            ] as const).map(([key, label, hint]) => (
+              <div key={key} className="flex flex-col gap-3 p-4 rounded-xl" style={{ background: "rgba(155,109,255,0.04)", border: "1px dashed rgba(155,109,255,0.2)" }}>
+                <div>
+                  <p className="text-xs font-semibold tracking-widest uppercase mb-0.5" style={{ color: "#9b6dff" }}>{label}</p>
+                  <p className="text-xs" style={{ color: "#6b5f80" }}>{hint}</p>
+                </div>
+                {form[key] && (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img src={form[key]} alt={label} className="w-full h-32 object-cover rounded-xl" />
+                )}
+                <ImageUpload
+                  onUploaded={(url) => setForm((p) => ({ ...p, [key]: url }))}
+                  currentUrl={form[key] || undefined}
+                  label="Şəkil yüklə"
+                />
               </div>
             ))}
           </div>

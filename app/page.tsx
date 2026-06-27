@@ -11,15 +11,17 @@ import Contact from "@/components/home/contact";
 import { publicFetch } from "@/lib/backend";
 
 export default async function Home() {
-  const [hero, about, brands, gallery, reviews, faqs, contact] = await Promise.all([
+  const [hero, about, brands, homeSlides, gallery, reviews, faqs, contact] = await Promise.all([
     publicFetch("/api/hero"),
     publicFetch("/api/about"),
     publicFetch("/api/brands"),
+    publicFetch("/api/home-slides"),
     publicFetch("/api/gallery"),
     publicFetch("/api/reviews"),
     publicFetch("/api/faq"),
     publicFetch("/api/contact"),
   ]);
+
 
   return (
     <div className="flex flex-col w-full bg-[#f4f2ee]" style={{ overflowX: "clip" }}>
@@ -52,7 +54,7 @@ export default async function Home() {
       {/* ServicesHighlight: slides over Brands AND pins for GalleryPreview */}
       <div style={{ position: "relative", zIndex: 4, marginTop: "-100vh", height: "calc(100vh + 800px)" }}>
         <div style={{ position: "sticky", top: 0 }}>
-          <ServicesHighlight />
+          <ServicesHighlight homeSlides={homeSlides} />
         </div>
       </div>
 
@@ -63,7 +65,7 @@ export default async function Home() {
       <Reviews reviews={reviews} />
       <Faq faqs={faqs} />
       <Contact contact={contact} />
-      <Footer />
+      <Footer contact={contact} />
     </div>
   );
 }

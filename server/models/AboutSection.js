@@ -9,6 +9,9 @@ const AboutSchema = new mongoose.Schema({
   stat2Label:  { type: String, default: "Client Satisfaction" },
   stat3Value:  { type: String, default: "250+" },
   stat3Label:  { type: String, default: "Appointments" },
+  photo1Url:   { type: String, default: "" },
+  photo2Url:   { type: String, default: "" },
+  photo3Url:   { type: String, default: "" },
 });
 
 export default mongoose.model("AboutSection", AboutSchema);

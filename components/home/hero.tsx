@@ -9,6 +9,7 @@ type HeroData = {
   buttonText: string;
   buttonUrl: string;
   videoUrl: string;
+  posterUrl?: string;
 };
 
 const DEFAULTS: HeroData = {
@@ -17,6 +18,7 @@ const DEFAULTS: HeroData = {
   buttonText: "Book Now",
   buttonUrl: "sms:+13476127994",
   videoUrl: "/home1.mp4",
+  posterUrl: "/about-main.png",
 };
 
 export default function Hero({ data }: { data?: HeroData | null }) {
@@ -39,7 +41,8 @@ export default function Hero({ data }: { data?: HeroData | null }) {
         muted
         loop
         playsInline
-        poster="/about-main.png"
+        preload="auto"
+        poster={d.posterUrl || "/about-main.png"}
         className="absolute inset-0 w-full h-full object-cover"
       />
       <div

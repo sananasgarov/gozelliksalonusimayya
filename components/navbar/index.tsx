@@ -103,11 +103,14 @@ export default function Navbar({ forceScrolled = false, darkIcons = false }: { f
       )}
 
       <div
-        className="fixed left-0 right-0 z-999 transition-[top] duration-400 ease-in-out"
+        className="fixed left-0 right-0 z-999"
         style={{
           backgroundColor: "#d9caea",
           height: "370px",
-          top: menuOpen ? "0" : "-370px",
+          top: 0,
+          transform: menuOpen ? "translateY(0)" : "translateY(-100%)",
+          transition: "transform 350ms ease-in-out",
+          willChange: "transform",
           pointerEvents: menuOpen ? "auto" : "none",
         }}
       >

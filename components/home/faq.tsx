@@ -59,12 +59,13 @@ export default function Faq({ faqs }: { faqs?: FaqItem[] | null }) {
         className="text-[#433459] text-[28px] md:text-[40px] leading-9 md:leading-12 tracking-[-0.8px] mb-6 md:mb-8"
         style={{ fontFamily: "var(--font-antonio)" }}
         data-aos="fade-up"
+        suppressHydrationWarning
       >
         Frequently Asked Questions
       </h2>
       <div className="flex flex-col w-full md:max-w-246.25 md:ml-auto border-b border-[#433459]/40">
         {items.map((item, i) => (
-          <div key={i} data-aos="fade-up" data-aos-delay={i * 80}>
+          <div key={i} data-aos="fade-up" data-aos-delay={i * 80} suppressHydrationWarning>
             <FaqItemEl
               q={item.question}
               a={item.answer}

@@ -61,3 +61,15 @@ body {
 .review-card-hidden {
   opacity: 0;
 }
+
+.review-star {
+  fill: #D9CAEA;
+  stroke: #C49FFF;
+  stroke-width: 1.5px;
+  transition: stroke 0.45s ease-in-out, stroke-width 0.45s ease-in-out;
+}
+
+.group:hover .review-star {
+  stroke: #3f3450;
+  stroke-width: 2px;
+}

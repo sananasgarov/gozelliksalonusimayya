@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Antonio, Great_Vibes } from "next/font/google";
 import "./globals.css";
-import AOSInit from "@/components/aos-init";
 import LoadingScreen from "@/components/loading-screen";
 
 const BASE_URL = "https://samiyyastudio.com";
@@ -134,7 +133,6 @@ export default function RootLayout({
       </head>
       <body className="min-h-full flex flex-col bg-white">
         <LoadingScreen />
-        <AOSInit />
         {children}
       </body>
     </html>

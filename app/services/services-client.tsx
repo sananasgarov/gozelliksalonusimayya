@@ -62,6 +62,7 @@ export default function ServicesClient({ makeup, hair, nail, gallery, reviews }:
             className="relative rounded-2xl sm:rounded-[20px] overflow-hidden cursor-pointer group h-52 sm:h-80 md:h-96 lg:h-118.25"
             data-aos="fade-up"
             data-aos-delay={Math.min(i * 60, 420)}
+            suppressHydrationWarning
           >
             <Image
               src={s.imageUrl || DEFAULT_IMAGE}

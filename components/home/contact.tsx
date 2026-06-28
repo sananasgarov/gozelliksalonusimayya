@@ -47,20 +47,21 @@ export default function Contact({ contact }: { contact?: ContactData | null }) {
         className="text-[#433459] text-[32px] md:text-[40px] leading-10 md:leading-12 tracking-[-0.8px] mb-8 md:mb-10"
         style={{ fontFamily: "var(--font-antonio)" }}
         data-aos="fade-up"
+        suppressHydrationWarning
       >
         Contact Us
       </h2>
 
       <div className="flex flex-col md:flex-row gap-8 md:gap-10 items-center">
         {/* Map */}
-        <div className="w-full md:w-1/2 h-72 md:h-120 rounded-[20px] overflow-hidden shrink-0 relative" data-aos="fade-up">
+        <div className="w-full md:w-1/2 h-72 md:h-120 rounded-[20px] overflow-hidden shrink-0 relative" data-aos="fade-up" suppressHydrationWarning>
           <img src={imgMap} alt="Location map" className="w-full h-full object-cover" />
         </div>
 
         {/* Info */}
         <div className="flex flex-col gap-8 flex-1">
           {/* Phones + Social */}
-          <div className="flex flex-col sm:flex-row gap-6 sm:gap-5 items-start" data-aos="fade-up" data-aos-delay="100">
+          <div className="flex flex-col sm:flex-row gap-6 sm:gap-5 items-start" data-aos="fade-up" data-aos-delay="100" suppressHydrationWarning>
             <div className="flex flex-col gap-2 flex-1">
               <p className="text-[#615a6a] text-xl md:text-[28px] font-medium leading-8 tracking-[-0.56px]">
                 Phones
@@ -98,7 +99,7 @@ export default function Contact({ contact }: { contact?: ContactData | null }) {
             </div>
           </div>
 
-          <div className="flex flex-col gap-2" data-aos="fade-up" data-aos-delay="200">
+          <div className="flex flex-col gap-2" data-aos="fade-up" data-aos-delay="200" suppressHydrationWarning>
             <p className="text-[#615a6a] text-xl md:text-[28px] font-medium leading-8 tracking-[-0.56px]">
               Address
             </p>
@@ -115,7 +116,7 @@ export default function Contact({ contact }: { contact?: ContactData | null }) {
           </div>
 
           {/* Work Schedule */}
-          <div className="flex flex-col gap-3" data-aos="fade-up" data-aos-delay="300">
+          <div className="flex flex-col gap-3" data-aos="fade-up" data-aos-delay="300" suppressHydrationWarning>
             <p className="text-[#615a6a] text-xl md:text-[28px] font-medium leading-8 tracking-[-0.56px]">
               Work Schedule
             </p>

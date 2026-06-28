@@ -1,18 +1,38 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 export default function LoadingScreen() {
   const [visible, setVisible] = useState(true);
   const [fading, setFading] = useState(false);
 
   useEffect(() => {
-    const fadeTimer = setTimeout(() => setFading(true), 1400);
-    const hideTimer = setTimeout(() => setVisible(false), 1900);
-    return () => {
-      clearTimeout(fadeTimer);
-      clearTimeout(hideTimer);
+    const MIN_MS = 900;
+    const start = Date.now();
+
+    const finish = () => {
+      const elapsed = Date.now() - start;
+      const wait = Math.max(0, MIN_MS - elapsed);
+      setTimeout(() => setFading(true), wait);
+      setTimeout(() => {
+        setVisible(false);
+        AOS.init({
+          duration: 700,
+          once: true,
+          easing: "ease-out-cubic",
+          offset: 60,
+        });
+      }, wait + 500);
     };
+
+    if (document.readyState === "complete") {
+      finish();
+    } else {
+      window.addEventListener("load", finish, { once: true });
+      return () => window.removeEventListener("load", finish);
+    }
   }, []);
 
   if (!visible) return null;

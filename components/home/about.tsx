@@ -54,11 +54,12 @@ export default function About({ data }: { data?: AboutData | null }) {
         className="text-[#433459] text-[32px] md:text-[40px] leading-10 md:leading-12 tracking-[-0.8px] mb-8 md:mb-10"
         style={{ fontFamily: "var(--font-antonio)" }}
         data-aos="fade-up"
+        suppressHydrationWarning
       >
         About Us
       </h2>
 
-      <div className="flex flex-col lg:flex-row gap-8 lg:gap-10 items-start lg:items-center w-full" data-aos="fade-up" data-aos-delay="100">
+      <div className="flex flex-col lg:flex-row gap-8 lg:gap-10 items-start lg:items-center w-full" data-aos="fade-up" data-aos-delay="100" suppressHydrationWarning>
 
         {/* Desktop accordion (lg+) */}
         <div

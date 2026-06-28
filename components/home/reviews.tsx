@@ -31,6 +31,7 @@ export default function Reviews({ reviews }: { reviews?: ReviewItem[] | null }) 
         .reviews-swiper .swiper-wrapper { align-items: stretch; }
         .reviews-swiper .swiper-slide { height: auto !important; display: flex; flex-direction: column; overflow: visible !important; }
         .reviews-swiper { overflow: visible !important; }
+        .review-star:hover { stroke: #3F3450 !important; }
       `}</style>
 
       <Swiper
@@ -46,9 +47,11 @@ export default function Reviews({ reviews }: { reviews?: ReviewItem[] | null }) 
         {items.map((r, i) => (
           <SwiperSlide key={i} className="w-70! sm:w-90! md:w-106.75!">
             <div
-              className="border border-[#3f3450]/30 rounded-[20px] p-4 sm:p-6 flex flex-col gap-2 sm:gap-3 hover:bg-[#D9CAEA]/40 hover:shadow-md hover:border-[#3f3450]/60 transition-all duration-500 ease-out h-full flex-1 cursor-pointer"
+              className="border border-[#3f3450]/30 rounded-[20px] p-4 sm:p-6 flex flex-col gap-2 sm:gap-3 hover:bg-[#D9CAEA]/40 hover:border-[#D9CAEA]/40 hover:shadow-md transition-all duration-500 ease-out h-full flex-1 cursor-pointer"
               data-aos="fade-up"
               data-aos-delay={i * 100}
+              onMouseEnter={e => e.currentTarget.querySelectorAll<SVGSVGElement>("svg.star").forEach(s => s.setAttribute("stroke", "#3F3450"))}
+              onMouseLeave={e => e.currentTarget.querySelectorAll<SVGSVGElement>("svg.star").forEach(s => s.setAttribute("stroke", "var(--icon-strok-color, #C49FFF)"))}
             >
               <div className="flex gap-3 sm:gap-4 items-center">
                 <div className="size-14 sm:size-20 rounded-full overflow-hidden shrink-0">
@@ -61,7 +64,15 @@ export default function Reviews({ reviews }: { reviews?: ReviewItem[] | null }) 
                   </p>
                   <div className="flex gap-0.5">
                     {Array.from({ length: Math.min(5, Math.max(1, r.stars)) }).map((_, s) => (
-                      <svg key={s} width="14" height="14" viewBox="0 0 24 24" fill="#D9CAEA" stroke="#3F3450" strokeWidth="1.5" strokeLinejoin="round" className="sm:w-4.5 sm:h-4.5">
+                      <svg
+                        key={s}
+                        width="14" height="14" viewBox="0 0 24 24"
+                        fill="var(--Brend-Color-Lavander, #D9CAEA)"
+                        stroke="var(--icon-strok-color, #C49FFF)"
+                        strokeWidth="2"
+                        strokeLinejoin="round"
+                        className="sm:w-4.5 sm:h-4.5 star"
+                      >
                         <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26" />
                       </svg>
                     ))}

@@ -80,7 +80,7 @@ export default function ServicesClient({ makeup, hair, nail, gallery, reviews }:
               <p className="text-[#faf9f7] text-sm sm:text-xl md:text-2xl font-medium leading-5 sm:leading-7.5 tracking-[-0.48px]">
                 {s.title}
               </p>
-              <p className="text-[#e7e4df] text-[10px] sm:text-xs md:text-sm leading-4 sm:leading-5 tracking-[-0.28px] line-clamp-2">
+              <p className="text-[#e7e4df] text-[10px] sm:text-xs md:text-sm leading-4 sm:leading-5 tracking-[-0.28px] line-clamp-2 wrap-break-word">
                 {s.desc}
               </p>
             </div>

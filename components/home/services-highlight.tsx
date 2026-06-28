@@ -90,7 +90,7 @@ export default function ServicesHighlight({ homeSlides }: { homeSlides?: HomeSli
 
                 {/* Photo — absolute left-[calc(58.33%+2px)] top-[33px] w-[538px] */}
                 <div
-                  className="absolute overflow-hidden"
+                  className="absolute overflow-hidden z-5"
                   style={{ left: "calc(58.33% + 2px)", top: 33, width: 538, bottom: 0 }}
                 >
                   {/* eslint-disable-next-line @next/next/no-img-element */}

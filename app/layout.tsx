@@ -126,6 +126,7 @@ export default function RootLayout({
       className={`${geist.variable} ${antonio.variable} ${greatVibes.variable} h-full antialiased`}
     >
       <head>
+        <script dangerouslySetInnerHTML={{ __html: `history.scrollRestoration = 'manual';` }} />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

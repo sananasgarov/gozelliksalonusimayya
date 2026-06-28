@@ -8,18 +8,21 @@ const BASE_URL = "https://samiyyastudio.com";
 const geist = Geist({
   variable: "--font-geist",
   subsets: ["latin"],
+  display: "swap",
 });
 
 const antonio = Antonio({
   variable: "--font-antonio",
   subsets: ["latin"],
   weight: ["400"],
+  display: "swap",
 });
 
 const greatVibes = Great_Vibes({
   variable: "--font-great-vibes",
   subsets: ["latin"],
   weight: ["400"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {

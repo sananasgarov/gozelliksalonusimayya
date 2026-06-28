@@ -1,3 +1,5 @@
+export const revalidate = 3600;
+
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import Hero from "@/components/home/hero";

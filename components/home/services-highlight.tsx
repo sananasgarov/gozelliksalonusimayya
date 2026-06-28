@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import SlideText from "@/components/slide-text";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, EffectFade } from "swiper/modules";
@@ -61,11 +62,12 @@ export default function ServicesHighlight({ homeSlides }: { homeSlides?: HomeSli
                   className="absolute overflow-hidden"
                   style={{ top: "38%", left: "17%", right: 0, bottom: 0 }}
                 >
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
+                  <Image
                     src={s.imageUrl || "/service-makeup.png"}
                     alt={s.title}
-                    className="absolute inset-0 w-full h-full object-cover object-top"
+                    fill
+                    sizes="83vw"
+                    className="object-cover object-top"
                   />
                 </div>
 
@@ -150,11 +152,12 @@ export default function ServicesHighlight({ homeSlides }: { homeSlides?: HomeSli
                   className="absolute overflow-hidden z-5"
                   style={{ left: "calc(58.33% + 2px)", top: 33, width: 538, bottom: 0 }}
                 >
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
+                  <Image
                     src={s.imageUrl || "/service-makeup.png"}
                     alt={s.title}
-                    className="absolute inset-0 w-full h-full object-cover object-top"
+                    fill
+                    sizes="(max-width: 1440px) 37vw, 538px"
+                    className="object-cover object-top"
                   />
                 </div>
 

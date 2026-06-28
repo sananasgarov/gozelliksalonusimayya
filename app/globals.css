@@ -24,6 +24,7 @@ body {
 
 .animate-marquee {
   animation: marquee 18s linear infinite;
+  will-change: transform;
 }
 
 .animate-marquee:hover {
@@ -37,10 +38,23 @@ body {
 
 .animate-gallery-scroll {
   animation: gallery-scroll 28s linear infinite;
+  will-change: transform;
 }
 
 .animate-gallery-scroll:hover {
   animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee,
+  .animate-gallery-scroll {
+    animation: none;
+  }
+  .review-card-animate {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
 }
 
 @keyframes review-fade-up {

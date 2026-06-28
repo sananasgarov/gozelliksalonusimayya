@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 type BrandItem = { name: string; logoUrl: string };
 
 const FALLBACK: BrandItem[] = [
@@ -17,13 +19,13 @@ export default function Brands({ brands }: { brands?: BrandItem[] | null }) {
     <div className="w-full overflow-hidden py-18 md:py-10">
       <div className="flex items-center animate-marquee" style={{ width: "max-content" }}>
         {track.map((b, i) => (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
+          <Image
             key={i}
             src={b.logoUrl || "/brand1.png"}
             alt={b.name}
-            className="shrink-0 h-7.5 object-contain transition-transform duration-300 hover:scale-125 cursor-pointer"
-            style={{ width: 200, marginRight: "7rem" }}
+            width={200}
+            height={30}
+            className="shrink-0 object-contain transition-transform duration-300 hover:scale-125 cursor-pointer mr-28"
           />
         ))}
       </div>

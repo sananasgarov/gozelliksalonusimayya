@@ -1,3 +1,4 @@
+import Image from "next/image";
 import SlideText from "@/components/slide-text";
 
 const imgMap = "/map.png";
@@ -55,7 +56,7 @@ export default function Contact({ contact }: { contact?: ContactData | null }) {
       <div className="flex flex-col md:flex-row gap-8 md:gap-10 items-center">
         {/* Map */}
         <div className="w-full md:w-1/2 h-72 md:h-120 rounded-[20px] overflow-hidden shrink-0 relative" data-aos="fade-up" suppressHydrationWarning>
-          <img src={imgMap} alt="Location map" className="w-full h-full object-cover" />
+          <Image src={imgMap} alt="Location map" fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover" />
         </div>
 
         {/* Info */}

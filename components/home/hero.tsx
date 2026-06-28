@@ -1,3 +1,6 @@
+"use client";
+
+import { useRef, useEffect } from "react";
 import BookNowButton from "@/components/book-now-button";
 
 type HeroData = {
@@ -18,10 +21,19 @@ const DEFAULTS: HeroData = {
 
 export default function Hero({ data }: { data?: HeroData | null }) {
   const d = { ...DEFAULTS, ...data };
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const v = videoRef.current;
+    if (!v) return;
+    v.muted = true;
+    v.play().catch(() => {});
+  }, []);
 
   return (
     <section className="sticky top-0 h-screen w-full flex items-center justify-center text-center overflow-hidden">
       <video
+        ref={videoRef}
         src={d.videoUrl}
         autoPlay
         muted

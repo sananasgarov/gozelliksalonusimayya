@@ -77,7 +77,7 @@ export default function Contact({ contact }: { contact?: ContactData | null }) {
               <p className="text-[#615a6a] text-xl md:text-[28px] font-medium leading-8 tracking-[-0.56px]">
                 Social Media
               </p>
-              <div className="flex justify-between">
+              <div className="flex gap-8 justify-between">
                 {info.instagram && (
                   <a href={info.instagram} target="_blank" rel="noopener noreferrer"
                     className="text-[#615a6a] text-base md:text-xl leading-7 tracking-[-0.4px] hover:text-[#433459] transition-colors group">

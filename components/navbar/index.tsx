@@ -65,7 +65,7 @@ export default function Navbar({ forceScrolled = false, darkIcons = false }: { f
         <div className="flex items-center justify-between px-4 sm:px-8 md:px-15 py-4 md:py-5">
           <Link href="/" className="flex items-start shrink-0">
             <span
-              className="text-[40px] leading-12 -mr-1.5 whitespace-nowrap transition-colors duration-300"
+              className="text-[40px] leading-12 whitespace-nowrap transition-colors duration-300"
               style={{
                 fontFamily: "var(--font-great-vibes)",
                 color: dark ? "#1a1a1a" : "#ffffff",

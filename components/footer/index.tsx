@@ -62,7 +62,7 @@ export default function Footer({ contact }: { contact?: ContactData }) {
           <div className="flex flex-col gap-4 w-full md:w-106.75 md:shrink-0">
             <div className="flex items-start">
               <span
-                className="text-black text-[36px] sm:text-[42px] md:text-[48px] leading-none -mr-1.5 whitespace-nowrap"
+                className="text-black text-[36px] sm:text-[42px] md:text-[48px] leading-none whitespace-nowrap"
                 style={{ fontFamily: "var(--font-great-vibes)" }}
               >
                 Samiyya

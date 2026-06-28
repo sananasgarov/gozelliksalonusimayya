@@ -40,12 +40,13 @@ export default function ServicesClient({ makeup, hair, nail, gallery, reviews }:
 
   return (
     <>
-      <div className="px-4 md:px-15 flex gap-6 mb-8 md:mb-10">
+      {/* Tabs */}
+      <div className="px-4 sm:px-6 md:px-15 flex gap-4 sm:gap-5 md:gap-6 mb-6 sm:mb-8 md:mb-10">
         {tabs.map((t) => (
           <button
             key={t.key}
             onClick={() => setActiveTab(t.key)}
-            className="text-xl md:text-2xl font-medium leading-8 tracking-[-0.48px] transition-colors duration-200 cursor-pointer group"
+            className="text-base sm:text-lg md:text-2xl font-medium leading-6 sm:leading-7 md:leading-8 tracking-[-0.48px] transition-colors duration-200 cursor-pointer group"
             style={{ color: activeTab === t.key ? "#9b6dff" : "#433459" }}
           >
             <SlideText>{t.label}</SlideText>
@@ -54,11 +55,11 @@ export default function ServicesClient({ makeup, hair, nail, gallery, reviews }:
       </div>
 
       {/* Service Cards Grid */}
-      <div className="px-4 md:px-15 grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5 mb-16 md:mb-24">
+      <div className="px-4 sm:px-6 md:px-15 grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-5 mb-12 sm:mb-16 md:mb-24">
         {services.map((s, i) => (
           <div
             key={`${activeTab}-${i}`}
-            className="relative rounded-[20px] overflow-hidden cursor-pointer group h-56 sm:h-72 lg:h-118.25"
+            className="relative rounded-2xl sm:rounded-[20px] overflow-hidden cursor-pointer group h-52 sm:h-80 md:h-96 lg:h-118.25"
             data-aos="fade-up"
             data-aos-delay={Math.min(i * 60, 420)}
           >
@@ -73,14 +74,14 @@ export default function ServicesClient({ makeup, hair, nail, gallery, reviews }:
               className="absolute inset-0"
               style={{
                 background:
-                  "linear-gradient(to bottom, rgba(102,102,102,0.01) 59%, #291b3f 100%)",
+                  "linear-gradient(to bottom, rgba(102,102,102,0.01) 50%, #291b3f 100%)",
               }}
             />
-            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 w-[89.5%] flex flex-col gap-0.5">
-              <p className="text-[#faf9f7] text-sm sm:text-xl md:text-2xl font-medium leading-5 sm:leading-7.5 tracking-[-0.48px]">
+            <div className="absolute bottom-4 sm:bottom-5 md:bottom-6 left-1/2 -translate-x-1/2 w-[89.5%] flex flex-col gap-1 sm:gap-0.5">
+              <p className="text-[#faf9f7] text-[11px] sm:text-lg md:text-2xl font-medium leading-4 sm:leading-7 md:leading-8 tracking-[-0.48px]">
                 {s.title}
               </p>
-              <p className="text-[#e7e4df] text-[10px] sm:text-xs md:text-sm leading-4 sm:leading-5 tracking-[-0.28px] line-clamp-2 wrap-break-word">
+              <p className="text-[#e7e4df] text-[9px] sm:text-xs md:text-sm leading-3 sm:leading-5 tracking-[-0.28px] line-clamp-2 wrap-break-word">
                 {s.desc}
               </p>
             </div>

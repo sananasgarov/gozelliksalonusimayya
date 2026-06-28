@@ -1,4 +1,4 @@
-import SlideText from "@/components/slide-text";
+import BookNowButton from "@/components/book-now-button";
 
 type HeroData = {
   title: string;
@@ -49,15 +49,12 @@ export default function Hero({ data }: { data?: HeroData | null }) {
             {d.subtitle}
           </p>
         </div>
-        <a
-          href={d.buttonUrl}
-          target="_blank"
-          rel="noopener noreferrer"
+        <BookNowButton
           className="bg-[#9b6dff] hover:bg-[#8a5dee] text-white font-medium text-[20px] leading-6 rounded-full transition-colors group flex items-center justify-center"
           style={{ width: 153, height: 48 }}
         >
-          <SlideText>{d.buttonText}</SlideText>
-        </a>
+          {d.buttonText}
+        </BookNowButton>
       </div>
     </section>
   );

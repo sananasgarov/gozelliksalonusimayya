@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import SlideText from "@/components/slide-text";
+import BookNowButton from "@/components/book-now-button";
 import { useState, useEffect, useRef } from "react";
 import { X, Menu } from "lucide-react";
 
@@ -61,7 +62,7 @@ export default function Navbar({ forceScrolled = false, darkIcons = false }: { f
           transform: hidden && !menuOpen ? "translateY(-100%)" : "translateY(0)",
         }}
       >
-        <div className="flex items-center justify-between" style={{ padding: "20px 60px" }}>
+        <div className="flex items-center justify-between px-4 sm:px-8 md:px-15 py-4 md:py-5">
           <Link href="/" className="flex items-start shrink-0">
             <span
               className="text-[40px] leading-12 -mr-1.5 whitespace-nowrap transition-colors duration-300"
@@ -81,14 +82,7 @@ export default function Navbar({ forceScrolled = false, darkIcons = false }: { f
           </Link>
 
           <div className="flex items-center gap-6">
-            <a
-              href="sms:+13476127994"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hidden sm:flex items-center justify-center bg-[#9b6dff] hover:bg-[#8a5dee] text-white font-medium text-[16px] leading-6 px-6 py-3 rounded-full transition-colors whitespace-nowrap group"
-            >
-              <SlideText>Book Now</SlideText>
-            </a>
+            <BookNowButton className="hidden sm:flex items-center justify-center bg-[#9b6dff] hover:bg-[#8a5dee] text-white font-medium text-[16px] leading-6 px-6 py-3 rounded-full transition-colors whitespace-nowrap group" />
 
             <button
               onClick={() => setMenuOpen((v) => !v)}

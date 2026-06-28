@@ -54,8 +54,13 @@ export default function ServicesHighlight({ homeSlides }: { homeSlides?: HomeSli
             <div className="relative w-full h-full overflow-hidden">
 
               {/* ── MOBILE ── */}
-              <div className="flex flex-col h-full md:hidden">
-                <div className="relative overflow-hidden" style={{ flex: "0 0 55%" }}>
+              <div className="relative w-full h-full md:hidden overflow-hidden">
+
+                {/* Image — lower-right portion, matches Figma: left ~17%, top ~38% */}
+                <div
+                  className="absolute overflow-hidden"
+                  style={{ top: "38%", left: "17%", right: 0, bottom: 0 }}
+                >
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={s.imageUrl || "/service-makeup.png"}
@@ -63,26 +68,78 @@ export default function ServicesHighlight({ homeSlides }: { homeSlides?: HomeSli
                     className="absolute inset-0 w-full h-full object-cover object-top"
                   />
                 </div>
-                <div className="flex flex-col gap-4 px-4 py-8">
-                  <div className="flex flex-col gap-3">
-                    <h2
-                      className="leading-none tracking-[-2px]"
-                      style={{ fontFamily: "var(--font-antonio)", fontSize: 48, color: "#433459", fontWeight: 400 }}
+
+                {/* Watermark — vertical text on left, Figma: left:1px, rotated 90deg */}
+                <div
+                  className="absolute pointer-events-none select-none z-0"
+                  style={{ left: 1, top: "48%", width: 88, height: "44%", display: "flex", alignItems: "center", justifyContent: "center" }}
+                >
+                  <div style={{ transform: "rotate(90deg)" }}>
+                    <span
+                      style={{
+                        fontFamily: "var(--font-antonio)",
+                        fontSize: 68,
+                        fontWeight: 400,
+                        letterSpacing: "3.4px",
+                        backgroundImage: `linear-gradient(to bottom, #433459 13.768%, ${s.bg} 96.551%)`,
+                        WebkitBackgroundClip: "text",
+                        WebkitTextFillColor: "transparent",
+                        backgroundClip: "text",
+                        color: "transparent",
+                        opacity: 0.64,
+                        whiteSpace: "nowrap",
+                        display: "block",
+                      }}
                     >
-                      {s.title}
-                    </h2>
-                    <p className="leading-7 font-light" style={{ fontSize: 18, letterSpacing: "-0.36px", color: "#5e5667" }}>
-                      {s.desc}
-                    </p>
+                      {s.watermark}
+                    </span>
                   </div>
+                </div>
+
+                {/* Content — top-left, Figma: left:20px, top:~13% */}
+                <div
+                  className="absolute flex flex-col z-10"
+                  style={{ top: "13.4%", left: 20, right: 20, gap: 8 }}
+                >
+                  <h2
+                    style={{
+                      fontFamily: "'Inter', sans-serif",
+                      fontSize: 36,
+                      fontWeight: 400,
+                      lineHeight: "40px",
+                      color: "#433459",
+                    }}
+                  >
+                    {s.title}
+                  </h2>
+                  <p
+                    style={{
+                      fontSize: 16,
+                      lineHeight: "24px",
+                      color: "#5e5667",
+                      fontWeight: 400,
+                    }}
+                  >
+                    {s.desc}
+                  </p>
                   <Link
                     href="/services"
-                    className="self-start flex items-center justify-center text-white font-semibold rounded-full hover:opacity-85 group"
-                    style={{ backgroundColor: s.btnColor, width: 160, height: 48, fontSize: 18, lineHeight: "24px" }}
+                    className="self-start flex items-center justify-center text-white rounded-full hover:opacity-85 mt-2"
+                    style={{
+                      backgroundColor: s.btnColor,
+                      paddingLeft: 24,
+                      paddingRight: 24,
+                      paddingTop: 10,
+                      paddingBottom: 10,
+                      fontSize: 16,
+                      lineHeight: "24px",
+                      fontWeight: 500,
+                    }}
                   >
                     <SlideText>Look Closely</SlideText>
                   </Link>
                 </div>
+
               </div>
 
               {/* ── DESKTOP — Figma: 1440×800px pixel-perfect ── */}

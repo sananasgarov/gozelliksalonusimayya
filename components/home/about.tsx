@@ -49,7 +49,7 @@ export default function About({ data }: { data?: AboutData | null }) {
   ];
 
   return (
-    <section id="about" className="pt-25 pb-25 px-4 md:px-15 w-full">
+    <section id="about" className="pt-16 pb-0 md:pt-25 md:pb-25 px-4 md:px-15 w-full">
       <h2
         className="text-[#433459] text-[32px] md:text-[40px] leading-10 md:leading-12 tracking-[-0.8px] mb-8 md:mb-10"
         style={{ fontFamily: "var(--font-antonio)" }}
@@ -95,14 +95,14 @@ export default function About({ data }: { data?: AboutData | null }) {
 
           <div className="flex justify-between w-full">
             {stats.map((s) => (
-              <div key={s.label} className="flex flex-col gap-2 md:gap-6 items-center text-center">
+              <div key={s.label} className="flex flex-col gap-1 sm:gap-2 md:gap-6 items-center text-center">
                 <p
-                  className="text-[#433459] text-[40px] font-normal leading-12 tracking-[-0.8px]"
+                  className="text-[#433459] text-[26px] sm:text-[34px] md:text-[40px] font-normal leading-8 sm:leading-10 md:leading-12 tracking-[-0.8px]"
                   style={{ fontFamily: "var(--font-antonio)" }}
                 >
                   {s.value}
                 </p>
-                <p className="text-[#5e5667] text-[20px] font-normal leading-7 tracking-[-0.4px]">
+                <p className="text-[#5e5667] text-xs sm:text-base md:text-[20px] font-normal leading-5 sm:leading-6 md:leading-7 tracking-[-0.4px]">
                   {s.label}
                 </p>
               </div>

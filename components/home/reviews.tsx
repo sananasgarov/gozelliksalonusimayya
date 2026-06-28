@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect, useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode } from "swiper/modules";
 import "swiper/css";
@@ -14,11 +15,87 @@ const FALLBACK: ReviewItem[] = [
   { name: "Maria Garcia", stars: 5, text: "Best makeup artist I've ever been to. The results look incredible both in person and in photos!", avatarUrl: "/avatar.png" },
 ];
 
-export default function Reviews({ reviews }: { reviews?: ReviewItem[] | null }) {
-  const items = reviews && reviews.length > 0 ? reviews : FALLBACK;
+function ReviewCard({ r, i, visible }: { r: ReviewItem; i: number; visible: boolean }) {
+  const [hovered, setHovered] = useState(false);
 
   return (
-    <section id="reviews" className="pt-25 pb-25 w-full overflow-x-hidden">
+    <div
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      style={{
+        backgroundColor: hovered ? "#d9caea" : "transparent",
+        borderColor: hovered ? "transparent" : "#3f3450",
+        borderWidth: "0.5px",
+        borderStyle: "solid",
+        transition: "background-color 0.45s ease-in-out, border-color 0.45s ease-in-out",
+        animationDelay: `${i * 120}ms`,
+      }}
+      className={`rounded-[20px] p-6 flex flex-col gap-3 h-full flex-1 cursor-pointer ${
+        visible ? "review-card-animate" : "review-card-hidden"
+      }`}
+    >
+      <div className="flex gap-4 items-center">
+        <div className="size-16 sm:size-20 rounded-full overflow-hidden shrink-0">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={r.avatarUrl || "/avatar.png"} alt={r.name} className="w-full h-full object-cover" />
+        </div>
+        <div className="flex flex-col gap-1">
+          <p
+            style={{
+              color: hovered ? "#000000" : "#433459",
+              transition: "color 0.45s ease-in-out",
+            }}
+            className="text-[22px] sm:text-[28px] font-medium leading-9 tracking-[-0.56px]"
+          >
+            {r.name}
+          </p>
+          <div className="flex">
+            {Array.from({ length: Math.min(5, Math.max(1, r.stars)) }).map((_, s) => (
+              <svg
+                key={s}
+                width="20" height="20" viewBox="0 0 24 24"
+                strokeLinejoin="round"
+                style={{
+                  fill: "#D9CAEA",
+                  stroke: hovered ? "#3f3450" : "#C49FFF",
+                  strokeWidth: hovered ? 2 : 1.5,
+                  transition: "stroke 0.45s ease-in-out, stroke-width 0.45s ease-in-out",
+                }}
+              >
+                <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26" />
+              </svg>
+            ))}
+          </div>
+        </div>
+      </div>
+      <p className="text-[#615a6a] text-[16px] sm:text-[20px] leading-7 tracking-[-0.4px]">
+        {r.text}
+      </p>
+    </div>
+  );
+}
+
+export default function Reviews({ reviews }: { reviews?: ReviewItem[] | null }) {
+  const items = reviews && reviews.length > 0 ? reviews : FALLBACK;
+  const [visible, setVisible] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.1 }
+    );
+    if (sectionRef.current) observer.observe(sectionRef.current);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <section ref={sectionRef} id="reviews" className="pt-16 pb-16 md:pt-25 md:pb-25 w-full overflow-x-hidden">
       <h2
         className="text-[#433459] text-[28px] md:text-[40px] leading-9 md:leading-12 tracking-[-0.8px] mb-6 md:mb-8 px-4 md:px-15"
         style={{ fontFamily: "var(--font-antonio)" }}
@@ -31,7 +108,6 @@ export default function Reviews({ reviews }: { reviews?: ReviewItem[] | null }) 
         .reviews-swiper .swiper-wrapper { align-items: stretch; }
         .reviews-swiper .swiper-slide { height: auto !important; display: flex; flex-direction: column; overflow: visible !important; }
         .reviews-swiper { overflow: visible !important; }
-        .review-star:hover { stroke: #3F3450 !important; }
       `}</style>
 
       <Swiper
@@ -45,44 +121,8 @@ export default function Reviews({ reviews }: { reviews?: ReviewItem[] | null }) 
         className="reviews-swiper w-full overflow-visible! lg:px-12! px-4"
       >
         {items.map((r, i) => (
-          <SwiperSlide key={i} className="w-70! sm:w-90! md:w-106.75!">
-            <div
-              className="border border-[#3f3450]/30 rounded-[20px] p-4 sm:p-6 flex flex-col gap-2 sm:gap-3 hover:bg-[#D9CAEA]/40 hover:border-[#D9CAEA]/40 hover:shadow-md transition-all duration-500 ease-out h-full flex-1 cursor-pointer"
-              data-aos="fade-up"
-              data-aos-delay={i * 100}
-              onMouseEnter={e => e.currentTarget.querySelectorAll<SVGSVGElement>("svg.star").forEach(s => s.setAttribute("stroke", "#3F3450"))}
-              onMouseLeave={e => e.currentTarget.querySelectorAll<SVGSVGElement>("svg.star").forEach(s => s.setAttribute("stroke", "var(--icon-strok-color, #C49FFF)"))}
-            >
-              <div className="flex gap-3 sm:gap-4 items-center">
-                <div className="size-14 sm:size-20 rounded-full overflow-hidden shrink-0">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={r.avatarUrl || "/avatar.png"} alt={r.name} className="w-full h-full object-cover" />
-                </div>
-                <div className="flex flex-col gap-1">
-                  <p className="text-[#433459] text-base sm:text-[22px] md:text-[28px] font-medium leading-6 sm:leading-8 md:leading-9 tracking-[-0.56px]">
-                    {r.name}
-                  </p>
-                  <div className="flex gap-0.5">
-                    {Array.from({ length: Math.min(5, Math.max(1, r.stars)) }).map((_, s) => (
-                      <svg
-                        key={s}
-                        width="14" height="14" viewBox="0 0 24 24"
-                        fill="var(--Brend-Color-Lavander, #D9CAEA)"
-                        stroke="var(--icon-strok-color, #C49FFF)"
-                        strokeWidth="2"
-                        strokeLinejoin="round"
-                        className="sm:w-4.5 sm:h-4.5 star"
-                      >
-                        <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26" />
-                      </svg>
-                    ))}
-                  </div>
-                </div>
-              </div>
-              <p className="text-[#615a6a] text-sm sm:text-base md:text-xl leading-5 sm:leading-6 md:leading-7 tracking-[-0.4px]">
-                {r.text}
-              </p>
-            </div>
+          <SwiperSlide key={i} className="w-75! sm:w-95! md:w-106.75!">
+            <ReviewCard r={r} i={i} visible={visible} />
           </SwiperSlide>
         ))}
       </Swiper>

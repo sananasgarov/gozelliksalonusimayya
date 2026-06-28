@@ -62,7 +62,7 @@ export default function Footer({ contact }: { contact?: ContactData }) {
           <div className="flex flex-col gap-4 w-full md:w-106.75 md:shrink-0">
             <div className="flex items-start">
               <span
-                className="text-black text-[48px] leading-none -mr-1.5 whitespace-nowrap"
+                className="text-black text-[36px] sm:text-[42px] md:text-[48px] leading-none -mr-1.5 whitespace-nowrap"
                 style={{ fontFamily: "var(--font-great-vibes)" }}
               >
                 Samiyya
@@ -82,16 +82,16 @@ export default function Footer({ contact }: { contact?: ContactData }) {
           {/* Link columns */}
           <div className="flex flex-wrap items-start justify-between gap-8 flex-1">
             {/* Quick Links */}
-            <div className="flex flex-col gap-4">
-              <p className="text-[#433459] text-[28px] font-medium leading-9 tracking-[-0.56px]">
+            <div className="flex flex-col gap-3 md:gap-4">
+              <p className="text-[#433459] text-xl sm:text-2xl md:text-[28px] font-medium leading-7 sm:leading-8 md:leading-9 tracking-[-0.56px]">
                 Quick Links
               </p>
-              <div className="flex flex-col gap-3">
+              <div className="flex flex-col gap-2 md:gap-3">
                 {quickLinks.map((l) => (
                   <Link
                     key={l.href}
                     href={l.href}
-                    className="text-[#615a6a] text-xl leading-7 tracking-[-0.4px] hover:text-[#433459] transition-colors group"
+                    className="text-[#615a6a] text-sm sm:text-base md:text-xl leading-6 md:leading-7 tracking-[-0.4px] hover:text-[#433459] transition-colors group"
                   >
                     <SlideText>{l.label}</SlideText>
                   </Link>
@@ -100,16 +100,16 @@ export default function Footer({ contact }: { contact?: ContactData }) {
             </div>
 
             {/* Legal */}
-            <div className="flex flex-col gap-4">
-              <p className="text-[#433459] text-[28px] font-medium leading-9 tracking-[-0.56px]">
+            <div className="flex flex-col gap-3 md:gap-4">
+              <p className="text-[#433459] text-xl sm:text-2xl md:text-[28px] font-medium leading-7 sm:leading-8 md:leading-9 tracking-[-0.56px]">
                 Legal Information
               </p>
-              <div className="flex flex-col gap-3">
+              <div className="flex flex-col gap-2 md:gap-3">
                 {legalLinks.map((l) => (
                   <Link
                     key={l.href}
                     href={l.href}
-                    className="text-[#615a6a] text-xl leading-7 tracking-[-0.4px] hover:text-[#433459] transition-colors group"
+                    className="text-[#615a6a] text-sm sm:text-base md:text-xl leading-6 md:leading-7 tracking-[-0.4px] hover:text-[#433459] transition-colors group"
                   >
                     <SlideText>{l.label}</SlideText>
                   </Link>
@@ -118,18 +118,18 @@ export default function Footer({ contact }: { contact?: ContactData }) {
             </div>
 
             {/* Contact */}
-            <div className="flex flex-col gap-4">
-              <p className="text-[#433459] text-[28px] font-medium leading-9 tracking-[-0.56px]">
+            <div className="flex flex-col gap-3 md:gap-4">
+              <p className="text-[#433459] text-xl sm:text-2xl md:text-[28px] font-medium leading-7 sm:leading-8 md:leading-9 tracking-[-0.56px]">
                 Contact Us
               </p>
-              <div className="flex flex-col gap-3">
+              <div className="flex flex-col gap-2 md:gap-3">
                 {contactLinks.map((l) => (
                   <a
                     key={l.href}
                     href={l.href}
                     target={l.external ? "_blank" : undefined}
                     rel={l.external ? "noopener noreferrer" : undefined}
-                    className="text-[#615a6a] text-xl leading-7 tracking-[-0.4px] hover:text-[#433459] transition-colors group"
+                    className="text-[#615a6a] text-sm sm:text-base md:text-xl leading-6 md:leading-7 tracking-[-0.4px] hover:text-[#433459] transition-colors group"
                   >
                     <SlideText>{l.label}</SlideText>
                   </a>

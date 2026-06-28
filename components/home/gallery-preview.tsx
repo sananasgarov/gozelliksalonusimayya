@@ -11,7 +11,7 @@ export default function GalleryPreview({ images }: { images?: GalleryItem[] | nu
   const items = images && images.length > 0 ? images : FALLBACK;
 
   return (
-    <section id="gallery" className="pt-25 pb-25 w-full overflow-hidden">
+    <section id="gallery" className="pt-16 pb-16 md:pt-25 md:pb-25 w-full overflow-hidden">
       <h2
         className="text-[#433459] text-[28px] md:text-[40px] leading-9 md:leading-12 tracking-[-0.8px] mb-6 md:mb-8 px-4 md:px-15"
         style={{ fontFamily: "var(--font-antonio)" }}
@@ -20,7 +20,7 @@ export default function GalleryPreview({ images }: { images?: GalleryItem[] | nu
       </h2>
 
       <div className="flex gap-5 animate-gallery-scroll w-max">
-        {[...items, ...items].map((img, i) => (
+        {[...items, ...items, ...items, ...items].map((img, i) => (
           <div
             key={i}
             className="shrink-0 w-44 sm:w-56 md:w-78.75 h-60 sm:h-80 md:h-118.25 rounded-[20px] overflow-hidden relative group cursor-pointer"

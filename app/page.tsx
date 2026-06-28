@@ -27,39 +27,32 @@ export default async function Home() {
     <div className="flex flex-col w-full bg-[#f4f2ee]" style={{ overflowX: "clip" }}>
       <Navbar />
 
-      {/* 200vh wrapper: Hero sticky top-0, About slides over it from scroll 0–100vh */}
-      <div style={{ position: "relative", zIndex: 1, height: "200vh" }}>
+      {/* Hero — mobile: 100vh, desktop: 200vh sticky zone */}
+      <div className="relative z-1 h-screen lg:h-[200vh]">
         <Hero data={hero} />
       </div>
 
-      {/* About slides up over Hero — negative margin pulls it into the sticky zone */}
-      <div
-        style={{
-          position: "relative",
-          zIndex: 2,
-          marginTop: "-100vh",
-          background: "#f4f2ee",
-        }}
-      >
+      {/* About — mobile: normal flow, desktop: slides over Hero */}
+      <div className="relative z-2 lg:mt-[-100vh] bg-[#f4f2ee]">
         <About data={about} />
       </div>
 
-      {/* Brands pinned — ServicesHighlight slides over it */}
-      <div style={{ position: "relative", zIndex: 3, height: "calc(100vh + 200px)" }}>
-        <div style={{ position: "sticky", top: 0, width: "100%", background: "#f4f2ee" }}>
+      {/* Brands — mobile: normal flow, desktop: sticky pin */}
+      <div className="relative z-3 h-auto lg:h-[calc(100vh+200px)]">
+        <div className="relative lg:sticky top-0 w-full bg-[#f4f2ee]">
           <Brands brands={brands} />
         </div>
       </div>
 
-      {/* ServicesHighlight: slides over Brands AND pins for GalleryPreview */}
-      <div style={{ position: "relative", zIndex: 4, marginTop: "-100vh", height: "calc(100vh + 800px)" }}>
-        <div style={{ position: "sticky", top: 0 }}>
+      {/* ServicesHighlight — mobile: normal flow, desktop: slides over Brands + sticky */}
+      <div className="relative z-4 h-auto lg:mt-[-100vh] lg:h-[calc(100vh+800px)]">
+        <div className="relative lg:sticky top-0">
           <ServicesHighlight homeSlides={homeSlides} />
         </div>
       </div>
 
-      {/* GalleryPreview slides over ServicesHighlight */}
-      <div style={{ position: "relative", zIndex: 5, marginTop: "-100vh", background: "#f4f2ee" }}>
+      {/* GalleryPreview — mobile: normal flow, desktop: slides over Services */}
+      <div className="relative z-5 lg:mt-[-100vh] bg-[#f4f2ee]">
         <GalleryPreview images={gallery} />
       </div>
       <Reviews reviews={reviews} />

@@ -52,7 +52,7 @@ export default function Footer({ contact }: { contact?: ContactData }) {
 
   return (
     <footer
-      className="w-full px-4 md:px-15 mt-25 pt-10 md:pt-13 pb-8"
+      className="w-full px-4 md:px-15 pt-10 pb-8"
       style={{ backgroundColor: "#d9caea" }}
     >
       <div className="  mx-auto flex flex-col gap-13">

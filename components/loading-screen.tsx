@@ -15,15 +15,18 @@ export default function LoadingScreen() {
     const finish = () => {
       const elapsed = Date.now() - start;
       const wait = Math.max(0, MIN_MS - elapsed);
-      setTimeout(() => setFading(true), wait);
       setTimeout(() => {
-        setVisible(false);
+        setFading(true);
         AOS.init({
           duration: 700,
           once: true,
           easing: "ease-out-cubic",
           offset: 60,
         });
+      }, wait);
+      setTimeout(() => {
+        setVisible(false);
+        AOS.refresh();
       }, wait + 500);
     };
 

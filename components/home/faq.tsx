@@ -54,7 +54,7 @@ export default function Faq({ faqs }: { faqs?: FaqItem[] | null }) {
   const items = faqs && faqs.length > 0 ? faqs : FALLBACK;
 
   return (
-    <section className="pt-16 pb-16 md:pt-25 md:pb-25 px-4 md:px-15 w-full">
+    <section className="pt-20 md:pt-35 px-4 md:px-15 w-full">
       <h2
         className="text-[#433459] text-[28px] md:text-[40px] leading-9 md:leading-12 tracking-[-0.8px] mb-6 md:mb-8"
         style={{ fontFamily: "var(--font-antonio)" }}

@@ -11,7 +11,7 @@ export default function GalleryPreview({ images }: { images?: GalleryItem[] | nu
   const items = images && images.length > 0 ? images : FALLBACK;
 
   return (
-    <section id="gallery" className="pt-16 pb-16 md:pt-25 md:pb-25 w-full overflow-hidden">
+    <section id="gallery" className="py-20 md:py-35 w-full overflow-hidden">
       <h2
         className="text-[#433459] text-[28px] md:text-[40px] leading-9 md:leading-12 tracking-[-0.8px] mb-6 md:mb-8 px-4 md:px-15"
         style={{ fontFamily: "var(--font-antonio)" }}

@@ -16,7 +16,7 @@ export default function Brands({ brands }: { brands?: BrandItem[] | null }) {
   const track = [...items, ...items, ...items];
 
   return (
-    <div className="w-full overflow-hidden py-18 md:py-10">
+    <div className="w-full overflow-hidden">
       <div className="flex items-center animate-marquee" style={{ width: "max-content" }}>
         {track.map((b, i) => (
           <Image

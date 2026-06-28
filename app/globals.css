@@ -45,17 +45,6 @@ body {
   animation-play-state: paused;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .animate-marquee,
-  .animate-gallery-scroll {
-    animation: none;
-  }
-  .review-card-animate {
-    animation: none;
-    opacity: 1;
-    transform: none;
-  }
-}
 
 @keyframes review-fade-up {
   from {
@@ -86,4 +75,11 @@ body {
 .group:hover .review-star {
   stroke: #3f3450;
   stroke-width: 2px;
+}
+
+.review-star-pressed {
+  fill: #D9CAEA;
+  stroke: #3f3450;
+  stroke-width: 2px;
+  transition: stroke 0.45s ease-in-out, stroke-width 0.45s ease-in-out;
 }

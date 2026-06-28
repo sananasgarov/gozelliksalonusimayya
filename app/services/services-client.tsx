@@ -55,7 +55,7 @@ export default function ServicesClient({ makeup, hair, nail, gallery, reviews }:
       </div>
 
       {/* Service Cards Grid */}
-      <div className="px-4 sm:px-6 md:px-15 grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-5 mb-12 sm:mb-16 md:mb-24">
+      <div className="px-4 sm:px-6 md:px-15 grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-5">
         {services.map((s, i) => (
           <div
             key={`${activeTab}-${i}`}
@@ -91,7 +91,9 @@ export default function ServicesClient({ makeup, hair, nail, gallery, reviews }:
       </div>
 
       <GalleryPreview images={gallery} />
-      <Reviews reviews={reviews} />
+      <div className="pb-20 md:pb-35">
+        <Reviews reviews={reviews} />
+      </div>
     </>
   );
 }

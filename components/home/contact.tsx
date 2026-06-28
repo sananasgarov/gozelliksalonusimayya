@@ -43,7 +43,7 @@ export default function Contact({ contact }: { contact?: ContactData | null }) {
   const hours: WorkHour[] = contact?.hours && contact.hours.length > 0 ? contact.hours : FALLBACK_HOURS;
 
   return (
-    <section id="contact" className="pt-16 pb-16 md:pt-25 md:pb-25 px-4 md:px-15 w-full">
+    <section id="contact" className="py-20 md:py-35 px-4 md:px-15 w-full">
       <h2
         className="text-[#433459] text-[32px] md:text-[40px] leading-10 md:leading-12 tracking-[-0.8px] mb-8 md:mb-10"
         style={{ fontFamily: "var(--font-antonio)" }}

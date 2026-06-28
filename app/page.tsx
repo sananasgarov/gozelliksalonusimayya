@@ -39,15 +39,13 @@ export default async function Home() {
         <About data={about} />
       </div>
 
-      {/* Brands — mobile: normal flow, desktop: sticky pin */}
-      <div className="relative z-3 h-auto lg:h-[calc(100vh+200px)]">
-        <div className="relative lg:sticky top-0 w-full bg-[#f4f2ee]">
-          <Brands brands={brands} />
-        </div>
+      {/* Brands — simple flow, no parallax */}
+      <div className="relative z-3 bg-[#f4f2ee] py-20 md:py-35">
+        <Brands brands={brands} />
       </div>
 
-      {/* ServicesHighlight — mobile: normal flow, desktop: slides over Brands + sticky */}
-      <div className="relative z-4 h-auto lg:mt-[-100vh] lg:h-[calc(100vh+800px)]">
+      {/* ServicesHighlight — desktop: sticky carousel */}
+      <div className="relative z-4 h-auto lg:h-[calc(100vh+800px)]">
         <div className="relative lg:sticky top-0">
           <ServicesHighlight homeSlides={homeSlides} />
         </div>

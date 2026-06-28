@@ -16,12 +16,17 @@ const FALLBACK: ReviewItem[] = [
 ];
 
 function ReviewCard({ r, i, visible }: { r: ReviewItem; i: number; visible: boolean }) {
+  const [pressed, setPressed] = useState(false);
+
   return (
     <div
       style={{ animationDelay: `${i * 120}ms` }}
-      className={`group rounded-[20px] p-6 flex flex-col gap-3 h-full flex-1 cursor-pointer border-[0.5px] border-[#3f3450] hover:border-transparent bg-transparent hover:bg-[#d9caea] transition-[background-color,border-color] duration-450 ease-in-out ${
-        visible ? "review-card-animate" : "review-card-hidden"
-      }`}
+      onTouchStart={() => setPressed(true)}
+      onTouchEnd={() => setPressed(false)}
+      onTouchCancel={() => setPressed(false)}
+      className={`group rounded-[20px] p-6 flex flex-col gap-3 h-full flex-1 cursor-pointer border-[0.5px] transition-[background-color,border-color] duration-450 ease-in-out ${
+        pressed ? "border-transparent bg-[#d9caea]" : "border-[#3f3450] hover:border-transparent bg-transparent hover:bg-[#d9caea]"
+      } ${visible ? "review-card-animate" : "review-card-hidden"}`}
     >
       <div className="flex gap-4 items-center">
         <div className="size-16 sm:size-20 rounded-full overflow-hidden shrink-0">
@@ -29,7 +34,7 @@ function ReviewCard({ r, i, visible }: { r: ReviewItem; i: number; visible: bool
           <img src={r.avatarUrl || "/avatar.png"} alt={r.name} className="w-full h-full object-cover" />
         </div>
         <div className="flex flex-col gap-1">
-          <p className="text-[#433459] group-hover:text-black transition-colors duration-450 text-[22px] sm:text-[28px] font-medium leading-9 tracking-[-0.56px]">
+          <p className={`transition-colors duration-450 text-[22px] sm:text-[28px] font-medium leading-9 tracking-[-0.56px] ${pressed ? "text-black" : "text-[#433459] group-hover:text-black"}`}>
             {r.name}
           </p>
           <div className="flex">
@@ -38,7 +43,7 @@ function ReviewCard({ r, i, visible }: { r: ReviewItem; i: number; visible: bool
                 key={s}
                 width="20" height="20" viewBox="0 0 24 24"
                 strokeLinejoin="round"
-                className="review-star"
+                className={pressed ? "review-star-pressed" : "review-star"}
               >
                 <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26" />
               </svg>
@@ -73,7 +78,7 @@ export default function Reviews({ reviews }: { reviews?: ReviewItem[] | null }) 
   }, []);
 
   return (
-    <section ref={sectionRef} id="reviews" className="pt-16 pb-16 md:pt-25 md:pb-25 w-full overflow-x-hidden">
+    <section ref={sectionRef} id="reviews" className="w-full overflow-x-hidden">
       <h2
         className="text-[#433459] text-[28px] md:text-[40px] leading-9 md:leading-12 tracking-[-0.8px] mb-6 md:mb-8 px-4 md:px-15"
         style={{ fontFamily: "var(--font-antonio)" }}

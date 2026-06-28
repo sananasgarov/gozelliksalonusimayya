@@ -49,7 +49,7 @@ export default function About({ data }: { data?: AboutData | null }) {
   ];
 
   return (
-    <section id="about" className="pt-16 pb-0 md:pt-25 md:pb-25 px-4 md:px-15 w-full">
+    <section id="about" className="pt-20 pb-0 md:pt-35 md:pb-0 px-4 md:px-15 w-full">
       <h2
         className="text-[#433459] text-[32px] md:text-[40px] leading-10 md:leading-12 tracking-[-0.8px] mb-8 md:mb-10"
         style={{ fontFamily: "var(--font-antonio)" }}

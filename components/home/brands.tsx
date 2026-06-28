@@ -26,7 +26,7 @@ export default function Brands({ brands }: { brands?: BrandItem[] | null }) {
             width={200}
             height={30}
             className="shrink-0 object-contain transition-transform duration-300 hover:scale-125 cursor-pointer mr-28"
-            style={{ height: 30, width: "auto" }}
+            style={{ height: "clamp(20px, 2.5vw, 30px)", width: "auto" }}
           />
         ))}
       </div>

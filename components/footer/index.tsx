@@ -3,7 +3,6 @@
 import Link from "next/link";
 import SlideText from "@/components/slide-text";
 
-const logoHeart = "/logoblack.png";
 
 const quickLinks = [
   { label: "Home", href: "/" },
@@ -62,20 +61,12 @@ export default function Footer({ contact }: { contact?: ContactData }) {
         <div className="flex flex-col md:flex-row gap-10 md:gap-5 items-start">
           {/* Logo + tagline */}
           <div className="flex flex-col gap-4 w-full md:w-106.75 md:shrink-0">
-            <div className="flex items-start">
-              <span
-                className="text-black text-[36px] sm:text-[42px] md:text-[48px] leading-none whitespace-nowrap"
-                style={{ fontFamily: "var(--font-great-vibes)" }}
-              >
-                Samiyya
-              </span>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={logoHeart}
-                alt=""
-                className="size-11 object-bottom md:-translate-y-[6px] md:-translate-x-[4px] -translate-y-[12px] -translate-x-[6px] shrink-0"
-              />
-            </div>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/Logo Black.png"
+              alt="Samiyya Studio"
+              className="h-10 md:h-12 w-auto object-contain self-start"
+            />
             <p className="text-[#5e5667] text-base sm:text-lg md:text-2xl font-medium leading-6 sm:leading-7 md:leading-8 tracking-[-0.48px]">
               Where Beauty Meets Elegance
             </p>

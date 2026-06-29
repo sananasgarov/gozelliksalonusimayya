@@ -6,8 +6,6 @@ import BookNowButton from "@/components/book-now-button";
 import { useState, useEffect, useRef } from "react";
 import { X, Menu } from "lucide-react";
 
-const logoHeart = "/logoicon.png";
-
 const navLinks = [
   { label: "Home", href: "/" },
   { label: "About", href: "/#about" },
@@ -63,21 +61,12 @@ export default function Navbar({ forceScrolled = false, darkIcons = false }: { f
         }}
       >
         <div className="flex items-center justify-between px-4 sm:px-8 md:px-15 py-4 md:py-5">
-          <Link href="/" className="flex items-start shrink-0">
-            <span
-              className="text-[40px] leading-12 whitespace-nowrap transition-colors duration-300"
-              style={{
-                fontFamily: "var(--font-great-vibes)",
-                color: dark ? "#1a1a1a" : "#ffffff",
-              }}
-            >
-              Samiyya
-            </span>
+          <Link href="/" className="flex items-center shrink-0">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src={dark ? "/logoblack.png" : logoHeart}
-              alt=""
-              className="size-9 object-cover -translate-x-[3px] shrink-0 mt-0.45"
+              src={dark ? "/Logo Black.png" : "/Logo White.png"}
+              alt="Samiyya Studio"
+              className="h-10 md:h-12 w-auto object-contain transition-opacity duration-300"
             />
           </Link>
 

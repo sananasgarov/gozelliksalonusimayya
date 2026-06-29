@@ -18,7 +18,7 @@ const legalLinks = [
   { label: "Booking Policy", href: "/booking-policy" },
 ];
 
-type ContactData = { email?: string; instagram?: string; tiktok?: string } | null;
+type ContactData = { info?: { email?: string; instagram?: string; tiktok?: string; facebook?: string } } | null;
 
 function scrollToTop() {
   const start = window.scrollY;
@@ -40,14 +40,16 @@ function scrollToTop() {
 }
 
 export default function Footer({ contact }: { contact?: ContactData }) {
-  const instagram = contact?.instagram ?? "https://www.instagram.com/samiyya.studio";
-  const tiktok    = contact?.tiktok    ?? "https://www.tiktok.com/@samiyya.studio";
-  const email     = contact?.email     ?? "samiyya@gmail.com";
+  const info      = contact?.info;
+  const instagram = info?.instagram ?? "https://www.instagram.com/samiyya.studio";
+  const tiktok    = info?.tiktok    ?? "https://www.tiktok.com/@samiyya.studio";
+  const facebook  = info?.facebook  ?? "https://www.facebook.com/samiyya.studio";
+  const email     = info?.email     ?? "samiyya@gmail.com";
 
   const contactLinks = [
     { label: "Instagram",  href: instagram,          external: true  },
     { label: "Tik Tok",    href: tiktok,             external: true  },
-    { label: email,        href: `mailto:${email}`,  external: false },
+    { label: "Facebook",   href: facebook,           external: true  },
   ];
 
   return (

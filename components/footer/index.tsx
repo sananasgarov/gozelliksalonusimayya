@@ -44,7 +44,7 @@ export default function Footer({ contact }: { contact?: ContactData }) {
   const instagram = info?.instagram ?? "https://www.instagram.com/samiyya.studio";
   const tiktok    = info?.tiktok    ?? "https://www.tiktok.com/@samiyya.studio";
   const facebook  = info?.facebook  ?? "https://www.facebook.com/samiyya.studio";
-  const email     = info?.email     ?? "samiyya@gmail.com";
+
 
   const contactLinks = [
     { label: "Instagram",  href: instagram,          external: true  },
@@ -54,7 +54,7 @@ export default function Footer({ contact }: { contact?: ContactData }) {
 
   return (
     <footer
-      className="w-full px-4 md:px-15 pt-10 pb-8"
+      className="w-full px-4 md:px-15 pt-16 md:pt-10 pb-8"
       style={{ backgroundColor: "#d9caea" }}
     >
       <div className="  mx-auto flex flex-col gap-13">
@@ -76,7 +76,7 @@ export default function Footer({ contact }: { contact?: ContactData }) {
                 className="size-11 object-bottom md:-translate-y-[6px] md:-translate-x-[4px] -translate-y-[12px] -translate-x-[6px] shrink-0"
               />
             </div>
-            <p className="text-[#5e5667] text-2xl font-medium leading-8 tracking-[-0.48px]">
+            <p className="text-[#5e5667] text-base sm:text-lg md:text-2xl font-medium leading-6 sm:leading-7 md:leading-8 tracking-[-0.48px]">
               Where Beauty Meets Elegance
             </p>
           </div>

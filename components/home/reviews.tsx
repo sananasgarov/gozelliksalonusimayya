@@ -22,6 +22,7 @@ function ReviewCard({ r, i, visible }: { r: ReviewItem; i: number; visible: bool
     <div
       style={{ animationDelay: `${i * 120}ms` }}
       onTouchStart={() => setPressed(true)}
+      onTouchMove={() => setPressed(false)}
       onTouchEnd={() => setPressed(false)}
       onTouchCancel={() => setPressed(false)}
       className={`group rounded-[20px] p-6 flex flex-col gap-3 h-full flex-1 cursor-pointer border-[0.5px] transition-[background-color,border-color] duration-450 ease-in-out ${

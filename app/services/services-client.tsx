@@ -79,10 +79,10 @@ export default function ServicesClient({ makeup, hair, nail, gallery, reviews }:
               }}
             />
             <div className="absolute bottom-4 sm:bottom-5 md:bottom-6 left-1/2 -translate-x-1/2 w-[89.5%] flex flex-col gap-1 sm:gap-0.5">
-              <p className="text-[#faf9f7] text-[11px] sm:text-lg md:text-2xl font-medium leading-4 sm:leading-7 md:leading-8 tracking-[-0.48px]">
+              <p className="text-[#faf9f7] text-[14px] sm:text-lg md:text-2xl font-medium leading-4.5 sm:leading-7 md:leading-8 tracking-[-0.48px]">
                 {s.title}
               </p>
-              <p className="text-[#e7e4df] text-[9px] sm:text-xs md:text-sm leading-3 sm:leading-5 tracking-[-0.28px] line-clamp-2 wrap-break-word">
+              <p className="text-[#e7e4df] text-[10px] sm:text-xs md:text-sm leading-3 sm:leading-5 tracking-[-0.28px] line-clamp-2 wrap-break-word">
                 {s.desc}
               </p>
             </div>

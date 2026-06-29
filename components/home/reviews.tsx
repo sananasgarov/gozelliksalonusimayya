@@ -24,7 +24,7 @@ function ReviewCard({ r, i, visible }: { r: ReviewItem; i: number; visible: bool
       onTouchStart={() => setPressed(true)}
       onTouchEnd={() => setPressed(false)}
       onTouchCancel={() => setPressed(false)}
-      className={`group rounded-[20px] p-6 flex flex-col gap-3 h-full flex-1 cursor-pointer border-[0.5px] transition-[background-color,border-color] duration-450 ease-in-out ${
+      className={`group rounded-[20px] p-6 flex flex-col gap-3 h-full flex-1 cursor-pointer border-[0.5px] overflow-hidden transition-[background-color,border-color] duration-450 ease-in-out ${
         pressed ? "border-transparent bg-[#d9caea]" : "border-[#3f3450] hover:border-transparent bg-transparent hover:bg-[#d9caea]"
       } ${visible ? "review-card-animate" : "review-card-hidden"}`}
     >
@@ -33,8 +33,8 @@ function ReviewCard({ r, i, visible }: { r: ReviewItem; i: number; visible: bool
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={r.avatarUrl || "/avatar.png"} alt={r.name} className="w-full h-full object-cover" />
         </div>
-        <div className="flex flex-col gap-1">
-          <p className={`transition-colors duration-450 text-[22px] sm:text-[28px] font-medium leading-9 tracking-[-0.56px] ${pressed ? "text-black" : "text-[#433459] group-hover:text-black"}`}>
+        <div className="flex flex-col gap-1 min-w-0 overflow-hidden">
+          <p className={`truncate transition-colors duration-450 text-[22px] sm:text-[28px] font-medium leading-9 tracking-[-0.56px] ${pressed ? "text-black" : "text-[#433459] group-hover:text-black"}`}>
             {r.name}
           </p>
           <div className="flex">
@@ -51,7 +51,7 @@ function ReviewCard({ r, i, visible }: { r: ReviewItem; i: number; visible: bool
           </div>
         </div>
       </div>
-      <p className="text-[#615a6a] text-[16px] sm:text-[20px] leading-7 tracking-[-0.4px]">
+      <p className="text-[#615a6a] text-[16px] sm:text-[20px] leading-7 tracking-[-0.4px] line-clamp-6 break-all">
         {r.text}
       </p>
     </div>

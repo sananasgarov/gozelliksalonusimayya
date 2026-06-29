@@ -3,7 +3,6 @@
 import Link from "next/link";
 import SlideText from "@/components/slide-text";
 
-
 const quickLinks = [
   { label: "Home", href: "/" },
   { label: "Services", href: "/services" },
@@ -17,7 +16,14 @@ const legalLinks = [
   { label: "Booking Policy", href: "/booking-policy" },
 ];
 
-type ContactData = { info?: { email?: string; instagram?: string; tiktok?: string; facebook?: string } } | null;
+type ContactData = {
+  info?: {
+    email?: string;
+    instagram?: string;
+    tiktok?: string;
+    facebook?: string;
+  };
+} | null;
 
 function scrollToTop() {
   const start = window.scrollY;
@@ -39,24 +45,24 @@ function scrollToTop() {
 }
 
 export default function Footer({ contact }: { contact?: ContactData }) {
-  const info      = contact?.info;
-  const instagram = info?.instagram ?? "https://www.instagram.com/samiyya.studio";
-  const tiktok    = info?.tiktok    ?? "https://www.tiktok.com/@samiyya.studio";
-  const facebook  = info?.facebook  ?? "https://www.facebook.com/samiyya.studio";
-
+  const info = contact?.info;
+  const instagram =
+    info?.instagram ?? "https://www.instagram.com/samiyya.studio";
+  const tiktok = info?.tiktok ?? "https://www.tiktok.com/@samiyya.studio";
+  const facebook = info?.facebook ?? "https://www.facebook.com/samiyya.studio";
 
   const contactLinks = [
-    { label: "Instagram",  href: instagram,          external: true  },
-    { label: "Tik Tok",    href: tiktok,             external: true  },
-    { label: "Facebook",   href: facebook,           external: true  },
+    { label: "Instagram", href: instagram, external: true },
+    { label: "Tik Tok", href: tiktok, external: true },
+    { label: "Facebook", href: facebook, external: true },
   ];
 
   return (
     <footer
-      className="w-full px-4 md:px-15 pt-16 md:pt-10 pb-8"
+      className="w-full pt-16 md:pt-10 pb-8"
       style={{ backgroundColor: "#d9caea" }}
     >
-      <div className="  mx-auto flex flex-col gap-13">
+      <div className="max-w-380 mx-auto px-4 md:px-15 flex flex-col gap-13">
         {/* Top row */}
         <div className="flex flex-col md:flex-row gap-10 md:gap-5 items-start">
           {/* Logo + tagline */}

@@ -3,7 +3,6 @@
 import Image from "next/image";
 import { useState } from "react";
 
-
 type AboutData = {
   description: string;
   stat1Value: string;
@@ -49,65 +48,79 @@ export default function About({ data }: { data?: AboutData | null }) {
   ];
 
   return (
-    <section id="about" className="pt-20 pb-0 md:pt-35 md:pb-0 px-4 md:px-15 w-full">
-      <h2
-        className="text-[#433459] text-[32px] md:text-[40px] leading-10 md:leading-12 tracking-[-0.8px] mb-8 md:mb-10"
-        style={{ fontFamily: "var(--font-antonio)" }}
-        data-aos="fade-up"
-        suppressHydrationWarning
-      >
-        About Us
-      </h2>
-
-      <div className="flex flex-col lg:flex-row gap-8 lg:gap-10 items-start lg:items-center w-full" data-aos="fade-up" data-aos-delay="100" suppressHydrationWarning>
-
-        {/* Desktop accordion (lg+) */}
-        <div
-          className="hidden lg:flex gap-3 h-150 shrink-0"
-          style={{ width: "652px", minWidth: "652px" }}
+    <section id="about" className="pt-20 pb-0 md:pt-35 md:pb-0 w-full">
+      <div className="max-w-380 mx-auto px-4 md:px-15">
+        <h2
+          className="text-[#433459] text-[32px] md:text-[40px] leading-10 md:leading-12 tracking-[-0.8px] mb-8 md:mb-10"
+          style={{ fontFamily: "var(--font-antonio)" }}
+          data-aos="fade-up"
+          suppressHydrationWarning
         >
-          {photos.map((src, i) => (
-            <div
-              key={i}
-              className="h-full rounded-[20px] overflow-hidden relative cursor-pointer"
-              style={{
-                width: active === i ? "400px" : "114px",
-                transition: "width 500ms ease-in-out",
-              }}
-              onMouseEnter={() => setActive(i)}
-            >
-              <Image src={src} alt={`About photo ${i + 1}`} fill className="object-cover" />
-            </div>
-          ))}
-        </div>
+          About Us
+        </h2>
 
-        {/* Mobile/tablet: single photo */}
-        <div className="lg:hidden w-full h-72 sm:h-96 rounded-[20px] overflow-hidden relative">
-          <Image src={photos[0]} alt="About" fill className="object-cover" />
-        </div>
-
-        {/* Text + stats */}
-        <div className="flex flex-col gap-8 md:gap-20 flex-1">
-          <div className="flex flex-col gap-4 md:gap-10 text-[#615a6a] text-base md:text-xl leading-7 tracking-[-0.4px]">
-            {paragraphs.map((p, i) => (
-              <p key={i}>{p}</p>
+        <div
+          className="flex flex-col lg:flex-row gap-8 lg:gap-10 items-start lg:items-center w-full"
+          data-aos="fade-up"
+          data-aos-delay="100"
+          suppressHydrationWarning
+        >
+          {/* Desktop accordion (lg+) */}
+          <div
+            className="hidden lg:flex gap-3 h-150 shrink-0"
+            style={{ width: "652px", minWidth: "652px" }}
+          >
+            {photos.map((src, i) => (
+              <div
+                key={i}
+                className="h-full rounded-[20px] overflow-hidden relative cursor-pointer"
+                style={{
+                  width: active === i ? "400px" : "114px",
+                  transition: "width 500ms ease-in-out",
+                }}
+                onMouseEnter={() => setActive(i)}
+              >
+                <Image
+                  src={src}
+                  alt={`About photo ${i + 1}`}
+                  fill
+                  className="object-cover"
+                />
+              </div>
             ))}
           </div>
 
-          <div className="flex justify-between w-full">
-            {stats.map((s) => (
-              <div key={s.label} className="flex flex-col gap-1 sm:gap-2 md:gap-6 items-center text-center">
-                <p
-                  className="text-[#433459] text-[26px] sm:text-[34px] md:text-[40px] font-normal leading-8 sm:leading-10 md:leading-12 tracking-[-0.8px]"
-                  style={{ fontFamily: "var(--font-antonio)" }}
+          {/* Mobile/tablet: single photo */}
+          <div className="lg:hidden w-full h-72 sm:h-96 rounded-[20px] overflow-hidden relative">
+            <Image src={photos[0]} alt="About" fill className="object-cover" />
+          </div>
+
+          {/* Text + stats */}
+          <div className="flex flex-col gap-8 md:gap-20 flex-1">
+            <div className="flex flex-col gap-4 md:gap-10 text-[#615a6a] text-base md:text-xl leading-7 tracking-[-0.4px]">
+              {paragraphs.map((p, i) => (
+                <p key={i}>{p}</p>
+              ))}
+            </div>
+
+            <div className="flex justify-between w-full">
+              {stats.map((s) => (
+                <div
+                  key={s.label}
+                  className="flex flex-col gap-1 sm:gap-2 md:gap-6 items-center text-center"
                 >
-                  {s.value}
-                </p>
-                <p className="text-[#5e5667] text-xs sm:text-base md:text-[20px] font-normal leading-5 sm:leading-6 md:leading-7 tracking-[-0.4px]">
-                  {s.label}
-                </p>
-              </div>
-            ))}
+                  <p
+                    className="text-[#433459] text-[26px] sm:text-[34px] md:text-[40px] font-normal leading-8 sm:leading-10 md:leading-12 tracking-[-0.8px]"
+                    style={{ fontFamily: "var(--font-antonio)" }}
+                  >
+                    {s.value}
+                  </p>
+                  <p className="text-[#5e5667] text-xs sm:text-base md:text-[20px] font-normal leading-5 sm:leading-6 md:leading-7 tracking-[-0.4px]">
+                    {s.label}
+                  </p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>

@@ -128,7 +128,7 @@ export default function RootLayout({
       className={`${geist.variable} ${antonio.variable} ${greatVibes.variable} h-full antialiased`}
     >
       <head>
-        <link rel="preload" as="video" href="/home1.mp4" type="video/mp4" />
+        <link rel="preload" as="video" href={process.env.NEXT_PUBLIC_HERO_VIDEO_URL ?? "/home1.mp4"} type="video/mp4" />
         <script dangerouslySetInnerHTML={{ __html: `history.scrollRestoration = 'manual';` }} />
         <script
           type="application/ld+json"

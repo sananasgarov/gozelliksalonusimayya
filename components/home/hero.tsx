@@ -17,12 +17,16 @@ const DEFAULTS: HeroData = {
   subtitle: "Experience refined beauty services crafted for confidence, elegance, and individuality.",
   buttonText: "Book Now",
   buttonUrl: "sms:+13476127994",
-  videoUrl: "/home1.mp4",
+  videoUrl: process.env.NEXT_PUBLIC_HERO_VIDEO_URL ?? "/home1.mp4",
   posterUrl: "/about-main.png",
 };
 
 export default function Hero({ data }: { data?: HeroData | null }) {
-  const d = { ...DEFAULTS, ...data };
+  const d = {
+    ...DEFAULTS,
+    ...data,
+    videoUrl: process.env.NEXT_PUBLIC_HERO_VIDEO_URL ?? data?.videoUrl ?? DEFAULTS.videoUrl,
+  };
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {

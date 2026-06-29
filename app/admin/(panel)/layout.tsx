@@ -1,4 +1,5 @@
 import AdminSidebar from "@/components/admin/sidebar";
+import { Toaster } from "@/components/admin/toaster";
 
 export default function PanelLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -9,6 +10,7 @@ export default function PanelLayout({ children }: { children: React.ReactNode })
           {children}
         </div>
       </main>
+      <Toaster />
     </div>
   );
 }

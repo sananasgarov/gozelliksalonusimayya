@@ -3,7 +3,7 @@
 import { useState } from "react";
 import AdminPageShell from "@/components/admin/page-shell";
 import ImageUpload from "@/components/admin/image-upload";
-import { Card, Field, Input, PrimaryBtn, SecondaryBtn, DangerBtn, EditBtn, EmptyState, SectionHeading } from "@/components/admin/admin-ui";
+import { Card, Field, Input, PrimaryBtn, SecondaryBtn, DangerBtn, EditBtn, EmptyState, SectionHeading, adminFetch } from "@/components/admin/admin-ui";
 
 type Brand = { _id: string; name: string; logoUrl: string; order: number };
 const empty = { name: "", logoUrl: "/brand1.png", order: 0 };
@@ -17,34 +17,19 @@ export default function BrandsAdmin({ initial }: { initial: Brand[] }) {
   async function save() {
     setSaving(true);
     if (editId) {
-      const res = await fetch("/api/admin/brands", {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ id: editId, ...form }),
-      });
-      const updated = await res.json();
-      setItems((p) => p.map((i) => (i._id === editId ? updated : i)));
-      setEditId(null);
+      const updated = await adminFetch<Brand>("/api/admin/brands", { method: "PUT", body: JSON.stringify({ id: editId, ...form }) });
+      if (updated) { setItems((p) => p.map((i) => (i._id === editId ? updated : i))); setEditId(null); }
     } else {
-      const res = await fetch("/api/admin/brands", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...form, order: items.length }),
-      });
-      const item = await res.json();
-      setItems((p) => [...p, item]);
+      const item = await adminFetch<Brand>("/api/admin/brands", { method: "POST", body: JSON.stringify({ ...form, order: items.length }) });
+      if (item) setItems((p) => [...p, item]);
     }
     setForm(empty);
     setSaving(false);
   }
 
   async function del(id: string) {
-    await fetch("/api/admin/brands", {
-      method: "DELETE",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ id }),
-    });
-    setItems((p) => p.filter((i) => i._id !== id));
+    const ok = await adminFetch("/api/admin/brands", { method: "DELETE", body: JSON.stringify({ id }) });
+    if (ok !== null) setItems((p) => p.filter((i) => i._id !== id));
   }
 
   return (

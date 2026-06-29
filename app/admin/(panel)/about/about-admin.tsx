@@ -3,7 +3,7 @@
 import { useState } from "react";
 import AdminPageShell from "@/components/admin/page-shell";
 import ImageUpload from "@/components/admin/image-upload";
-import { Card, Field, Input, Textarea, PrimaryBtn, SavedBadge, SectionHeading } from "@/components/admin/admin-ui";
+import { Card, Field, Input, Textarea, PrimaryBtn, SavedBadge, SectionHeading, adminFetch } from "@/components/admin/admin-ui";
 
 type About = {
   description: string;
@@ -40,14 +40,9 @@ export default function AboutAdmin({ initial }: { initial: About | null }) {
 
   async function save() {
     setSaving(true);
-    await fetch("/api/admin/about", {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(form),
-    });
+    const ok = await adminFetch("/api/admin/about", { method: "PUT", body: JSON.stringify(form) });
     setSaving(false);
-    setSaved(true);
-    setTimeout(() => setSaved(false), 2500);
+    if (ok !== null) { setSaved(true); setTimeout(() => setSaved(false), 2500); }
   }
 
   return (

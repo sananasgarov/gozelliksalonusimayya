@@ -3,7 +3,7 @@
 import { useState } from "react";
 import AdminPageShell from "@/components/admin/page-shell";
 import {
-  Card, Field, Input, PrimaryBtn, SecondaryBtn, DangerBtn, EditBtn, EmptyState, SectionHeading, SavedBadge,
+  Card, Field, Input, PrimaryBtn, SecondaryBtn, DangerBtn, EditBtn, EmptyState, SectionHeading, SavedBadge, adminFetch,
 } from "@/components/admin/admin-ui";
 
 type ContactInfo = {
@@ -66,45 +66,25 @@ export default function ContactAdmin({
 
   async function saveInfo() {
     setSaving(true);
-    await fetch("/api/admin/contact", {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(info),
-    });
+    const ok = await adminFetch("/api/admin/contact", { method: "PUT", body: JSON.stringify(info) });
     setSaving(false);
-    setSaved(true);
-    setTimeout(() => setSaved(false), 2500);
+    if (ok !== null) { setSaved(true); setTimeout(() => setSaved(false), 2500); }
   }
 
   async function saveHour() {
     if (editHourId) {
-      const res = await fetch("/api/admin/work-hours", {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ id: editHourId, ...hourForm }),
-      });
-      const updated = await res.json();
-      setHours((p) => p.map((h) => (h._id === editHourId ? updated : h)));
-      setEditHourId(null);
+      const updated = await adminFetch<WorkHour>("/api/admin/work-hours", { method: "PUT", body: JSON.stringify({ id: editHourId, ...hourForm }) });
+      if (updated) { setHours((p) => p.map((h) => (h._id === editHourId ? updated : h))); setEditHourId(null); }
     } else {
-      const res = await fetch("/api/admin/work-hours", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...hourForm, order: hours.length }),
-      });
-      const item = await res.json();
-      setHours((p) => [...p, item]);
+      const item = await adminFetch<WorkHour>("/api/admin/work-hours", { method: "POST", body: JSON.stringify({ ...hourForm, order: hours.length }) });
+      if (item) setHours((p) => [...p, item]);
     }
     setHourForm(hourEmpty);
   }
 
   async function delHour(id: string) {
-    await fetch("/api/admin/work-hours", {
-      method: "DELETE",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ id }),
-    });
-    setHours((p) => p.filter((h) => h._id !== id));
+    const ok = await adminFetch("/api/admin/work-hours", { method: "DELETE", body: JSON.stringify({ id }) });
+    if (ok !== null) setHours((p) => p.filter((h) => h._id !== id));
   }
 
   return (

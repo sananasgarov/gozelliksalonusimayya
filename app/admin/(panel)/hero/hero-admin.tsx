@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import AdminPageShell from "@/components/admin/page-shell";
-import { Card, Field, Input, Textarea, PrimaryBtn, SavedBadge, SectionHeading } from "@/components/admin/admin-ui";
+import { Card, Field, Input, Textarea, PrimaryBtn, SavedBadge, SectionHeading, adminFetch } from "@/components/admin/admin-ui";
 
 type Hero = { title: string; subtitle: string; buttonText: string; buttonUrl: string; videoUrl: string };
 
@@ -32,14 +32,9 @@ export default function HeroAdmin({ initial }: { initial: Hero | null }) {
 
   async function save() {
     setSaving(true);
-    await fetch("/api/admin/hero", {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(form),
-    });
+    const ok = await adminFetch("/api/admin/hero", { method: "PUT", body: JSON.stringify(form) });
     setSaving(false);
-    setSaved(true);
-    setTimeout(() => setSaved(false), 2500);
+    if (ok !== null) { setSaved(true); setTimeout(() => setSaved(false), 2500); }
   }
 
   return (

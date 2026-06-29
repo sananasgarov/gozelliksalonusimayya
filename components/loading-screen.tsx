@@ -28,6 +28,8 @@ export default function LoadingScreen() {
       }, wait);
       setTimeout(() => {
         setVisible(false);
+        document.body.style.overflow = "";
+        document.documentElement.style.overflow = "";
         AOS.refresh();
       }, wait + 500);
     };
@@ -36,6 +38,9 @@ export default function LoadingScreen() {
     const onVideoReady = () => { videoReady = true; finish(); };
 
     const videoTimeout = setTimeout(() => { videoReady = true; finish(); }, MAX_VIDEO_WAIT_MS);
+
+    document.body.style.overflow = "hidden";
+    document.documentElement.style.overflow = "hidden";
 
     window.addEventListener("heroVideoReady", onVideoReady, { once: true });
 
@@ -51,6 +56,8 @@ export default function LoadingScreen() {
       window.removeEventListener("load", onWindowLoad);
       window.removeEventListener("heroVideoReady", onVideoReady);
       clearTimeout(videoTimeout);
+      document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
     };
   }, []);
 
@@ -86,7 +93,7 @@ export default function LoadingScreen() {
           Samiyya
         </span>
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/logoblack.png" alt="" style={{ width: 44, height: 44, objectFit: "contain", marginTop: 2 }} />
+        <img src="/logoblack.png" alt="" style={{ width: 44, height: 44, objectFit: "contain" }} className="transform translate-x-[3px] translate-y-[5px]" />
       </div>
       <p
         style={{

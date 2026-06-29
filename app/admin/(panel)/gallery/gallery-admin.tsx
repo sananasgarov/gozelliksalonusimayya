@@ -3,7 +3,7 @@
 import { useState } from "react";
 import AdminPageShell from "@/components/admin/page-shell";
 import ImageUpload from "@/components/admin/image-upload";
-import { Card, DangerBtn, EmptyState, Field, Input } from "@/components/admin/admin-ui";
+import { Card, DangerBtn, EmptyState, Field, Input, adminFetch } from "@/components/admin/admin-ui";
 
 type GalleryItem = { _id: string; imageUrl: string; altText: string; order: number };
 
@@ -13,34 +13,30 @@ export default function GalleryAdmin({ initial }: { initial: GalleryItem[] }) {
 
   async function addItem(url: string) {
     setSaving(true);
-    const res = await fetch("/api/admin/gallery", {
+    const item = await adminFetch<GalleryItem>("/api/admin/gallery", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ imageUrl: url, altText: "", order: items.length }),
     });
-    const item = await res.json();
-    setItems((prev) => [...prev, item]);
+    if (item) setItems((prev) => [...prev, item]);
     setSaving(false);
   }
 
   async function deleteItem(id: string) {
     setSaving(true);
-    await fetch("/api/admin/gallery", {
+    const ok = await adminFetch("/api/admin/gallery", {
       method: "DELETE",
-      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ id }),
     });
-    setItems((prev) => prev.filter((i) => i._id !== id));
+    if (ok !== null) setItems((prev) => prev.filter((i) => i._id !== id));
     setSaving(false);
   }
 
   async function updateAlt(id: string, altText: string) {
-    await fetch("/api/admin/gallery", {
+    const ok = await adminFetch("/api/admin/gallery", {
       method: "PUT",
-      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ id, altText }),
     });
-    setItems((prev) => prev.map((i) => (i._id === id ? { ...i, altText } : i)));
+    if (ok !== null) setItems((prev) => prev.map((i) => (i._id === id ? { ...i, altText } : i)));
   }
 
   return (

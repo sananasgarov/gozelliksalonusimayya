@@ -4,7 +4,7 @@ import { useState } from "react";
 import AdminPageShell from "@/components/admin/page-shell";
 import ImageUpload from "@/components/admin/image-upload";
 import {
-  Card, Field, Input, Textarea, Select, PrimaryBtn, SecondaryBtn, DangerBtn, EditBtn, EmptyState, SectionHeading,
+  Card, Field, Input, Textarea, Select, PrimaryBtn, SecondaryBtn, DangerBtn, EditBtn, EmptyState, SectionHeading, adminFetch,
 } from "@/components/admin/admin-ui";
 
 type Review = { _id: string; name: string; stars: number; text: string; avatarUrl: string };
@@ -19,34 +19,19 @@ export default function ReviewsAdmin({ initial }: { initial: Review[] }) {
   async function save() {
     setSaving(true);
     if (editId) {
-      const res = await fetch("/api/admin/reviews", {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ id: editId, ...form }),
-      });
-      const updated = await res.json();
-      setItems((p) => p.map((i) => (i._id === editId ? updated : i)));
-      setEditId(null);
+      const updated = await adminFetch<Review>("/api/admin/reviews", { method: "PUT", body: JSON.stringify({ id: editId, ...form }) });
+      if (updated) { setItems((p) => p.map((i) => (i._id === editId ? updated : i))); setEditId(null); }
     } else {
-      const res = await fetch("/api/admin/reviews", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
-      });
-      const item = await res.json();
-      setItems((p) => [item, ...p]);
+      const item = await adminFetch<Review>("/api/admin/reviews", { method: "POST", body: JSON.stringify(form) });
+      if (item) setItems((p) => [item, ...p]);
     }
     setForm(empty);
     setSaving(false);
   }
 
   async function del(id: string) {
-    await fetch("/api/admin/reviews", {
-      method: "DELETE",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ id }),
-    });
-    setItems((p) => p.filter((i) => i._id !== id));
+    const ok = await adminFetch("/api/admin/reviews", { method: "DELETE", body: JSON.stringify({ id }) });
+    if (ok !== null) setItems((p) => p.filter((i) => i._id !== id));
   }
 
   function startEdit(item: Review) {

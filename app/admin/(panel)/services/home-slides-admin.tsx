@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import ImageUpload from "@/components/admin/image-upload";
-import { Card, Field, Input, Textarea, PrimaryBtn, SecondaryBtn, DangerBtn, EditBtn, EmptyState, SectionHeading } from "@/components/admin/admin-ui";
+import { Card, Field, Input, Textarea, PrimaryBtn, SecondaryBtn, DangerBtn, EditBtn, EmptyState, SectionHeading, adminFetch } from "@/components/admin/admin-ui";
 
 type Slide = { _id: string; title: string; desc: string; imageUrl: string; watermark: string; bg: string; btnColor: string; order: number };
 
@@ -17,34 +17,19 @@ export default function HomeSlidesAdmin({ initial }: { initial: Slide[] }) {
   async function save() {
     setSaving(true);
     if (editId) {
-      const res = await fetch("/api/admin/home-slides", {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ id: editId, ...form }),
-      });
-      const updated = await res.json();
-      setItems((p) => p.map((i) => (i._id === editId ? updated : i)));
-      setEditId(null);
+      const updated = await adminFetch<Slide>("/api/admin/home-slides", { method: "PUT", body: JSON.stringify({ id: editId, ...form }) });
+      if (updated) { setItems((p) => p.map((i) => (i._id === editId ? updated : i))); setEditId(null); }
     } else {
-      const res = await fetch("/api/admin/home-slides", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...form, order: items.length }),
-      });
-      const item = await res.json();
-      setItems((p) => [...p, item]);
+      const item = await adminFetch<Slide>("/api/admin/home-slides", { method: "POST", body: JSON.stringify({ ...form, order: items.length }) });
+      if (item) setItems((p) => [...p, item]);
     }
     setForm(empty);
     setSaving(false);
   }
 
   async function del(id: string) {
-    await fetch("/api/admin/home-slides", {
-      method: "DELETE",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ id }),
-    });
-    setItems((p) => p.filter((i) => i._id !== id));
+    const ok = await adminFetch("/api/admin/home-slides", { method: "DELETE", body: JSON.stringify({ id }) });
+    if (ok !== null) setItems((p) => p.filter((i) => i._id !== id));
   }
 
   function startEdit(item: Slide) {

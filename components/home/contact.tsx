@@ -1,7 +1,14 @@
-import Image from "next/image";
 import SlideText from "@/components/slide-text";
 
-const imgMap = "/map.png";
+function toEmbedUrl(mapUrl: string): string {
+  try {
+    const url = new URL(mapUrl);
+    const q = url.searchParams.get("q") ?? "";
+    return `https://maps.google.com/maps?q=${encodeURIComponent(q)}&output=embed`;
+  } catch {
+    return "";
+  }
+}
 
 type ContactInfo = {
   phone: string;
@@ -55,8 +62,21 @@ export default function Contact({ contact }: { contact?: ContactData | null }) {
 
       <div className="flex flex-col md:flex-row gap-8 md:gap-10 items-center">
         {/* Map */}
-        <div className="w-full md:w-1/2 h-72 md:h-120 rounded-[20px] overflow-hidden shrink-0 relative" data-aos="fade-up" suppressHydrationWarning>
-          <Image src={imgMap} alt="Location map" fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover" />
+        <div className="w-full md:w-1/2 h-72 md:h-120 rounded-[20px] overflow-hidden shrink-0 bg-[#f3f0f7] flex items-center justify-center" data-aos="fade-up" suppressHydrationWarning>
+          {toEmbedUrl(info.mapUrl) ? (
+            <iframe
+              src={toEmbedUrl(info.mapUrl)}
+              width="100%"
+              height="100%"
+              style={{ border: 0 }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title="Location map"
+            />
+          ) : (
+            <p className="text-[#958ca2] text-base">Map is not available</p>
+          )}
         </div>
 
         {/* Info */}

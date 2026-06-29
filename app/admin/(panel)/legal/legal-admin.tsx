@@ -3,7 +3,7 @@
 import { useState } from "react";
 import AdminPageShell from "@/components/admin/page-shell";
 import {
-  Card, Field, Input, Textarea, PrimaryBtn, SecondaryBtn, DangerBtn, EditBtn, EmptyState, SectionHeading,
+  Card, Field, Input, Textarea, PrimaryBtn, SecondaryBtn, DangerBtn, EditBtn, EmptyState, SectionHeading, adminFetch,
 } from "@/components/admin/admin-ui";
 
 type PageKey = "terms" | "privacy" | "booking";
@@ -30,34 +30,19 @@ export default function LegalAdmin({ initial }: { initial: Record<PageKey, Secti
   async function save() {
     setSaving(true);
     if (editId) {
-      const res = await fetch("/api/admin/legal", {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ id: editId, title: form.title, body: form.body }),
-      });
-      const updated = await res.json();
-      setData((prev) => ({ ...prev, [activeKey]: prev[activeKey].map((s) => s._id === editId ? updated : s) }));
-      setEditId(null);
+      const updated = await adminFetch<Section>("/api/admin/legal", { method: "PUT", body: JSON.stringify({ id: editId, title: form.title, body: form.body }) });
+      if (updated) { setData((prev) => ({ ...prev, [activeKey]: prev[activeKey].map((s) => s._id === editId ? updated : s) })); setEditId(null); }
     } else {
-      const res = await fetch("/api/admin/legal", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ pageKey: activeKey, title: form.title, body: form.body, order: sections.length }),
-      });
-      const item = await res.json();
-      setData((prev) => ({ ...prev, [activeKey]: [...prev[activeKey], item] }));
+      const item = await adminFetch<Section>("/api/admin/legal", { method: "POST", body: JSON.stringify({ pageKey: activeKey, title: form.title, body: form.body, order: sections.length }) });
+      if (item) setData((prev) => ({ ...prev, [activeKey]: [...prev[activeKey], item] }));
     }
     setForm(emptyForm);
     setSaving(false);
   }
 
   async function del(id: string) {
-    await fetch("/api/admin/legal", {
-      method: "DELETE",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ id }),
-    });
-    setData((prev) => ({ ...prev, [activeKey]: prev[activeKey].filter((s) => s._id !== id) }));
+    const ok = await adminFetch("/api/admin/legal", { method: "DELETE", body: JSON.stringify({ id }) });
+    if (ok !== null) setData((prev) => ({ ...prev, [activeKey]: prev[activeKey].filter((s) => s._id !== id) }));
   }
 
   function startEdit(s: Section) {

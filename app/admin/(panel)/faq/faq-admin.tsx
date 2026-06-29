@@ -3,7 +3,7 @@
 import { useState } from "react";
 import AdminPageShell from "@/components/admin/page-shell";
 import {
-  Card, Field, Input, Textarea, PrimaryBtn, SecondaryBtn, DangerBtn, EditBtn, EmptyState, SectionHeading,
+  Card, Field, Input, Textarea, PrimaryBtn, SecondaryBtn, DangerBtn, EditBtn, EmptyState, SectionHeading, adminFetch,
 } from "@/components/admin/admin-ui";
 
 type FaqItem = { _id: string; question: string; answer: string; order: number };
@@ -18,34 +18,19 @@ export default function FaqAdmin({ initial }: { initial: FaqItem[] }) {
   async function save() {
     setSaving(true);
     if (editId) {
-      const res = await fetch("/api/admin/faq", {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ id: editId, ...form }),
-      });
-      const updated = await res.json();
-      setItems((p) => p.map((i) => (i._id === editId ? updated : i)));
-      setEditId(null);
+      const updated = await adminFetch<FaqItem>("/api/admin/faq", { method: "PUT", body: JSON.stringify({ id: editId, ...form }) });
+      if (updated) { setItems((p) => p.map((i) => (i._id === editId ? updated : i))); setEditId(null); }
     } else {
-      const res = await fetch("/api/admin/faq", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...form, order: items.length }),
-      });
-      const item = await res.json();
-      setItems((p) => [...p, item]);
+      const item = await adminFetch<FaqItem>("/api/admin/faq", { method: "POST", body: JSON.stringify({ ...form, order: items.length }) });
+      if (item) setItems((p) => [...p, item]);
     }
     setForm(empty);
     setSaving(false);
   }
 
   async function del(id: string) {
-    await fetch("/api/admin/faq", {
-      method: "DELETE",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ id }),
-    });
-    setItems((p) => p.filter((i) => i._id !== id));
+    const ok = await adminFetch("/api/admin/faq", { method: "DELETE", body: JSON.stringify({ id }) });
+    if (ok !== null) setItems((p) => p.filter((i) => i._id !== id));
   }
 
   return (

@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export default function ImageUpload({
   onUploaded,
@@ -16,6 +16,10 @@ export default function ImageUpload({
   const ref = useRef<HTMLInputElement>(null);
   const [uploading, setUploading] = useState(false);
   const [preview, setPreview] = useState<string | null>(currentUrl ?? null);
+
+  useEffect(() => {
+    setPreview(currentUrl ?? null);
+  }, [currentUrl]);
 
   async function handleFile(file: File) {
     setUploading(true);

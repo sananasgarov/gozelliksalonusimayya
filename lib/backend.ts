@@ -18,7 +18,7 @@ export async function publicFetch(path: string) {
   try {
     const res = await fetch(`${BACKEND_URL}${path}`, { cache: "no-store" });
     if (!res.ok) return null;
-    return res.json();
+    return await res.json().catch(() => null);
   } catch {
     return null;
   }

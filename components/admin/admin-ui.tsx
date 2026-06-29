@@ -1,6 +1,28 @@
 "use client";
 
 import React from "react";
+import { toast } from "./toaster";
+
+export async function adminFetch<T = Record<string, unknown>>(
+  url: string,
+  init?: RequestInit
+): Promise<T | null> {
+  try {
+    const res = await fetch(url, {
+      ...init,
+      headers: { "Content-Type": "application/json", ...(init?.headers ?? {}) },
+    });
+    if (!res.ok) {
+      const data = await res.json().catch(() => ({})) as { error?: string };
+      toast(data.error || "Xəta baş verdi", "error");
+      return null;
+    }
+    return await res.json().catch(() => null) as T;
+  } catch {
+    toast("Şəbəkə xətası. Yenidən cəhd edin.", "error");
+    return null;
+  }
+}
 
 /* ------------------------------------------------------------------
    Card

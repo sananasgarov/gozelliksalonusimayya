@@ -73,7 +73,7 @@ export default function Footer({ contact }: { contact?: ContactData }) {
               <img
                 src={logoHeart}
                 alt=""
-                className="size-11 object-bottom shrink-0"
+                className="size-11 object-bottom md:-translate-y-[6px] md:-translate-x-[4px] -translate-y-[12px] -translate-x-[6px] shrink-0"
               />
             </div>
             <p className="text-[#5e5667] text-2xl font-medium leading-8 tracking-[-0.48px]">

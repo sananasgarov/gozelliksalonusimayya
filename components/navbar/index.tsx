@@ -77,7 +77,7 @@ export default function Navbar({ forceScrolled = false, darkIcons = false }: { f
             <img
               src={dark ? "/logoblack.png" : logoHeart}
               alt=""
-              className="size-9 object-cover shrink-0 mt-0.5"
+              className="size-9 object-cover -translate-x-[3px] shrink-0 mt-0.45"
             />
           </Link>
 

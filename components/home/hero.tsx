@@ -33,7 +33,14 @@ export default function Hero({ data }: { data?: HeroData | null }) {
     const v = videoRef.current;
     if (!v) return;
     v.muted = true;
+
+    const onCanPlay = () => {
+      window.dispatchEvent(new Event("heroVideoReady"));
+    };
+    v.addEventListener("canplay", onCanPlay, { once: true });
     v.play().catch(() => {});
+
+    return () => v.removeEventListener("canplay", onCanPlay);
   }, []);
 
   return (

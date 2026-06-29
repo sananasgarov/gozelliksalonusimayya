@@ -10,19 +10,21 @@ export default function LoadingScreen() {
 
   useEffect(() => {
     const MIN_MS = 900;
+    const MAX_VIDEO_WAIT_MS = 5000;
     const start = Date.now();
 
+    let windowLoaded = false;
+    let videoReady = false;
+    let finished = false;
+
     const finish = () => {
+      if (finished || !windowLoaded || !videoReady) return;
+      finished = true;
       const elapsed = Date.now() - start;
       const wait = Math.max(0, MIN_MS - elapsed);
       setTimeout(() => {
         setFading(true);
-        AOS.init({
-          duration: 700,
-          once: true,
-          easing: "ease-out-cubic",
-          offset: 60,
-        });
+        AOS.init({ duration: 700, once: true, easing: "ease-out-cubic", offset: 60 });
       }, wait);
       setTimeout(() => {
         setVisible(false);
@@ -30,12 +32,26 @@ export default function LoadingScreen() {
       }, wait + 500);
     };
 
+    const onWindowLoad = () => { windowLoaded = true; finish(); };
+    const onVideoReady = () => { videoReady = true; finish(); };
+
+    const videoTimeout = setTimeout(() => { videoReady = true; finish(); }, MAX_VIDEO_WAIT_MS);
+
+    window.addEventListener("heroVideoReady", onVideoReady, { once: true });
+
     if (document.readyState === "complete") {
-      finish();
+      windowLoaded = true;
     } else {
-      window.addEventListener("load", finish, { once: true });
-      return () => window.removeEventListener("load", finish);
+      window.addEventListener("load", onWindowLoad, { once: true });
     }
+
+    finish();
+
+    return () => {
+      window.removeEventListener("load", onWindowLoad);
+      window.removeEventListener("heroVideoReady", onVideoReady);
+      clearTimeout(videoTimeout);
+    };
   }, []);
 
   if (!visible) return null;

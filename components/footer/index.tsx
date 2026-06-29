@@ -67,7 +67,7 @@ export default function Footer({ contact }: { contact?: ContactData }) {
               alt="Samiyya Studio"
               className="h-10 md:h-12 w-auto object-contain self-start"
             />
-            <p className="text-[#5e5667] text-base sm:text-lg md:text-2xl font-medium leading-6 sm:leading-7 md:leading-8 tracking-[-0.48px]">
+            <p className="text-[#5e5667] text-xl sm:text-lg md:text-2xl font-medium leading-7 sm:leading-7 md:leading-8 tracking-[-0.48px]">
               Where Beauty Meets Elegance
             </p>
           </div>
@@ -84,7 +84,7 @@ export default function Footer({ contact }: { contact?: ContactData }) {
                   <Link
                     key={l.href}
                     href={l.href}
-                    className="text-[#615a6a] text-sm sm:text-base md:text-xl leading-6 md:leading-7 tracking-[-0.4px] hover:text-[#433459] transition-colors group"
+                    className="text-[#615a6a] text-base md:text-xl leading-6 md:leading-7 tracking-[-0.4px] hover:text-[#433459] transition-colors group"
                   >
                     <SlideText>{l.label}</SlideText>
                   </Link>
@@ -102,7 +102,7 @@ export default function Footer({ contact }: { contact?: ContactData }) {
                   <Link
                     key={l.href}
                     href={l.href}
-                    className="text-[#615a6a] text-sm sm:text-base md:text-xl leading-6 md:leading-7 tracking-[-0.4px] hover:text-[#433459] transition-colors group"
+                    className="text-[#615a6a] text-base md:text-xl leading-6 md:leading-7 tracking-[-0.4px] hover:text-[#433459] transition-colors group"
                   >
                     <SlideText>{l.label}</SlideText>
                   </Link>
@@ -122,7 +122,7 @@ export default function Footer({ contact }: { contact?: ContactData }) {
                     href={l.href}
                     target={l.external ? "_blank" : undefined}
                     rel={l.external ? "noopener noreferrer" : undefined}
-                    className="text-[#615a6a] text-sm sm:text-base md:text-xl leading-6 md:leading-7 tracking-[-0.4px] hover:text-[#433459] transition-colors group"
+                    className="text-[#615a6a] text-base md:text-xl leading-6 md:leading-7 tracking-[-0.4px] hover:text-[#433459] transition-colors group"
                   >
                     <SlideText>{l.label}</SlideText>
                   </a>

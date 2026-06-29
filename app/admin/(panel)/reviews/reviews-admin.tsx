@@ -19,10 +19,10 @@ export default function ReviewsAdmin({ initial }: { initial: Review[] }) {
   async function save() {
     setSaving(true);
     if (editId) {
-      const updated = await adminFetch<Review>("/api/admin/reviews", { method: "PUT", body: JSON.stringify({ id: editId, ...form }) });
+      const updated = await adminFetch<Review>("/api/admin/reviews", { method: "PUT", body: JSON.stringify({ id: editId, ...form }) }, "Updated successfully");
       if (updated) { setItems((p) => p.map((i) => (i._id === editId ? updated : i))); setEditId(null); }
     } else {
-      const item = await adminFetch<Review>("/api/admin/reviews", { method: "POST", body: JSON.stringify(form) });
+      const item = await adminFetch<Review>("/api/admin/reviews", { method: "POST", body: JSON.stringify(form) }, "Review added");
       if (item) setItems((p) => [item, ...p]);
     }
     setForm(empty);
@@ -30,7 +30,7 @@ export default function ReviewsAdmin({ initial }: { initial: Review[] }) {
   }
 
   async function del(id: string) {
-    const ok = await adminFetch("/api/admin/reviews", { method: "DELETE", body: JSON.stringify({ id }) });
+    const ok = await adminFetch("/api/admin/reviews", { method: "DELETE", body: JSON.stringify({ id }) }, "Deleted successfully", "delete");
     if (ok !== null) setItems((p) => p.filter((i) => i._id !== id));
   }
 

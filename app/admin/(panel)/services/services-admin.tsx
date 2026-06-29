@@ -25,10 +25,10 @@ export default function ServicesAdmin({ initial }: { initial: Service[] }) {
   async function save() {
     setSaving(true);
     if (editId) {
-      const updated = await adminFetch<Service>("/api/admin/services", { method: "PUT", body: JSON.stringify({ id: editId, ...form }) });
+      const updated = await adminFetch<Service>("/api/admin/services", { method: "PUT", body: JSON.stringify({ id: editId, ...form }) }, "Updated successfully");
       if (updated) { setItems((p) => p.map((i) => (i._id === editId ? updated : i))); setEditId(null); }
     } else {
-      const item = await adminFetch<Service>("/api/admin/services", { method: "POST", body: JSON.stringify({ ...form, order: items.filter((i) => i.category === form.category).length }) });
+      const item = await adminFetch<Service>("/api/admin/services", { method: "POST", body: JSON.stringify({ ...form, order: items.filter((i) => i.category === form.category).length }) }, "Service added");
       if (item) setItems((p) => [...p, item]);
     }
     setForm(empty);
@@ -36,7 +36,7 @@ export default function ServicesAdmin({ initial }: { initial: Service[] }) {
   }
 
   async function del(id: string) {
-    const ok = await adminFetch("/api/admin/services", { method: "DELETE", body: JSON.stringify({ id }) });
+    const ok = await adminFetch("/api/admin/services", { method: "DELETE", body: JSON.stringify({ id }) }, "Deleted successfully", "delete");
     if (ok !== null) setItems((p) => p.filter((i) => i._id !== id));
   }
 

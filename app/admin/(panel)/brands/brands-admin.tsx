@@ -17,10 +17,10 @@ export default function BrandsAdmin({ initial }: { initial: Brand[] }) {
   async function save() {
     setSaving(true);
     if (editId) {
-      const updated = await adminFetch<Brand>("/api/admin/brands", { method: "PUT", body: JSON.stringify({ id: editId, ...form }) });
+      const updated = await adminFetch<Brand>("/api/admin/brands", { method: "PUT", body: JSON.stringify({ id: editId, ...form }) }, "Updated successfully");
       if (updated) { setItems((p) => p.map((i) => (i._id === editId ? updated : i))); setEditId(null); }
     } else {
-      const item = await adminFetch<Brand>("/api/admin/brands", { method: "POST", body: JSON.stringify({ ...form, order: items.length }) });
+      const item = await adminFetch<Brand>("/api/admin/brands", { method: "POST", body: JSON.stringify({ ...form, order: items.length }) }, "Brand added");
       if (item) setItems((p) => [...p, item]);
     }
     setForm(empty);
@@ -28,7 +28,7 @@ export default function BrandsAdmin({ initial }: { initial: Brand[] }) {
   }
 
   async function del(id: string) {
-    const ok = await adminFetch("/api/admin/brands", { method: "DELETE", body: JSON.stringify({ id }) });
+    const ok = await adminFetch("/api/admin/brands", { method: "DELETE", body: JSON.stringify({ id }) }, "Deleted successfully", "delete");
     if (ok !== null) setItems((p) => p.filter((i) => i._id !== id));
   }
 

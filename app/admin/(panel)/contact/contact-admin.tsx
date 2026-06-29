@@ -66,24 +66,24 @@ export default function ContactAdmin({
 
   async function saveInfo() {
     setSaving(true);
-    const ok = await adminFetch("/api/admin/contact", { method: "PUT", body: JSON.stringify(info) });
+    const ok = await adminFetch("/api/admin/contact", { method: "PUT", body: JSON.stringify(info) }, "Saved successfully");
     setSaving(false);
     if (ok !== null) { setSaved(true); setTimeout(() => setSaved(false), 2500); }
   }
 
   async function saveHour() {
     if (editHourId) {
-      const updated = await adminFetch<WorkHour>("/api/admin/work-hours", { method: "PUT", body: JSON.stringify({ id: editHourId, ...hourForm }) });
+      const updated = await adminFetch<WorkHour>("/api/admin/work-hours", { method: "PUT", body: JSON.stringify({ id: editHourId, ...hourForm }) }, "Updated successfully");
       if (updated) { setHours((p) => p.map((h) => (h._id === editHourId ? updated : h))); setEditHourId(null); }
     } else {
-      const item = await adminFetch<WorkHour>("/api/admin/work-hours", { method: "POST", body: JSON.stringify({ ...hourForm, order: hours.length }) });
+      const item = await adminFetch<WorkHour>("/api/admin/work-hours", { method: "POST", body: JSON.stringify({ ...hourForm, order: hours.length }) }, "Added successfully");
       if (item) setHours((p) => [...p, item]);
     }
     setHourForm(hourEmpty);
   }
 
   async function delHour(id: string) {
-    const ok = await adminFetch("/api/admin/work-hours", { method: "DELETE", body: JSON.stringify({ id }) });
+    const ok = await adminFetch("/api/admin/work-hours", { method: "DELETE", body: JSON.stringify({ id }) }, "Deleted successfully", "delete");
     if (ok !== null) setHours((p) => p.filter((h) => h._id !== id));
   }
 

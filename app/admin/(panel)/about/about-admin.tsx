@@ -40,7 +40,7 @@ export default function AboutAdmin({ initial }: { initial: About | null }) {
 
   async function save() {
     setSaving(true);
-    const ok = await adminFetch("/api/admin/about", { method: "PUT", body: JSON.stringify(form) });
+    const ok = await adminFetch("/api/admin/about", { method: "PUT", body: JSON.stringify(form) }, "Saved successfully");
     setSaving(false);
     if (ok !== null) { setSaved(true); setTimeout(() => setSaved(false), 2500); }
   }

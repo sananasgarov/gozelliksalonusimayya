@@ -5,7 +5,9 @@ import { toast } from "./toaster";
 
 export async function adminFetch<T = Record<string, unknown>>(
   url: string,
-  init?: RequestInit
+  init?: RequestInit,
+  successMessage?: string,
+  successType: "success" | "delete" = "success"
 ): Promise<T | null> {
   try {
     const res = await fetch(url, {
@@ -14,12 +16,14 @@ export async function adminFetch<T = Record<string, unknown>>(
     });
     if (!res.ok) {
       const data = await res.json().catch(() => ({})) as { error?: string };
-      toast(data.error || "Xəta baş verdi", "error");
+      toast(data.error || "Something went wrong", "error");
       return null;
     }
-    return await res.json().catch(() => null) as T;
+    const result = await res.json().catch(() => null) as T;
+    if (successMessage) toast(successMessage, successType);
+    return result;
   } catch {
-    toast("Şəbəkə xətası. Yenidən cəhd edin.", "error");
+    toast("Network error. Please try again.", "error");
     return null;
   }
 }

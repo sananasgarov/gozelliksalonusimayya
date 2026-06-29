@@ -16,7 +16,7 @@ export default function GalleryAdmin({ initial }: { initial: GalleryItem[] }) {
     const item = await adminFetch<GalleryItem>("/api/admin/gallery", {
       method: "POST",
       body: JSON.stringify({ imageUrl: url, altText: "", order: items.length }),
-    });
+    }, "Photo added");
     if (item) setItems((prev) => [...prev, item]);
     setSaving(false);
   }
@@ -26,7 +26,7 @@ export default function GalleryAdmin({ initial }: { initial: GalleryItem[] }) {
     const ok = await adminFetch("/api/admin/gallery", {
       method: "DELETE",
       body: JSON.stringify({ id }),
-    });
+    }, "Photo deleted", "delete");
     if (ok !== null) setItems((prev) => prev.filter((i) => i._id !== id));
     setSaving(false);
   }
@@ -35,7 +35,7 @@ export default function GalleryAdmin({ initial }: { initial: GalleryItem[] }) {
     const ok = await adminFetch("/api/admin/gallery", {
       method: "PUT",
       body: JSON.stringify({ id, altText }),
-    });
+    }, "Updated successfully");
     if (ok !== null) setItems((prev) => prev.map((i) => (i._id === id ? { ...i, altText } : i)));
   }
 

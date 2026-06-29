@@ -53,6 +53,7 @@ export default function Hero({ data }: { data?: HeroData | null }) {
         loop
         playsInline
         preload="auto"
+        poster={d.posterUrl || "/about-main.png"}
         className="absolute inset-0 w-full h-full object-cover"
       />
       <div

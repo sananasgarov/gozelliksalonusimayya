@@ -107,7 +107,7 @@ export default function Navbar({ forceScrolled = false, darkIcons = false }: { f
         style={{
           backgroundColor: "#d9caea",
           height: "370px",
-          top: 0,
+          top: -2,
           transform: menuOpen ? "translateY(0)" : "translateY(-100%)",
           transition: "transform 350ms ease-in-out",
           willChange: "transform",

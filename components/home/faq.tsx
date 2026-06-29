@@ -21,7 +21,7 @@ function FaqItemEl({ q, a, isOpen, onToggle }: { q: string; a: string; isOpen: b
         className="w-full flex items-center justify-between gap-6 py-6 px-2 text-left group"
       >
         <span
-          className={`text-base md:text-[24px] font-medium leading-7 md:leading-8 tracking-[-0.48px] transition-colors duration-300 ${isOpen ? "text-[#9B6DFF]" : "text-[#615a6a] group-hover:text-[#433459]"}`}
+          className={`break-all text-base md:text-[24px] font-medium leading-7 md:leading-8 tracking-[-0.48px] transition-colors duration-300 ${isOpen ? "text-[#9B6DFF]" : "text-[#615a6a] group-hover:text-[#433459]"}`}
         >
           {q}
         </span>
@@ -40,7 +40,7 @@ function FaqItemEl({ q, a, isOpen, onToggle }: { q: string; a: string; isOpen: b
         style={{ gridTemplateRows: isOpen ? "1fr" : "0fr" }}
       >
         <div className="overflow-hidden">
-          <p className="px-2 pb-6 text-[#615a6a] text-lg leading-7 tracking-[-0.36px]">
+          <p className="px-2 pb-6 text-[#615a6a] text-lg leading-7 tracking-[-0.36px] break-all">
             {a}
           </p>
         </div>

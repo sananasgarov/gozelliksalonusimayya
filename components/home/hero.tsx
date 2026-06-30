@@ -44,7 +44,7 @@ export default function Hero({ data }: { data?: HeroData | null }) {
   }, []);
 
   return (
-    <section className="sticky top-0 h-screen w-full flex items-center justify-center text-center overflow-hidden">
+    <section className="sticky top-0 h-dvh w-full flex items-center justify-center text-center overflow-hidden">
       <video
         ref={videoRef}
         src={d.videoUrl}

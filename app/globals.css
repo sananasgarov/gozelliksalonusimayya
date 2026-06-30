@@ -6,16 +6,6 @@ body {
   scroll-behavior: smooth;
 }
 
-/* Disable parallax on mobile/tablet — lg+ only */
-@media (max-width: 1023px) {
-  .parallax-hero    { height: 100vh !important; }
-  .parallax-about   { margin-top: 0 !important; }
-  .parallax-brands  { height: auto !important; }
-  .parallax-brands-sticky  { position: relative !important; }
-  .parallax-services { height: auto !important; margin-top: 0 !important; }
-  .parallax-services-sticky { position: relative !important; }
-  .parallax-gallery { margin-top: 0 !important; }
-}
 
 @keyframes marquee {
   0% { transform: translateX(0); }

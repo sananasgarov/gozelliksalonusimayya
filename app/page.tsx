@@ -26,39 +26,41 @@ export default async function Home() {
 
 
   return (
-    <div className="flex flex-col w-full bg-[#f4f2ee]" style={{ overflowX: "clip" }}>
+    <div className="flex flex-col w-full bg-[#f4f2ee]">
       <Navbar />
 
-      {/* Hero — mobile: 100vh, desktop: 200vh sticky zone */}
-      <div className="relative z-1 h-screen lg:h-[200vh]">
+      {/* Hero — 200dvh sticky zone */}
+      <div className="relative z-1 h-[200dvh]">
         <Hero data={hero} />
       </div>
 
-      {/* About — mobile: normal flow, desktop: slides over Hero */}
-      <div className="relative z-2 lg:mt-[-100vh] bg-[#f4f2ee]">
+      {/* About — slides over Hero */}
+      <div className="relative z-2 mt-[-100dvh] bg-[#f4f2ee]">
         <About data={about} />
       </div>
 
-      {/* Brands — simple flow, no parallax */}
+      {/* Brands */}
       <div className="relative z-3 bg-[#f4f2ee] py-20 md:py-35">
         <Brands brands={brands} />
       </div>
 
-      {/* ServicesHighlight — desktop: sticky carousel */}
-      <div className="relative z-4 h-auto lg:h-[calc(100vh+800px)]">
-        <div className="relative lg:sticky top-0">
+      {/* ServicesHighlight — sticky on all screens */}
+      <div className="relative z-4 h-[calc(200dvh+500px)] lg:h-[calc(100dvh+800px)]">
+        <div className="sticky top-0">
           <ServicesHighlight homeSlides={homeSlides} />
         </div>
       </div>
 
-      {/* GalleryPreview — mobile: normal flow, desktop: slides over Services */}
-      <div className="relative z-5 lg:mt-[-100vh] bg-[#f4f2ee]">
+      {/* GalleryPreview — slides over Services on all screens */}
+      <div className="relative z-5 mt-[-100dvh] bg-[#f4f2ee]">
         <GalleryPreview images={gallery} />
       </div>
-      <Reviews reviews={reviews} />
-      <Faq faqs={faqs} />
-      <Contact contact={contact} />
-      <Footer contact={contact} />
+      <div className="relative z-5 bg-[#f4f2ee]">
+        <Reviews reviews={reviews} />
+        <Faq faqs={faqs} />
+        <Contact contact={contact} />
+        <Footer contact={contact} />
+      </div>
     </div>
   );
 }

@@ -21,7 +21,7 @@ const DEFAULTS: HeroData = {
   posterUrl: "/about-main.png",
 };
 
-export default function Hero({ data }: { data?: HeroData | null }) {
+export default function Hero({ data, phone }: { data?: HeroData | null; phone?: string }) {
   const d = {
     ...DEFAULTS,
     ...data,
@@ -76,6 +76,7 @@ export default function Hero({ data }: { data?: HeroData | null }) {
           </p>
         </div>
         <BookNowButton
+          phone={phone}
           className="bg-[#9b6dff] hover:bg-[#8a5dee] text-white font-medium text-[20px] leading-6 rounded-full transition-colors group flex items-center justify-center"
           style={{ width: 153, height: 48 }}
         >

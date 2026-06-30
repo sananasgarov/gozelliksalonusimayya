@@ -3,9 +3,7 @@
 import { useEffect, useState } from "react";
 import SlideText from "@/components/slide-text";
 
-const PHONE = "13476127994";
-const SMS_HREF = `sms:+${PHONE}`;
-const WA_HREF = `https://wa.me/${PHONE}`;
+const DEFAULT_PHONE = "13476127994";
 
 function isMobileDevice(): boolean {
   return (
@@ -18,14 +16,18 @@ type Props = {
   className?: string;
   style?: React.CSSProperties;
   children?: React.ReactNode;
+  phone?: string;
 };
 
-export default function BookNowButton({ className, style, children = "Book Now" }: Props) {
-  const [href, setHref] = useState(SMS_HREF);
+export default function BookNowButton({ className, style, children = "Book Now", phone }: Props) {
+  const p = phone ?? DEFAULT_PHONE;
+  const smsHref = `sms:+${p}`;
+  const waHref = `https://wa.me/${p}`;
+  const [href, setHref] = useState(smsHref);
 
   useEffect(() => {
-    setHref(isMobileDevice() ? SMS_HREF : WA_HREF);
-  }, []);
+    setHref(isMobileDevice() ? smsHref : waHref);
+  }, [smsHref, waHref]);
 
   return (
     <a

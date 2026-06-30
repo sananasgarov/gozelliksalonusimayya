@@ -7,7 +7,7 @@ import {
 } from "@/components/admin/admin-ui";
 
 type ContactInfo = {
-  phone: string; phoneHref: string; email: string;
+  phone: string; phoneHref: string;
   address: string; mapUrl: string;
   instagram: string; tiktok: string; facebook: string;
 };
@@ -21,7 +21,6 @@ function digitsFromHref(href: string): string {
 }
 
 const otherContactFields: [keyof ContactInfo, string][] = [
-  ["email", "Email Address"],
   ["address", "Full Address"],
   ["mapUrl", "Google Maps URL"],
   ["instagram", "Instagram URL"],
@@ -36,7 +35,7 @@ export default function ContactAdmin({
 }) {
   const [info, setInfo] = useState<ContactInfo>(
     initial?.info ?? {
-      phone: "347-612-7994", phoneHref: "tel:+13476127994", email: "samiyya@gmail.com",
+      phone: "347-612-7994", phoneHref: "tel:+13476127994",
       address: "4624 Chatsworth Ave zip 15207, Pennsylvania, Pittsburgh",
       mapUrl: "https://maps.google.com/?q=4624+Chatsworth+Ave+Pittsburgh+PA+15207",
       instagram: "https://www.instagram.com/samiyya.studio",

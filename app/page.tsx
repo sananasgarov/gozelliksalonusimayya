@@ -25,13 +25,17 @@ export default async function Home() {
   ]);
 
 
+  const phone = contact?.info?.phoneHref
+    ? (contact.info.phoneHref as string).replace(/\D/g, "")
+    : undefined;
+
   return (
     <div className="flex flex-col w-full bg-[#f4f2ee]">
-      <Navbar />
+      <Navbar phone={phone} />
 
       {/* Hero — 200dvh sticky zone */}
       <div className="relative z-1 h-[200dvh]">
-        <Hero data={hero} />
+        <Hero data={hero} phone={phone} />
       </div>
 
       {/* About — slides over Hero */}

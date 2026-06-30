@@ -15,7 +15,7 @@ const navLinks = [
   { label: "Contact", href: "/#contact" },
 ];
 
-export default function Navbar({ forceScrolled = false, darkIcons = false }: { forceScrolled?: boolean; darkIcons?: boolean }) {
+export default function Navbar({ forceScrolled = false, darkIcons = false, phone }: { forceScrolled?: boolean; darkIcons?: boolean; phone?: string }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [_scrolled, setScrolled] = useState(false);
   const [hidden, setHidden] = useState(false);
@@ -71,7 +71,7 @@ export default function Navbar({ forceScrolled = false, darkIcons = false }: { f
           </Link>
 
           <div className="flex items-center gap-6">
-            <BookNowButton className="hidden sm:flex items-center justify-center bg-[#9b6dff] hover:bg-[#8a5dee] text-white font-medium text-[16px] leading-6 px-6 py-3 rounded-full transition-colors whitespace-nowrap group" />
+            <BookNowButton phone={phone} className="hidden sm:flex items-center justify-center bg-[#9b6dff] hover:bg-[#8a5dee] text-white font-medium text-[16px] leading-6 px-6 py-3 rounded-full transition-colors whitespace-nowrap group" />
 
             <button
               onClick={() => setMenuOpen((v) => !v)}

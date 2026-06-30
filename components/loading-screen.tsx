@@ -80,21 +80,8 @@ export default function LoadingScreen() {
         pointerEvents: fading ? "none" : "auto",
       }}
     >
-      <div style={{ display: "flex", alignItems: "flex-start" }}>
-        <span
-          style={{
-            fontFamily: "var(--font-great-vibes)",
-            fontSize: "64px",
-            lineHeight: 1,
-            color: "#433459",
-            marginRight: "-6px",
-          }}
-        >
-          Samiyya
-        </span>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/logoblack.png" alt="" style={{ width: 44, height: 44, objectFit: "contain" }} className="transform translate-x-[3px] translate-y-[5px]" />
-      </div>
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img src="/Logo Black.png" alt="Samiyya Studio" style={{ height: 80, width: "auto", objectFit: "contain" }} />
       <p
         style={{
           fontFamily: "var(--font-geist)",

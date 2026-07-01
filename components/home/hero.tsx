@@ -41,7 +41,6 @@ export default function Hero({ data, phone }: { data?: HeroData | null; phone?: 
       <video
         ref={videoRef}
         src={d.videoUrl}
-        autoPlay
         muted
         loop
         playsInline

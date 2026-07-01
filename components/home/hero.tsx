@@ -33,7 +33,28 @@ export default function Hero({ data, phone }: { data?: HeroData | null; phone?: 
     const v = videoRef.current;
     if (!v) return;
     v.muted = true;
-    v.play().catch(() => {});
+
+    const tryPlay = () => v.play().catch(() => {});
+
+    tryPlay();
+    v.addEventListener("loadedmetadata", tryPlay);
+    v.addEventListener("canplay", tryPlay);
+
+    // iOS can block programmatic autoplay even when muted+playsInline (e.g. the
+    // "Auto-Play Video Previews" accessibility setting is off). A real user
+    // gesture always bypasses that restriction, so retry on first interaction.
+    const onFirstInteraction = () => {
+      if (v.paused) tryPlay();
+    };
+    document.addEventListener("touchstart", onFirstInteraction, { once: true, passive: true });
+    document.addEventListener("click", onFirstInteraction, { once: true });
+
+    return () => {
+      v.removeEventListener("loadedmetadata", tryPlay);
+      v.removeEventListener("canplay", tryPlay);
+      document.removeEventListener("touchstart", onFirstInteraction);
+      document.removeEventListener("click", onFirstInteraction);
+    };
   }, []);
 
   return (

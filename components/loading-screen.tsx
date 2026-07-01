@@ -10,15 +10,13 @@ export default function LoadingScreen() {
 
   useEffect(() => {
     const MIN_MS = 900;
-    const MAX_VIDEO_WAIT_MS = 5000;
     const start = Date.now();
 
     let windowLoaded = false;
-    let videoReady = false;
     let finished = false;
 
     const finish = () => {
-      if (finished || !windowLoaded || !videoReady) return;
+      if (finished || !windowLoaded) return;
       finished = true;
       const elapsed = Date.now() - start;
       const wait = Math.max(0, MIN_MS - elapsed);
@@ -35,14 +33,9 @@ export default function LoadingScreen() {
     };
 
     const onWindowLoad = () => { windowLoaded = true; finish(); };
-    const onVideoReady = () => { videoReady = true; finish(); };
-
-    const videoTimeout = setTimeout(() => { videoReady = true; finish(); }, MAX_VIDEO_WAIT_MS);
 
     document.body.style.overflow = "hidden";
     document.documentElement.style.overflow = "hidden";
-
-    window.addEventListener("heroVideoReady", onVideoReady, { once: true });
 
     if (document.readyState === "complete") {
       windowLoaded = true;
@@ -54,8 +47,6 @@ export default function LoadingScreen() {
 
     return () => {
       window.removeEventListener("load", onWindowLoad);
-      window.removeEventListener("heroVideoReady", onVideoReady);
-      clearTimeout(videoTimeout);
       document.body.style.overflow = "";
       document.documentElement.style.overflow = "";
     };
